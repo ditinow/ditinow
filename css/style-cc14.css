@@ -1,0 +1,17 @@
+a.lightlink:link,a.lightlink:visited,a.lightlink:hover,a.lightlink:active {color: white; text-decoration: none;}
+.vertical-center {margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);}
+td.td-1{width: 120px;text-align: right;font-size: 0.9em;}
+td.td-2{word-break:break-all;font-size: 0.9em;}
+td.td-qa{color:green; width: 75px;font-weight: bold; vertical-align: middle;text-align:center}
+table.word-break{table-layout:fixed; width:100%;}
+td.alert1{color: red; font-weight:  bold;}
+td.alert2{color: black; text-shadow:2px 2px 4px yellow;}
+td.alert3{color: red; font-weight:  bold; font-size: 0.8em}
+@media (min-width: 576px) {
+    .carousel-item img {
+        width: auto !important;
+        height: 400px;
+        max-height: 400px;
+    }
+}
+/* textarea.input{height: 100px} */
