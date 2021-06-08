@@ -1,0 +1,103 @@
+var walletIssuance=["ARDOR-6GHE-PZHL-A7NV-HPAYQ","ARDOR-8V6U-U34X-SSSZ-83ZLJ"];
+var walletActivation=["ARDOR-JNYN-A76A-MHRC-BC5QQ","ARDOR-YU7X-Q4HS-X6H5-BD5TS"];
+var walletBurning="ARDOR-LK4C-4WAU-UEMU-8U3YB";
+
+var testurl="https://testardor.jelurida.com/nxt";
+var mainurl="https://ardor.jelurida.com/nxt";
+var testurl2="http://192.168.123.134:26876/nxt";
+var url=testurl;
+var isNet="testnet";
+var isNet2="mainnet";
+
+
+
+var myAddressBookObj = [
+{
+accountRS:"ARDOR-",
+name:"名称",
+address:"地址",
+contact:"联系方式",
+daiexpDateMa:"账号截止日期",
+level:"0-应用开发 1-Issuance 2-Product Activation 3-Retail 4-Logistics 5-Services 6-Unknow 7-Burner",
+leiXing:"账户类型"
+},
+{
+accountRS:"ARDOR-E48H-NKT9-YKHD-EABA9",
+name:"风云1",
+address:"Houston, Texas, USA",
+contact:"WeChatID: fengyun_houston",
+expDate:"2022-12-31T23:59:59+08:00",
+level:"0",
+duty:"应用开发"
+},
+{
+accountRS:"ARDOR-8V6U-U34X-SSSZ-83ZLJ",
+name:"Crypto C14 信息科技",
+address:"Houston, Texas, USA",
+contact:"http://cc14.cryptoc14.com/",
+expDate:"2022-12-31T23:59:59+08:00",
+level:"1",
+duty:"Issuance"
+},
+
+{
+accountRS:"ARDOR-6GHE-PZHL-A7NV-HPAYQ",
+name:"Crypto C14 信息科技",
+address:"Houston, Texas, USA",
+contact:"http://cc14.cryptoc14.com/",
+expDate:"2022-12-31T23:59:59+08:00",
+level:"1",
+duty:"Issuance"
+},
+
+{
+accountRS:"ARDOR-JNYN-A76A-MHRC-BC5QQ",
+name:"Crypto C14 信息科技",
+address:"Houston, Texas, USA",
+contact:"http://cc14.cryptoc14.com/",
+expDate:"2022-12-31T23:59:59+08:00",
+level:"2",
+duty:"Product Activation"
+},
+
+{
+accountRS:"ARDOR-YU7X-Q4HS-X6H5-BD5TS",
+name:"Crypto C14 信息科技",
+address:"Houston, Texas, USA",
+contact:"http://cc14.cryptoc14.com/",
+expDate:"2022-12-31T23:59:59+08:00",
+level:"2",
+duty:"Product Activation"
+},
+
+{
+accountRS:"ARDOR-G6GA-ECEH-4T9P-HRXS7",
+name:"Crypto C14 Shop (online)",
+address:"Houston, Texas, USA",
+contact:"http://www.cryptoc14.com/shop/",
+expDate:"2022-12-31T23:59:59+08:00",
+level:"3",
+duty:"Retail"
+},
+
+{
+accountRS:"ARDOR-SXJ6-9LAQ-H27N-4TDVN",
+name:"Ego有限公司7",
+address:"Houston, Texas, USA",
+contact:"http://www.cryptoc14.com/services/",
+expDate:"2022-12-31T23:59:59+08:00",
+level:"5",
+duty:"Crypto C14 Services"
+},
+
+{
+accountRS:"ARDOR-LK4C-4WAU-UEMU-8U3YB",
+name:"Crypto C14 信息科技",
+address:"",
+contact:"",
+expDate:"2022-12-31T23:59:59+08:00",
+level:"7",
+duty:"Burner"
+}
+
+];

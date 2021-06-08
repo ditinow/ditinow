@@ -1,0 +1,43 @@
+var myAssetBookObj = [
+{
+  barcode:"6901234567890",
+  brand:"DiTI",
+  model:"DT-C123",
+  description:"DiTI纪念品 43寸折叠伞，天空之境",
+  unit:"件",
+  madeIn:"中国，广西，南宁",
+  link:"http://www.diti.com/shop/souvenir/",
+  goodFor:"",
+},
+{
+  barcode:"6902345678901",
+  brand:"DiTI",
+  model:"DT-T123",
+  description:"DiTI信息科技 POLO工作衫 蓝绿码（防伪码+注册码)套装，2件一套",
+  unit:"套",
+  madeIn:"中国，广西，南宁",
+  link:"http://www.diti.com/shop/fashion/",
+  goodFor:"",
+},
+{
+  barcode:"6903456789012",
+  brand:"DiTI",
+  model:"DT-D456",
+  description:"DiTI纪念品 大红袍茶 200克x2盒套装",
+  unit:"套",
+  madeIn:"中国，武夷山",
+  link:"http://www.diti.com/shop/drink/",
+  goodFor:"48个月",
+},
+{
+  barcode:"6905678901234",
+  brand:"DiTI",
+  model:"DT-C789",
+  description:"DiTI内部福利 牛奶糖 散装",
+  unit:"克",
+  madeIn:"中国，广西，南宁",
+  link:"http://www.diti.com/shop/treat/",
+  goodFor:"12个月",
+}
+
+];

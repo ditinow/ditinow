@@ -1,0 +1,12 @@
+var keyAES    = 4637379464008381;
+var ivAES     = 6394680564231843;
+
+var secretPhraseIssuance = "midnight seven through card squeeze point lovely joke gone own ink ancient";
+var secretPhraseActivation = "dreamer cruel swallow mean pray judge hang shown concrete chin scale void";
+
+var walletsObj=[
+  {accountRS:"ARDOR-6GHE-PZHL-A7NV-HPAYQ", secretPhrase: "midnight seven through card squeeze point lovely joke gone own ink ancient"},
+  {accountRS:"ARDOR-8V6U-U34X-SSSZ-83ZLJ", secretPhrase: "pride snake raw verse dove pulse situation glory cheek trip shower show"},
+  {accountRS:"ARDOR-JNYN-A76A-MHRC-BC5QQ", secretPhrase: "dreamer cruel swallow mean pray judge hang shown concrete chin scale void"},
+  {accountRS:"ARDOR-YU7X-Q4HS-X6H5-BD5TS", secretPhrase: "creep bee ruin couch white true tonight glove attack cover describe descend"}
+];
