@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Crypto C14 一站式区块链应用</title>
+  <meta charset="utf-8">
+  <meta name="description" content="一站式区块链应用">
+  <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
+  <meta name="author" content="wechat ID: fengyun_houston">
+  <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
+  <meta name="integrity" content="token...">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "icon" href ="images/logo-cc14.png" type = "image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style-cc14.css">
+  <style>
+  @media all and (min-width: 992px) {
+	  .navbar .nav-item .dropdown-menu{ display: none; }
+    .navbar .nav-item:hover .nav-link{ color: #000;  }
+	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
+	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
+  }
+</style>
+</head>
+<body>
+  <div style="min-height: calc(100vh - 50px);">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html"><img src="images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- load by src='js/nav_footer.js' -->
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid"><!-- container ============================ -->
+
+      <div class="row align-items-center" name="image slider">
+        <div class="col-12 col-sm-10 mx-auto mt-4">
+          <div id="productImages" class="carousel slide carousel-dark" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#productImages" data-slide-to="0" class="active"></li>
+              <li data-target="#productImages" data-slide-to="1"></li>
+              <li data-target="#productImages" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-1" src="images/upc-image-1.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-2" src="images/upc-image-2.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-3" src="images/upc-image-3.png" alt=""></a>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#productImages" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+            </a>
+            <a class="carousel-control-next" href="#productImages" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+            </a>
+          </div>
+        </div>
+      </div><!-- image slider by bootstrap ==================================-->
+
+      <div class="row" name="action block"><!-- action block =========================== -->
+        <div class="col-12 col-sm-10 mx-auto">
+          <div class="accordion"><!-- accordion ============================ -->
+
+            <div class="accordion-item" name="New Ardor Wallet">
+              <h2 class="accordion-header" id="newWalletFlip">
+                <button id="newWalletBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#newWalletFPanel" aria-expanded="false" aria-controls="newWalletFPanel">
+                  <h4>&#x1F45D; New Ardor Wallet</h4>
+                </button>
+              </h2>
+              <div id="newWalletFPanel" class="accordion-collapse collapse" aria-labelledby="newWalletFlip" >
+                <div class="accordion-body">
+                  <div id="newWalletAction" >
+                    <form id="newWalletForm" >
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Passphrase</span>
+                        <input class="form-control input" type="password" name="secretPhrase" id="newWalletFormPassword" placeholder="please enter">
+                        <span class="input-group-text fs-4"  id="newWalletFormPasswordIcon" onclick="togglePasswordFn('newWalletFormPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group justify-content-md-end">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; Create">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="newWalletResponse" >
+                    <div class="overflow-auto">
+                      <h5>Summary:</h5>
+                      <div id="newWalletResult">
+                        <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="newWalletResultTbl">
+                          <caption>Wallet Information</caption>
+                          <tbody>
+                            <tr><td class="text-end">accountRS: </td><td id="newWalletResultTbl1"></td></tr>
+                            <tr><td class="text-end">publicKey: </td><td id="newWalletResultTbl2"></td></tr>
+                            <tr><td class="text-end">Passphrase: </td><td id="newWalletResultTbl3"></td></tr>
+                            <tr><td class="text-end">privateKey: </td><td id="newWalletResultTbl4"></td></tr>
+                          </tbody>
+                        </table>
+                        <span id="newWalletQRCode"></span>
+                      </div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response:</h5>
+                      <div id="newWalletJSON">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- New Ardor Wallet end ================================ -->
+
+            <div class="accordion-item" name="Create QR Code">
+              <h2 class="accordion-header" id="qrCodeFlip">
+                <button id="qrCodeBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qrCodePanel" aria-expanded="false" aria-controls="qrCodePanel">
+                  <h4>&#x1F536; Create QR code</h4>
+                </button>
+              </h2>
+              <div id="qrCodePanel" class="accordion-collapse collapse" aria-labelledby="qrCodeFlip" >
+                <div class="accordion-body">
+                  <div id="qrCodeAction">
+                    <form id="qrCodeForm" >
+                      <div class="form-group mb-3" >
+                        <textarea class="form-control input" name='text' maxlength="1000" rows="3" placeholder="please enter"></textarea>
+                      </div>
+                      <div class="input-group justify-content-md-end">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;reset">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F528; Create" onClick="qrCodeFn(qrCodeForm.text.value)">
+                      </div>
+                    </form>
+                  </div>
+                  <div id="qrCodeResponse" >
+                    <span id="dispQRCode"></span>
+                  </div >
+                </div>
+              </div>
+            </div><!-- QR code end ========================================= -->
+
+            <div class="accordion-item" name="Account Assets">
+              <h2 class="accordion-header" id="flipBalance">
+                <button id="btnAccountBalances" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelBalance" aria-expanded="false" aria-controls="panelBalance">
+                  <h4>&#x1F4B0; Account Assets</h4>
+                </button>
+              </h2>
+              <div id="panelBalance" class="accordion-collapse collapse" aria-labelledby="flipBalance" >
+                <div class="accordion-body">
+                  <div id="getAccountBalancesAction">
+                    <form id="getAccountBalancesForm" >
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Wallet</span>
+                        <input type="text" name='account' maxlength="26" class="form-control" placeholder="ARDOR-" aria-describedby="button-addon1">
+                      </div>
+                      <div class="input-group justify-content-md-end mb-3">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F50D;Search">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="getAccountBalancesResponse" >
+                    <div class="text-wrap text-break">
+                      <h5>Summary:</h5>
+                      <span id="getAccountBalancesResult"></span>
+                    </div>
+                    <div  class="overflow-auto" id="getAccountAssetsResult">
+                      <input id="myInput" type="text" placeholder="Search table...">
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="getAccountAssetsResultTbl">
+                        <caption>Assets Table</caption>
+                        <thead class="thead-light">
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Barcode</th>
+                            <th>Asset ID</th>
+                            <th>Qty</th>
+                            <th>Decimals</th>
+                          </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response:</h5>
+                      <div id="getAccountBalancesJSON">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- accordion-item 资产余额 结束===========================-->
+
+            <div class="accordion-item" name="Assets by Issuer">
+              <h2 class="accordion-header" id="flipGetAssetsByIssuer">
+                <button id="btnGetAssetsByIssuer" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelGetAssetsByIssuer" aria-expanded="false" aria-controls="panelGetAssetsByIssuer">
+                  <h4>&#x270D; Assets by Issuer</h4>
+                </button>
+              </h2>
+              <div id="panelGetAssetsByIssuer" class="accordion-collapse collapse" aria-labelledby="flipGetAssetsByIssuer">
+                <div class="accordion-body">
+                  <div id="getAssetsByIssuerAction">
+                    <form id="getAssetsByIssuerForm" >
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Wallet</span>
+                        <input type="text" name='account' maxlength="26" class="form-control" placeholder="ARDOR-"  aria-describedby="button-addon1">
+                      </div>
+                      <div class="input-group justify-content-md-end mb-3">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
+                        <input type="submit" class="btn btn-outline-secondary"  value="&#x1F50D;Search">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="getAssetsByIssuerResponse"  >
+                    <div  class="overflow-auto">
+                      <h5>Summary:</h5>
+                      <input id="myInput2" type="text" placeholder="filter...">
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="getAssetsByIssuerResultTbl">
+                        <caption>Assets Issued：</caption>
+                        <thead class="thead-light">
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Barcode</th>
+                            <th>Asset ID</th>
+                            <th>Qty</th>
+                            <th>Dec.</th>
+                            <th>Description</th>
+                            <th># of Acc.</th>
+                            <th># of Tran.</th>
+                            <th>Phasing</th>
+                          </tr>
+                        </thead>
+                        <tbody id="myTable2">
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response</h5>
+                      <span id="getAssetsByIssuerJSON"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- accordion-item 资产授权记录 结束=======================-->
+
+            <div class="accordion-item" name="Asset Transfers">
+              <h2 class="accordion-header" id="flipHistory">
+                <button id="btnHistory" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelHistory" aria-expanded="false" aria-controls="panelHistory">
+                  <h4>&#x27B2; Asset Transfers</h4>
+                </button>
+              </h2>
+              <div id="panelHistory" class="accordion-collapse collapse" aria-labelledby="flipHistory" >
+                <div class="accordion-body">
+                  <div id="historyTransfersAction">
+                    <form id="getAssetTransfersForm" >
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Asset ID</span>
+                        <input type="text" class="form-control" name='asset'>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Wallet</span>
+                        <input type="text" class="form-control" name='account' placeholder="ARDOR-">
+                      </div>
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F50D;Search">
+                      </div>
+                    </form>
+                    <form id="historyTransactionForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Transaction</span>
+                        <input type="text" class="form-control" name='fullHash' placeholder="Full hash ...">
+                      </div>
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F50D; Detail">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="historyTransfersActionResponse" >
+                    <div class="overflow-auto" id="historyTransferResult">
+                      <h5>Summary:</h5>
+                      <p id="getTransactionResult">
+                      </p>
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="historyResultTbl">
+                        <caption>Asset Transfers</caption>
+                        <thead class="thead-light">
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Qty</th>
+                            <th>Time</th>
+                            <th>Sender</th>
+                            <th>Recipient</th>
+                            <th>Full Hash</th>
+                          </tr>
+                        </thead>
+                        <tbody id="myTable3">
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response</h5>
+                      <div id="historyJSON">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- accordion-item 资产交易明细 结束=======================-->
+
+            <div class="accordion-item" name="Sent Message">
+              <h4 class="accordion-header" id="flipMessage">
+                <button id="btnMessage" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelMessage" aria-expanded="false" aria-controls="panelMessage">
+                  <h4>&#x1F427; Sent Message</h4>
+                </button>
+              </h4>
+              <div id="panelMessage" class="accordion-collapse collapse" aria-labelledby="flipMessage" >
+                <div  class="accordion-body">
+                  <div id="messageAction">
+                    <form id="sendMessageForm" >
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Message</span>
+                        <input type="text" class="form-control" name='message' placeholder="Uneccrypted message ...">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Recipient</span>
+                        <input type="text" class="form-control" name='recipient' placeholder="ARDOR-">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" name='secretPhrase' placeholder="Sender Passphrase ..." >
+                      </div>
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F4DD;Prepear transactionBytes">
+                      </div>
+                    </form>
+                    <form id="sendMessageBroadcastTransactionForm">
+                      <div class="input-group mb-3" >
+                        <textarea style="height:90px" class="form-control" name='transactionBytes' id="broadcastTransactionInput" placeholder="transactionBytes, autocomplete by DApp ..."></textarea>
+                      </div>
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="button" class="btn btn-success btn-lg" style="width:100%" value="&#x1F4E2;Boradcast transactionBytes" onClick="broadcastTransactionFn('sendMessage')">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="sentMessageResponse">
+                    <div class="overflow-auto" id="sendMessageResult">
+                      <h5>Summary:</h5>
+                      <p id="sendMessageBroadcastTransactionResult"></p>
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
+                        <tbody>
+                          <tr><td>senderRS</td><td id="sendMessageTbl-senderRS"></td></tr>
+                          <tr><td>recipientRS</td><td id="sendMessageTbl-recipientRS"></td></tr>
+                          <tr><td>time</td><td id="sendMessageTbl-sendTime"></td></tr>
+                          <tr><td>Minimum Fee</td><td id="sendMessageTbl-fee"></td></tr>
+                          <tr><td>Message</td><td id="sendMessageTbl-message"></td></tr>
+                          <tr><td>Full Hash</td><td id="sendMessageTbl-fullHash"></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response</h5>
+                      <span id="sendMessageJSON"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- accordion-item 联系钱包用户 结束=======================-->
+
+          </div><!-- accordion 结束 =========================================-->
+        </div><!-- col-12 col-sm-10 mx-auto mt-4 结束 ====================== -->
+      </div><!-- utilities body 结束 ======================================= -->
+    </div><!-- container end =============================================== -->
+  </div><!-- 100% vh end =================================================== -->
+  <footer id="footer" style="height: 50px;">
+    <!-- load by nav_footer.js -->
+  </footer>
+</body>
+<script>
+  var isNode = false;
+</script>
+<script src='js/3rdparty/jquery-3.5.1.min.js'></script>
+<script src='js/3rdparty/bootstrap.bundle.min.js' ></script>
+<script src="js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="js/3rdparty/crypto-js.min.js"></script>
+<script src="js/3rdparty/jsbn.js"></script>
+<script src="js/3rdparty/jsbn2.js"></script>
+<script src="js/3rdparty/extensions.js"></script>
+<script src="js/3rdparty/converters.js"></script>
+<script src="js/3rdparty/nrs.util.js"></script>
+<script src="js/3rdparty/jquery.table2excel.js"></script>
+<script src="js/3rdparty/jquery.dataTables.min.js" ></script>
+<script src='js/scripts-cc14en.js' ></script>
+<script src='js/nav_footer.js' ></script>
+<script src='data/myAddressBook.json' ></script>
+<script src='data/myAssetBook.json' ></script>
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
+  $("#navbarSupportedContent").html(navbarSupportedContentHtml);
+  $("#footer").html(footerHtml);
+  $("input[type='text']").on("click", function () {$(this).select();});
+</script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#myInput2").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable2 tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+</script>
+
+</html>
