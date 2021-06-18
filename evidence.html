@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Crypto C14 一站式区块链应用</title>
+  <title>Crypto C14 One stop blockchain DApp</title>
   <meta charset="utf-8">
   <meta name="description" content="一站式区块链应用">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
@@ -99,8 +99,8 @@
                     <div class="text-wrap text-break overflow-auto">
                       <h5>Summary:</h5>
                       <span id="genFileTokenResult"></span>
-                      <p><b>Save file to: </b>by local storage, cloud storage, Ardor cloud, IPFS ... </p>
-                      <sp><b>Save filtToken to: </b>print out a hardcopy, download and save as a <a id="save2txt" href="" download="date.txt" >txt file </a> ...</p>
+                      <p><b>Save file to: </b>by local storage, cloud storage, CC14 data cloud, IPFS ... </p>
+                      <sp><b>Save fileToken to: </b>print out a hardcopy, download and save as a <a id="save2txt" href="" download="date.txt" >txt file </a> ...</p>
                     </div>
                   </div><!-- display result JSON end ======================= -->
                 </div><!-- accordion-body end ============================== -->
@@ -137,9 +137,9 @@
                       <span id="decFileTokenResult"></span>
                       <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
                         <tbody>
-                          <tr><td>by accountRS</td><td id="decFileTokenTbl-generator"></td></tr>
-                          <tr><td>time</td><td id="decFileTokenTbl-time"></td></tr>
-                          <tr><td>file to validate</td><td id="decFileTokenTbl-file"></td></tr>
+                          <tr><td>fileToken generator</td><td id="decFileTokenTbl-generator"></td></tr>
+                          <tr><td>fileToken generated on</td><td id="decFileTokenTbl-time"></td></tr>
+                          <tr><td>file to be validated</td><td id="decFileTokenTbl-file"></td></tr>
                         </tbody>
                       </table>
                     </div>
@@ -175,7 +175,7 @@
                         <span class="input-group-text" >Licenses</span>
                         <!-- <input type="text" class="form-control" name='license' list="liceseList"> -->
                         <select class="form-select" type="text" name='license' id="liceseList">
-                          <option selected>Option ...</option>
+                          <option selected></option>
                           <option value="BSD">BSD</option>
                           <option value="MIT">MIT</option>
                           <option value="GPL">GPL</option>
@@ -192,7 +192,7 @@
                     </form>
                     <form id="tokenizeBroadcastTransactionForm" onsubmit="return broadcastTransactionFn('tokenize')">
                       <input type="hidden" class="form-control" name="transactionBytes" value="" id="tokenizeBroadcastTransactionBytes">
-                      <input type="submit" id="tokenizeBroadcastBtn" disabled class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm tokenize" data-bs-toggle="tooltip" data-bs-placement="top" title="演示版中此项功能被禁止，以避免不必要的演示账户火链币消耗。">
+                      <input type="submit" id="tokenizeBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm tokenize" data-bs-toggle="tooltip" data-bs-placement="top" title="演示版中此项功能被禁止，以避免不必要的演示账户火链币消耗。">
                     </form>
                   </div><!-- form section end ============================== -->
                   <div class="col-12 col-sm-12 d-none" id="tokenizeDisplay">
@@ -207,9 +207,9 @@
                           <tr><td>Time</td><td id="tokenizeTblTime"></td></tr>
                           <tr><td>AssetID</td><td id="tokenizeTblAssetID"></td></tr>
                           <tr><td>Fee</td><td id="tokenizeTblFee"></td></tr>
-                          <tr><td>FullHash</td><td id="tokenizeTblFullHash"></td></tr>
-                          <tr><td>FielToken</td><td id="tokenizeTblFielToken"></td></tr>
-                          <tr><td>File information</td><td id="tokenizeTblFile"></td></tr>
+                          <tr><td>Full hash</td><td id="tokenizeTblFullHash"></td></tr>
+                          <tr><td>File token</td><td id="tokenizeTblFielToken"></td></tr>
+                          <tr><td>Additional information</td><td id="tokenizeTblFile"></td></tr>
                         </tbody>
                       </table>
                     </div>
@@ -353,15 +353,17 @@
 <script src="js/3rdparty/converters.js"></script>
 <script src="js/3rdparty/nrs.util.js"></script>
 <script src="js/3rdparty/jquery.table2excel.js"></script>
-<script src='js/scripts-cc14en.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
+<script src='js/scripts-cc14en.js' ></script>
+<script src='js/nav_footer.js' ></script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
   $("#navbarSupportedContent").html(navbarSupportedContentHtml);
   $("#footer").html(footerHtml);
   $("input[type='text']").on("click", function () {$(this).select();});
+  $('#genTokenInput').val(new Date());
 </script>
 </html>

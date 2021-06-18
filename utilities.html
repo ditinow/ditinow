@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Crypto C14 一站式区块链应用</title>
+  <title>Crypto C14 One stop blockchain DApp</title>
   <meta charset="utf-8">
   <meta name="description" content="一站式区块链应用">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
@@ -69,10 +69,30 @@
         <div class="col-12 col-sm-10 mx-auto">
           <div class="accordion"><!-- accordion ============================ -->
 
-            <div class="accordion-item" name="New Ardor Wallet">
+            <div id="apiUrl" class="d-none">
+              <form id="apiUrlForm" >
+                <div class="input-group mb-3" >
+                  <span class="input-group-text" >API server</span>
+                  <input type="text" class="form-control" name="apiUrl" list="apiUrlList" >
+                  <datalist id="apiUrlList">
+                    <option value="http://localhost:19886/nxt">localhost
+                    <option value="http://192.168.123.124:19886/nxt">intranet host
+                    <option value="http://40.124.110.187:19886/nxt">Azure South Central US (Zone 1)
+                    <option value="http://101.34.178.164:19886/nxt">Tencent Shanghai
+                    <option value="http://13.52.217.197:19886/nxt">AWS California
+                    <option value="http://52.87.243.104:19886/nxt">AWS N. Virginia
+                    <option value="http://18.219.158.150:19886/nxt">AWS Ohio
+                    <option value="http://35.155.173.52:19886/nxt">AWS Oregon
+                  </datalist>
+                  <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; Set">
+                </div>
+              </form>
+            </div>
+
+            <div class="accordion-item" name="New CC14 wallet">
               <h2 class="accordion-header" id="newWalletFlip">
                 <button id="newWalletBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#newWalletFPanel" aria-expanded="false" aria-controls="newWalletFPanel">
-                  <h4>&#x1F45D; New Ardor Wallet</h4>
+                  <h4>&#x1F45D; Create CC14 wallet</h4>
                 </button>
               </h2>
               <div id="newWalletFPanel" class="accordion-collapse collapse" aria-labelledby="newWalletFlip" >
@@ -81,7 +101,7 @@
                     <form id="newWalletForm" >
                       <div class="input-group mb-3" >
                         <span class="input-group-text" >Passphrase</span>
-                        <input class="form-control input" type="password" name="secretPhrase" id="newWalletFormPassword" placeholder="please enter">
+                        <input class="form-control input" type="password" name="secretPhrase" id="newWalletFormPassword" minlength='12' placeholder='minimum lenght 12 characters'>
                         <span class="input-group-text fs-4"  id="newWalletFormPasswordIcon" onclick="togglePasswordFn('newWalletFormPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-md-end">
@@ -100,7 +120,7 @@
                             <tr><td class="text-end">accountRS: </td><td id="newWalletResultTbl1"></td></tr>
                             <tr><td class="text-end">publicKey: </td><td id="newWalletResultTbl2"></td></tr>
                             <tr><td class="text-end">Passphrase: </td><td id="newWalletResultTbl3"></td></tr>
-                            <tr><td class="text-end">privateKey: </td><td id="newWalletResultTbl4"></td></tr>
+                            <!-- <tr><td class="text-end">privateKey: </td><td id="newWalletResultTbl4"></td></tr> -->
                           </tbody>
                         </table>
                         <span id="newWalletQRCode"></span>
@@ -114,7 +134,113 @@
                   </div>
                 </div>
               </div>
-            </div><!-- New Ardor Wallet end ================================ -->
+            </div><!-- New CC14 Wallet end ================================ -->
+
+            <div class="accordion-item" name="request CC14">
+              <h2 class="accordion-header" id="requestCC14">
+                <button id="requestCC14Btn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#requestCC14FPanel" aria-expanded="false" aria-controls="requestCC14FPanel">
+                  <h4>&#128176; Request CC14</h4>
+                </button>
+              </h2>
+              <div id="requestCC14FPanel" class="accordion-collapse collapse" aria-labelledby="requestCC14Flip" >
+                <div class="accordion-body">
+                  <div id="requestCC14Action" >
+                    <form id="requestCC14Form" >
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Wallet address</span>
+                        <input class="form-control input" type="text" name="newCC14Wallet" id="newCC14Wallet" placeholder="please enter">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Public Key</span>
+                        <input class="form-control input" type="text" name="newCC14WalletPK" id="newCC14WalletPubKey" placeholder="optional/autocomplete">
+                      </div>
+                      <div class="input-group justify-content-md-end">
+                        <!-- <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()"> -->
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503; reset">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#128176; request">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="requestCC14Response" >
+                    <div class="overflow-auto">
+                      <h5>Summary:</h5>
+                      <div>
+                        <span id="requestCC14Result"></span>
+                      </div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>Response:</h5>
+                      <div id="requestCC14JSON">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- Request CC14 Wallet end ================================ -->
+
+            <div class="accordion-item" name="request CC14">
+              <h2 class="accordion-header" id="requestCC14">
+                <button id="aesKeyIvBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aesKeyIvFPanel" aria-expanded="false" aria-controls="aesKeyIvFPanel">
+                  <h4>&#128273; Generate AES key and iv</h4>
+                </button>
+              </h2>
+              <div id="aesKeyIvFPanel" class="accordion-collapse collapse" aria-labelledby="aesKeyIvFlip" >
+                <div class="accordion-body">
+                  <div id="aesKeyIvAction" >
+                    <form id="aesKeyIvForm" >
+                      <!-- <div class="input-group mb-3" >
+                        <span class="input-group-text">Password</span>
+                        <input type="text" class="form-control" name='password' id="arbitraryText">
+                      </div> -->
+                      <!-- <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message'  value="No amount of experimentation can ever prove me right; a single experiment can prove me wrong.">
+                      </div> -->
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <!-- <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()"> -->
+                        <input type="submit" class="btn btn-outline-secondary" style="width:100%" value="&#x1F528; Generate">
+                      </div>
+                    </form>
+                  </div>
+                  <div id="aesKeyIvResponse" >
+                    <span id="dispKeyIvQRCode"></span>
+                  </div >
+                </div>
+              </div>
+            </div><!-- Generate AES keu and iv end ========================= -->
+
+            <div class="accordion-item" name="reproduce regCode">
+              <h2 class="accordion-header" id="reproduceRegCode">
+                <button id="reproduceRegCodeBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reproduceRegCodeFPanel" aria-expanded="false" aria-controls="reproduceRegCodeFPanel">
+                  <h4>&#9749; Re-produce registration code</h4>
+                </button>
+              </h2>
+              <div id="reproduceRegCodeFPanel" class="accordion-collapse collapse" aria-labelledby="reproduceRegCodeFlip" >
+                <div class="accordion-body">
+                  <div id="reproduceRegCodeAction" >
+                    <form id="reproduceRegCodeForm" >
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Secure Code</span>
+                        <input type="text" class="form-control" name='secureCode' id="secureCode">
+                      </div>
+                      <!-- <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message'  value="No amount of experimentation can ever prove me right; a single experiment can prove me wrong.">
+                      </div> -->
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <!-- <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()"> -->
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; Reproduce">
+                      </div>
+                    </form>
+                  </div>
+                  <div id="reproduceRegCodeResponse" >
+                    <h5>Registration code:</h5>
+                    <p id="dispReproduceRegCode"></p>
+                    <span id="issueNFTQRCode"></span>
+                  </div >
+                </div>
+              </div>
+            </div><!-- Reproduce regCode with given secure code============== -->
 
             <div class="accordion-item" name="Create QR Code">
               <h2 class="accordion-header" id="qrCodeFlip">
@@ -145,7 +271,7 @@
             <div class="accordion-item" name="Account Assets">
               <h2 class="accordion-header" id="flipBalance">
                 <button id="btnAccountBalances" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelBalance" aria-expanded="false" aria-controls="panelBalance">
-                  <h4>&#x1F4B0; Account Assets</h4>
+                  <h4>&#128214; Account Balance</h4>
                 </button>
               </h2>
               <div id="panelBalance" class="accordion-collapse collapse" aria-labelledby="flipBalance" >
@@ -154,7 +280,7 @@
                     <form id="getAccountBalancesForm" >
                       <div class="input-group mb-3">
                         <span class="input-group-text">Wallet</span>
-                        <input type="text" name='account' maxlength="26" class="form-control" placeholder="ARDOR-" aria-describedby="button-addon1">
+                        <input type="text" name='account' maxlength="26" class="form-control" placeholder="CC14-" aria-describedby="button-addon1">
                       </div>
                       <div class="input-group justify-content-md-end mb-3">
                         <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
@@ -207,7 +333,7 @@
                     <form id="getAssetsByIssuerForm" >
                       <div class="input-group mb-3">
                         <span class="input-group-text">Wallet</span>
-                        <input type="text" name='account' maxlength="26" class="form-control" placeholder="ARDOR-"  aria-describedby="button-addon1">
+                        <input type="text" name='account' maxlength="26" class="form-control" placeholder="CC14-"  aria-describedby="button-addon1">
                       </div>
                       <div class="input-group justify-content-md-end mb-3">
                         <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
@@ -264,7 +390,7 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Wallet</span>
-                        <input type="text" class="form-control" name='account' placeholder="ARDOR-">
+                        <input type="text" class="form-control" name='account' placeholder="CC14-">
                       </div>
                       <div class="input-group mb-3 justify-content-md-end">
                         <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()">
@@ -330,11 +456,12 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Recipient</span>
-                        <input type="text" class="form-control" name='recipient' placeholder="ARDOR-">
+                        <input type="text" class="form-control" name='recipient' placeholder="CC14-">
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Passphrase</span>
-                        <input type="password" class="form-control" name='secretPhrase' placeholder="Sender Passphrase ..." >
+                        <input type="password" class="form-control" name='secretPhrase' id='sendMessagePassword' placeholder="Sender Passphrase ..." >
+                        <span class="input-group-text fs-4"  id="sendMessagePasswordIcon" onclick="togglePasswordFn('sendMessagePassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3 justify-content-md-end">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
@@ -397,16 +524,19 @@
 <script src="js/3rdparty/nrs.util.js"></script>
 <script src="js/3rdparty/jquery.table2excel.js"></script>
 <script src="js/3rdparty/jquery.dataTables.min.js" ></script>
-<script src='js/scripts-cc14en.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
+<script src='data/doNotShare.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
+<script src='js/scripts-cc14en.js' ></script>
+<script src='js/nav_footer.js' ></script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
   $("#navbarSupportedContent").html(navbarSupportedContentHtml);
   $("#footer").html(footerHtml);
   $("input[type='text']").on("click", function () {$(this).select();});
+  $('#arbitraryText').val(Date.now());
 </script>
 <script>
 $(document).ready(function(){

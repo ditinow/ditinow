@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Crypto C14 一站式区块链应用</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Crypto C14 一站式区块链应用">
+  <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
+  <meta name="author" content="wechat ID: fengyun_houston">
+  <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
+  <meta name="integrity" content="token...">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "icon" href ="images/logo-cc14.png" type = "image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style-cc14.css">
+  <style>
+  @media all and (min-width: 992px) {
+	  .navbar .nav-item .dropdown-menu{ display: none; }
+    .navbar .nav-item:hover .nav-link{ color: #000;  }
+	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
+	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
+  }
+</style>
+</head>
+<body>
+  <div style="min-height: calc(100vh - 50px);">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html"><img src="images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- load by src='js/nav_footer.js' -->
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid"><!-- container ============================ -->
+
+      <div class="row align-items-center" name="image slider">
+        <div class="col-12 col-sm-10 mx-auto mt-4">
+          <div id="productImages" class="carousel slide carousel-dark" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#productImages" data-slide-to="0" class="active"></li>
+              <li data-target="#productImages" data-slide-to="1"></li>
+              <li data-target="#productImages" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-1" src="images/upc-image-1.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-2" src="images/upc-image-2.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-3" src="images/upc-image-3.png" alt=""></a>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#productImages" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+            </a>
+            <a class="carousel-control-next" href="#productImages" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+            </a>
+          </div>
+        </div>
+      </div><!-- image slider by bootstrap ==================================-->
+
+      <div class="row" name="utilities body">
+        <div class="col-12 col-sm-10 mx-auto">
+          <div class="accordion">
+
+            <div class="accordion-item" name="Request Title Token">
+              <h2 class="accordion-header" id="requestTitlTokenFlip">
+                <button id="RequestDTbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#requestTitlTokenPanel" aria-expanded="false" aria-controls="requestTitlTokenPanel">
+                  <h4>&#x1F41E; 申请产权通证</h4>
+                </button>
+              </h2>
+              <div id="requestTitlTokenPanel" class="accordion-collapse collapse" aria-labelledby="requestTitlTokenFlip" >
+                <div class="accordion-body">
+                  <div id="requestTitlTokenAction">
+                    <form id="requestTitlTokenForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >消费者钱包</span>
+                        <input type="text" class="form-control" name='recipient' value="ARDOR-MJEK-6QAF-Y9WQ-58678">
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
+                        <input type="text" class="form-control" name='asset' placeholder="Scan green QR code with CC14 logo..." list="requestDTasset">
+                        <datalist id="requestDTasset">
+                          <option value="9196924428286156815"></option>
+                          <option value="18246018467717841450"></option>
+                          <option value="2381810025932782993"></option>
+                          <option value="7627942908921392359"></option>
+                          <option value="5300661581399953428"></option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text"><img src="images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;注册码</span>
+                        <input type="text" class="form-control" name='regCode' placeholder="Scan blue QR code with CC14 logo..." list="requestDTregCode">
+                        <datalist id="requestDTregCode">
+                          <option value="2f733efcb43abadf0c02e128e92e72b0ed9f959a034e7d30413d3f9de1cc5416"></option>
+                          <option value="c9967808e216f6b41db90717d1d52a45a560d24b8c4ec328e698f811f8235405"></option>
+                          <option value="aa9ed513c9d77e86ae9f2054d77238b9214747812a4467deb2106f722a7f465e"></option>
+                          <option value="289c900d5ed7c6cc7fc305b1b8bf9e35479fc942655b091a8e8a7b3170a9e322"></option>
+                          <option value="830256bcafc21f00fffdcffefae04f1f41dc8561cc480237ed14f479c218d084"></option>
+                        </datalist>
+                      </div>
+                      <div class="input-group justify-content-md-end">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503; 重置">
+                        <input type="submit" class="btn btn-outline-secondary" id="requestDTbtn" value="&#x2714; 申请转让">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="requestTitlTokeneResponse"  >
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>事件总结:</h5>
+                      <p id="requestTitlTokeneResult"></p>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <h5>区块链响应</h5>
+                      <span id="requestTitlTokeneJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item end ===================================-->
+
+
+            <div class="accordion-item" name="Transfer Asset">
+              <h2 class="accordion-header" id="transferAssetFlip">
+                <button id="transferAssetBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transferAssetPanel" aria-expanded="false" aria-controls="transferAssetPanel">
+                  <h4>&#x1F41A; 转让通证: 直接交易</h4>
+                </button>
+              </h2>
+              <div id="transferAssetPanel" class="accordion-collapse collapse" aria-labelledby="transferAssetFlip" >
+                <div class="accordion-body">
+                  <div id="transferAssetAction">
+                    <form id="transferAssetForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">消费者钱包</span>
+                        <input type="text" name='recipient' maxlength="26" class="form-control" value="ARDOR-MJEK-6QAF-Y9WQ-58678" placeholder="ARDOR-" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
+                        <input type="text" name='asset' maxlength="26" class="form-control" list="transferAssetList">
+                        <datalist id="transferAssetList">
+                          <option value="11915173620220756639"></option>
+                          <option value="5371938612539839028"></option>
+                          <option value="4005331118746277554"></option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">转让数量</span>
+                        <input type="text" name='quantity' class="form-control" value="1" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">附加信息</span>
+                        <input type="text" name='message' class="form-control" placeholder="" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">钱包密钥</span>
+                        <input type="password" name='secretPhrase' class="form-control" value="),vktPVJ[E}A+)F!QBk-~Vg%Rx<me[4/S.tj" placeholder="" >
+                      </div>
+                      <div class="input-group justify-content-md-end mb-3">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F503; 重置" onClick="location.reload()">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x2705; 生成交易字节" >
+                      </div>
+                    </form>
+                    <form id="transferAssetBroadcastTransactionForm" >
+                      <div class="input-group mb-3" >
+                        <textarea style="height:120px" class="form-control" name='transactionBytes' id="transferAssetTransactionBytes">autocomplete by DApp...
+                        </textarea>
+                      </div>
+                      <!-- <small>“&#x2714;Boradcase Transactio” disabled to maintian minimun balance of demonstration account.</small> -->
+                      <div class="input-group justify-content-md-end mb-3">
+                        <input type="button" class="btn btn-outline-secondary" value="&#x1F4E2; 确认转让" onClick="broadcastTransactionFn('transferAsset')">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="d-none" id="transferAssetResponse">
+                    <div class="overflow-auto" id="transferAssetResult" >
+                      <h5>事件总结:</h5>
+                      <span ></span>
+                      <p id="transferAssetBroadcastTransactionResult"></p>
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
+                        <tbody>
+                          <tr><td>数量</td><td id="transferAssetTbl-qty"></td></tr>
+                          <tr><td>费用</td><td id="transferAssetTbl-fee"></td></tr>
+                          <tr><td>时间</td><td id="transferAssetTbl-time"></td></tr>
+                          <tr><td>卖家钱包</td><td id="transferAssetTbl-senderRS"></td></tr>
+                          <tr><td>买家钱包</td><td id="transferAssetTbl-recipientRS"></td></tr>
+                          <tr><td>附加信息</td><td id="transferAssetTbl-message"></td></tr>
+                          <tr><td>区块链标识</td><td id="transferAssetTbl-fullHash"></td></tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+                    <div class="text-wrap text-break overflow-auto"  >
+                      <h5>区块链响应</h5>
+                      <span id="transferAssetJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse collapse end =================== -->
+            </div><!-- accordion-item end ===================================-->
+
+            <div class="accordion-item" name="Voucher Transaction - Create (Buyer)r">
+              <h2 class="accordion-header" id="voucherRecipientFlip">
+                <button id="btnGetAssetsByIssuer" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#voucherRecipientPanel" aria-expanded="false" aria-controls="voucherRecipientPanel">
+                  <h4>&#x1F41D; 收据模式 - 生成 (买家)</h4>
+                </button>
+              </h2>
+              <div id="voucherRecipientPanel" class="accordion-collapse collapse" aria-labelledby="voucherRecipientFlip">
+                <div class="accordion-body">
+                  <div id="createVoucherAction">
+                    <p>收据模式是阿朵Ardor生态一种特殊的交易模式。它由买家生成交易收据，这个收据里有卖家的公钥以及交易细节，并由买家进行数字签字。卖家通过电子邮件拿到收据并核实交易内容无误之后，卖家再次进行数字签字，并广播完整的上链字节。</p>
+                    <p>这样做的优点是：其一、单据由买家生成，如果出现接收钱包拼写错误，这个责任不由卖家承担。其二、收据里的买家数字签字可以作为提货证明，由买家交付提货人员与卖家出货部门进行核对，避免货物被未知人员提走。</p>
+                    <form id="createVoucherForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">卖家钱包</span>
+                        <input type="text" name='senderRS' maxlength="26" class="form-control" value="ARDOR-RKSJ-C4A7-AL7V-D7YJ7" placeholder="ARDOR-" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">资产编号</span>
+                        <input type="text" name='asset' maxlength="26" class="form-control" list="transferAssetList">
+                        <datalist id="transferAssetList">
+                          <option value="11915173620220756639"></option>
+                          <option value="5371938612539839028"></option>
+                          <option value="4005331118746277554"></option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">转让数量</span>
+                        <input type="text" name='quantity' class="form-control" value="1" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">附加信息</span>
+                        <input type="text" name='message' class="form-control" placeholder="" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">买家钱包</span>
+                        <input type="text" name='recipient' class="form-control" value="ARDOR-XZFA-LLYK-FW9M-ACJCU" placeholder="" >
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">买家密钥</span>
+                        <input type="password" name='secretPhrase' class="form-control" value="k]Wupt}EHE2rD@RpWxJ;QQ-KaPLgBH`3F]nd" placeholder="" >
+                      </div>
+                      <div class="input-group justify-content-md-end mb-3">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503; 重置">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x2705; 生成收据" >
+                      </div>
+                    </form>
+                  </div><!-- form section end ============================== -->
+                  <div class="d-none" id="createVoucherResponse">
+                    <div class="overflow-auto" id="createVoucherResult" >
+                      <h5>事件总结:</h5>
+                      <span ></span>
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
+                        <caption>交易细节</caption>
+                        <tbody>
+                          <tr><td>资产编号</td><td id="createVoucherTbl-asset"></td></tr>
+                          <tr><td>数量</td><td id="createVoucherTbl-qty"></td></tr>
+                          <tr><td>费用</td><td id="createVoucherTbl-fee"></td></tr>
+                          <tr><td>时间</td><td id="createVoucherTbl-time"></td></tr>
+                          <tr><td>卖家钱包</td><td id="createVoucherTbl-senderRS"></td></tr>
+                          <tr><td>买家钱包</td><td id="createVoucherTbl-recipientRS"></td></tr>
+                          <tr><td>附加信息</td><td id="createVoucherTbl-message"></td></tr>
+                          <tr><td>买家数字签字</td><td id="createVoucherTbl-recipientSignature"></td></tr>
+                        </tbody>
+                      </table>
+                      <div id="createVoucherQRcode"></div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto"  >
+                      <h5>区块链响应</h5>
+                      <span id="createVoucherJSON"></span>
+                    </div>
+                  </div><!-- JSON response end ============================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse collapse end =================== -->
+            </div><!-- accordion-item 资产授权记录 结束=======================-->
+
+            <div class="accordion-item" name="Voucher Transaction - Process (Seller)">
+              <h2 class="accordion-header" id="processVoucherFlip">
+                <button id="btnHistory" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#processVoucherPanel" aria-expanded="false" aria-controls="processVoucherPanel">
+                  <h4>&#x1F41C; 收据模式 - 处理 (卖家)</h4>
+                </button>
+              </h2>
+              <div id="processVoucherPanel" class="accordion-collapse collapse" aria-labelledby="processVoucherFlip" >
+                <div class="accordion-body">
+                  <div class="processVoucherAction">
+                    <form id="processVoucherValidationForm">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">买家签字</span>
+                        <input type="text" name='recipientSignature' class="form-control" id="processVoucherRecipientSignature" value="" placeholder="买家签字 ..." >
+                      </div>
+                      <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupFile01">完整收据</label>
+                        <textarea style="height:120px" name='voucherValidate' class="form-control" id="processVoucherVoucherValidate">{"requestType":"transferAsset","transactionJSON": ......
+                        </textarea>
+                      </div>
+                      <div class="input-group justify-content-md-end ">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503; 重置">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#x2705; 核实收据" >
+                      </div>
+                    </form>
+                    <!-- <form id="processVoucherForm"> -->
+                    <form id="processVoucherForm" action="https://testardor.jelurida.com/nxt" method="post" onsubmit="return processVoucherFn(this)">
+                      <input type='hidden' name='requestType' value='processVoucher'/>
+                      <input type='hidden' name='broadcast' value='false'/><br>
+                      <input type="hidden" class="form-control" name='voucher' id="processVoucherInput" value=''/>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">卖家密钥</span>
+                        <input type='password' class="form-control" name='secretPhrase' style="width:200px" value='),vktPVJ[E}A+)F!QBk-~Vg%Rx<me[4/S.tj'><br><br>
+                      </div>
+                      <div class="input-group justify-content-md-end mb-3">
+                        <button type='submit' class="btn btn-success" id="processVoucherConfirmBtn" style="width:100%">&#x2714;卖家数字签字并广播上链字节</button>
+                      </div>
+                    </form>
+                  </div><!-- form section end ============================== -->
+                  <div class="d-none" id="processVoucherResponse">
+                    <div class="overflow-auto" >
+                      <h5>事件总结: </h5>
+                      <span id="processVoucherResult"></span>
+                      <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top">
+                        <caption>收据细节</caption>
+                        <tbody>
+                          <tr><td>资产编号</td><td id="processVoucherTbl-asset"></td></tr>
+                          <tr><td>数量</td><td id="processVoucherTbl-qty"></td></tr>
+                          <tr><td>费用</td><td id="processVoucherTbl-fee"></td></tr>
+                          <tr><td>时间</td><td id="processVoucherTbl-time"></td></tr>
+                          <tr><td>卖家钱包</td><td id="processVoucherTbl-senderRS"></td></tr>
+                          <tr><td>买家钱包</td><td id="processVoucherTbl-recipientRS"></td></tr>
+                          <tr><td>附加信息</td><td id="processVoucherTbl-message"></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>区块链响应</h5>
+                      <span id="processVoucherJSON"></span>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item 资产交易明细 结束=======================-->
+
+            <div class="accordion-item" id="rewardTrade" style="opacity:0.4;">
+              <h4 class="accordion-header" id="rewardTradeFlip">
+                <button id="rewardTradeBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rewardTradePanel" aria-expanded="false" aria-controls="rewardTradePanel">
+                  <h4>&#x1F42B; 交易积分奖励 coming soon...</h4>
+                </button>
+              </h4>
+              <div id="rewardTradePanel" class="accordion-collapse collapse" aria-labelledby="rewardTradeFlip" >
+                <div  class="accordion-body">
+                  <div class="col-12 col-sm-12 mb-3">
+                  </div><!-- form section end ============================== -->
+                  <div class="col-12 col-sm-12 d-none" id="rewardTradeDisplay">
+                    <div class="text-wrap text-break overflow-auto">
+                      <hr style="color:red;border-top: 1px solid blue">
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <hr style="color:red;border-top: 1px solid blue">
+                      <span id="rewardTradeJSON"><h5>&#128279;JSON response<h5></span>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item 积分交易系统 结束=======================-->
+
+            <div class="accordion-item" id="rewardCash-out" style="opacity:0.4;">
+              <h4 class="accordion-header" id="rewardTransferFlip">
+                <button id="rewardTransferBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rewardTransferPanel" aria-expanded="false" aria-controls="rewardTransferPanel">
+                  <h4>&#x1F418; 兑现积分奖励 coming soon...</h4>
+                </button>
+              </h4>
+              <div id="rewardTransferPanel" class="accordion-collapse collapse" aria-labelledby="rewardTransferFlip" >
+                <div  class="accordion-body">
+                  <div class="col-12 col-sm-12 mb-3">
+                    <form id="rewardTransferForm">
+                      <input type="hidden" name='requestType' value=''>
+                      <input type="hidden" name='chain' value='2'>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">coming soon...</span>
+                        <input type="password" class="form-control" name='secretPhrase' placeholder="coming soon..." >
+                      </div>
+                      <div class="input-group mb-3 justify-content-md-end">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-outline-secondary" disabled value="&#x2714;Confirm">
+                      </div>
+                    </form>
+                  </div><!-- form section end ============================== -->
+                  <div class="col-12 col-sm-12 d-none" >
+                    <div class="text-wrap text-break overflow-auto">
+                      <hr style="color:red;border-top: 1px solid blue">
+                      <span></span>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto">
+                      <hr style="color:red;border-top: 1px solid blue">
+                      <span ><h5>&#128279;JSON response<h5></span>
+                    </div>
+                  </div><!-- display result JSON end ======================= -->
+                </div><!-- accordion-body end ============================== -->
+              </div><!-- accordion-collapse end ============================ -->
+            </div><!-- accordion-item 积分交易系统 结束=======================-->
+          </div><!-- accordion 结束 =========================================-->
+        </div><!-- col-12 col-sm-10 mx-auto mt-4 结束 ====================== -->
+      </div><!-- utilities body 结束 ======================================= -->
+    </div><!-- container end =============================================== -->
+  </div><!-- 100% vh end =================================================== -->
+  <footer id="footer" style="height: 50px;">
+    <!-- load by nav_footer.js -->
+  </footer>
+</body>
+<script>
+  var isNode = false;
+</script>
+<script src='js/3rdparty/jquery-3.5.1.min.js'></script>
+<script src='js/3rdparty/bootstrap.bundle.min.js' ></script>
+<script src="js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="js/3rdparty/crypto-js.min.js"></script>
+<script src="js/3rdparty/jsbn.js"></script>
+<script src="js/3rdparty/jsbn2.js"></script>
+<script src="js/3rdparty/extensions.js"></script>
+<script src="js/3rdparty/converters.js"></script>
+<script src="js/3rdparty/nrs.util.js"></script>
+<script src="js/3rdparty/jquery.table2excel.js"></script>
+<script src='js/scripts-cc14.js' ></script>
+<script src='js/nav_footer.js' ></script>
+<script src='data/myAddressBook.json' ></script>
+<script src='data/myAssetBook.json' ></script>
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
+  $("#navbarSupportedContent").html(navbarSupportedContentHtml);
+  $("#footer").html(footerHtml);
+  $("input[type='text']").on("click", function () {$(this).select();});
+  var voucher = '{"requestType":"transferAsset","transactionJSON":{"senderPublicKey":"91d79431648e15b8d6359574e9170cada422d5469ecc22a5e9e53a3d664b0634","chain":2,"signature":null,"feeNQT":"2500000","type":2,"version":1,"fxtTransaction":"0","phased":false,"ecBlockId":"9885193803091631107","signatureHash":"e8c0dac8a35faa64f73d261b8cb629495cbb1660f2623f4f4755f6fc08dfeba4","attachment":{"version.AssetTransfer":1,"quantityQNT":"1","asset":"11915173620220756639"},"senderRS":"ARDOR-RKSJ-C4A7-AL7V-D7YJ7","subtype":1,"amountNQT":"0","sender":"12881356309019739920","recipientRS":"ARDOR-MJEK-6QAF-Y9WQ-58678","recipient":"3680714291370639761","ecBlockHeight":6399005,"deadline":15,"timestamp":94867779,"height":2147483647},"unsignedTransactionBytes":"020000000201014391a7050f0091d79431648e15b8d6359574e9170cada422d5469ecc22a5e9e53a3d664b063491c1d990258614330000000000000000a025260000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001da46100035c2bd163432f8900000000019f025d3e47335ba50100000000000000000000000000000000000000000000000000000000000000000000000000000000000000","signature":"8a45312c466460ac051c3a66247118b36cac76a3a74a5d4922574d6819091e0f6fb97d5bba1c94671e65c94ab510e5f65400429748a0e5909ebc5f76318b21f8","publicKey":"91d79431648e15b8d6359574e9170cada422d5469ecc22a5e9e53a3d664b0634","requestProcessingTime":3}';
+  $("#voucherValidTextarea").val(voucher);
+</script>
+</html>

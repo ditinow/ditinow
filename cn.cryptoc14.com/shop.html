@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Crypto C14 一站式区块链应用</title>
+  <meta charset="utf-8">
+  <meta name="description" content="一站式区块链应用">
+  <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
+  <meta name="author" content="wechat ID: fengyun_houston">
+  <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
+  <meta name="integrity" content="token...">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "icon" href ="images/logo-cc14.png" type = "image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style-cc14.css">
+  <style>
+  @media all and (min-width: 992px) {
+	  .navbar .nav-item .dropdown-menu{ display: none; }
+    .navbar .nav-item:hover .nav-link{ color: #000;  }
+	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
+	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
+  }
+</style>
+</head>
+<body>
+  <div style="min-height: calc(100vh - 50px);">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html"><img src="images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- load by src='js/nav_footer.js' -->
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid"><!-- container ============================ -->
+
+      <div class="row align-items-center"><!-- image slider ================ -->
+        <div class="col-12 col-sm-10 mx-auto mt-4" >
+          <div  class="carousel slide carousel-dark" data-bs-ride="carousel" id="productImages">
+            <ol class="carousel-indicators">
+              <li data-target="#productImages" data-slide-to="0" class="active"></li>
+              <li data-target="#productImages" data-slide-to="1"></li>
+              <li data-target="#productImages" data-slide-to="2"></li>
+              <li data-target="#productImages" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-1" src="images/upc-image-1.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-2" src="images/upc-image-2.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-3" src="images/upc-image-3.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-4" src="images/upc-image-4.png" alt=""></a>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#productImages" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+            </a>
+            <a class="carousel-control-next" href="#productImages" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+            </a>
+          </div>
+        </div>
+      </div><!-- image slider end ===========================================-->
+
+      <div class="row gap-1" name="cardsList" style="opacity:0.4;">
+        <div class="card m-auto mb-2" style="width: 18rem;">
+          <img src="./images/products/6905678901234-1.jpg" class="card-img-top" alt="..." style="padding: 0px 10px 0px 10px">
+          <div class="card-body">
+            <h5 class="card-title">商品品名</h5>
+            <p class="card-text">商品描述...</p>
+          </div>
+          <input type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#shopping" value="购买">
+        </div>
+        <div class="card m-auto mb-2" style="width: 18rem;">
+          <img src="./images/products/6901234567890-1.jpg" class="card-img-top" alt="..." style="padding: 0px 10px 0px 10px">
+          <div class="card-body">
+            <h5 class="card-title">商品品名</h5>
+            <p class="card-text">商品描述...</p>
+          </div>
+          <input type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#shopping" value="购买">
+        </div>
+        <div class="card m-auto mb-2" style="width: 18rem;">
+          <img src="./images/products/6901234567890-3.jpg" class="card-img-top" alt="..." style="padding: 0px 10px 0px 10px">
+          <div class="card-body">
+            <h5 class="card-title">商品品名</h5>
+            <p class="card-text">商品描述...</p>
+          </div>
+          <input type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#shopping" value="购买">
+        </div>
+        <div class="card m-auto mb-2" style="width: 18rem;">
+          <img src="./images/products/6905678901234-2.jpg" class="card-img-top" alt="..." style="padding: 0px 10px 0px 10px">
+          <div class="card-body">
+            <h5 class="card-title">商品品名</h5>
+            <p class="card-text">商品描述...</p>
+          </div>
+          <input type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#shopping" value="购买">
+        </div>
+        <div class="card m-auto mb-2" style="width: 18rem;">
+          <img src="./images/products/6903456789012-2.jpg" class="card-img-top" alt="..." style="padding: 0px 10px 0px 10px">
+          <div class="card-body">
+            <h5 class="card-title">商品品名</h5>
+            <p class="card-text">商品描述...</p>
+          </div>
+          <input type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#shopping" value="购买">
+        </div>
+        <div class="card m-auto mb-2" style="width: 18rem;">
+          <img src="./images/products/6905678901234-2.jpg" class="card-img-top" alt="..." style="padding: 0px 10px 0px 10px">
+          <div class="card-body">
+            <h5 class="card-title">商品品名</h5>
+            <p class="card-text">商品描述...</p>
+          </div>
+          <input type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#shopping" value="购买">
+        </div>
+      </div><!-- cardsList end ============================================= -->
+
+      <div class="row" name="cardActionShop" ><!-- DGS order modal ========= -->
+        <div class="modal fade" id="shopping" tabindex="-1" aria-labelledby="requestTitleLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="requestTitleLabel">订单</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="dgsPurchaseForm">
+                  <input type='hidden' name='requestType' value='dgsPurchase'/>
+                  <input type='hidden' name='chain' value='2'>
+                  <input type='hidden' class="form-control" name='feeNQT' value='-1'>
+                  <input type='hidden' class="form-control" name='feeRateNQTPerFXT' value='-1'>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">商品编号</span>
+                    <input type='text' class="form-control" name='goods' value=''>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">出价(火链币)</span>
+                    <input type='text' class="form-control" name='priceNQT' value='' placeholder="选项， 默认值为卖家定价...">
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">购买数量</span>
+                    <input type='text' class="form-control" name='quantity' value=''>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">买家密钥</span>
+                    <input type='password'class="form-control" name='secretPhrase'>
+                  </div>
+                  <div class="input-group justify-content-md-end mb-3">
+                    <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
+                    <input type="submit" class="btn btn-outline-secondary" disabled value="&#x2705; 确认" >
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- modal end ================================================= -->
+
+    </div><!-- container end =============================================== -->
+  </div><!-- 100% vh end =================================================== -->
+  <footer id="footer" style="height: 50px;">
+    <!-- load by nav_footer.js -->
+  </footer>
+</body>
+<script>
+  var isNode = false;
+</script>
+<script src='js/3rdparty/jquery-3.5.1.min.js'></script>
+<script src='js/3rdparty/bootstrap.bundle.min.js' ></script>
+<script src="js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="js/3rdparty/crypto-js.min.js"></script>
+<script src="js/3rdparty/jsbn.js"></script>
+<script src="js/3rdparty/jsbn2.js"></script>
+<script src="js/3rdparty/extensions.js"></script>
+<script src="js/3rdparty/converters.js"></script>
+<script src="js/3rdparty/nrs.util.js"></script>
+<script src="js/3rdparty/jquery.table2excel.js"></script>
+<script src='js/scripts-cc14.js' ></script>
+<script src='js/nav_footer.js' ></script>
+<script src='data/myAddressBook.json' ></script>
+<script src='data/myAssetBook.json' ></script>
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
+  $("#navbarSupportedContent").html(navbarSupportedContentHtml);
+  $("#footer").html(footerHtml);
+  $("input[type='text']").on("click", function () {$(this).select();});
+</script>
+</html>

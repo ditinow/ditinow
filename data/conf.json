@@ -1,0 +1,21 @@
+var walletIssuance=[
+  "CC14-5KKJ-TXML-FKM3-4SLZB",
+  "CC14-UEM4-XQBX-HZWW-G2FNW"
+];
+var walletActivation=[
+  "CC14-F4Z6-3E9T-EXSK-HPYWH",
+  "CC14-DUPL-QDTD-ZGDJ-7YJTW"
+];
+var walletServices="CC14-6LFR-HCTG-F2LR-87ZB4";
+var walletBurner="CC14-9QS5-MBBX-56MF-ESNEB";
+var apiServers = [
+  "http://localhost:19886/nxt",
+  "http://40.124.110.187:19886/nxt",
+  "http://101.34.178.164:19886/nxt",
+  "http://52.87.243.104:19886/nxt",
+  "http://13.52.217.197:19886/nxt",
+  "http://35.155.173.52:19886/nxt",
+  "http://18.219.158.150:19886/nxt"
+  ];
+
+url = apiServers[1];

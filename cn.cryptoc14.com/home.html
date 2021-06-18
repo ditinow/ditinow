@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Crypto C14 一站式区块链应用</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Crypto C14 一站式区块链应用">
+  <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
+  <meta name="author" content="wechat ID: fengyun_houston">
+  <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
+  <meta name="integrity" content="token...">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "icon" href ="images/logo-cc14.png" type = "image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style-cc14.css">
+  <style>
+  @media all and (min-width: 992px) {
+	  .navbar .nav-item .dropdown-menu{ display: none; }
+    .navbar .nav-item:hover .nav-link{ color: #000;  }
+	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
+	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
+  }
+</style>
+</head>
+<body>
+  <div style="min-height: calc(100vh - 50px);">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home.html"><img src="images/logo-cc14.png" width="74" height="44" loading="lazy"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- load by src='js/nav_footer.js' -->
+        </div>
+
+        <div class="col-12 col-sm-auto" style="padding: 0px">
+          <form id="getAssetInfoAll" >
+            <input type="hidden" name='requestType' value='getAsset'>
+            <div class="input-group ">
+              <div class="input-group-prepend">
+                <input type="button" class="btn btn-outline-secondary " style="border-color: #ced4da" onClick="reloadClearFn()" value="&#x1F503;">
+              </div>
+              <input type="text" class="form-control" name='asset' placeholder="扫描带CC14标识的二维码..." list="assetsList">
+                <datalist id="assetsList">
+                  <option value="55222051926862118">未上链二维码</option>
+                  <option value="552220519268621185">上链但未登记的商品</option>
+                  <option value="10670286826004572249">cc14标准溯源码</option>
+                  <option value="2381810025932782993">数字产权在授权企业钱包内</option>
+                  <option value="5086516663303406548">商品转让给cc14 NFT shop然后上架</option>
+                  <option value="5555730498349580575">商品已经出售</option>
+                  <option value="15372808646477248834">商品曾经出售，谨防旧瓶新酒</option>
+                  <option value="1472173891428945831">数字产权被转入垃圾桶的商品</option>
+                  <option value="8707545209071357100">产品出厂前数字产权已经注销)</option>
+                </datalist>
+              <div class="input-group-append">
+                <input type="submit" class="btn btn-outline-secondary " style="border-color: #ced4da" value="&#x1F50D;查询">
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </nav>
+    <div class="container-fluid"><!-- container ============================ -->
+
+      <div class="row align-items-center" name="image slider">
+        <div class="col-12 col-sm-10 mx-auto mt-4" >
+          <div  class="carousel slide carousel-dark" data-bs-ride="carousel" id="productImages">
+            <ol class="carousel-indicators">
+              <li data-target="#productImages" data-slide-to="0" class="active"></li>
+              <li data-target="#productImages" data-slide-to="1"></li>
+              <li data-target="#productImages" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-1" src="images/upc-image-1.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-2" src="images/upc-image-2.png" alt=""></a>
+              </div>
+              <div class="carousel-item"><a href="shop.html">
+                <img class="d-block mx-auto w-100" id="slideshow-3" src="images/upc-image-3.png" alt=""></a>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#productImages" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+            </a>
+            <a class="carousel-control-next" href="#productImages" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+            </a>
+          </div>
+        </div>
+      </div><!-- image slider end ===========================================-->
+
+<!-- 搜索结果 ================================================================-->
+      <div class="row d-none" id="searchResult" name="Search result">
+        <div class="col-12 col-sm-10 mx-auto">
+          <div class="accordion">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flipProduct">
+                <button id="btnProduct" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelProduct" aria-expanded="false" aria-controls="panelProduct">
+                  <h4>&#x1F4D6; 商品信息</h4>
+                </button>
+              </h2>
+              <div id="panelProduct" class="accordion-collapse collapse" aria-labelledby="flipProduct" >
+                <div class="accordion-body">
+                  <table class="table table-sm table-borderless" id="assetInforTbl">
+                    <tr id="assetInforTbl-r1">
+                      <td class="td-1">溯源防伪码</td>
+                      <td class="td-2" id="assetInforTbl-assetID"></td>
+                    </tr>
+                    <tr id="assetInforTbl-r2">
+                      <td class="td-1">商品条码</td>
+                      <td class="td-2" id="assetInforTbl-barcode">无记录</td>
+                    </tr>
+                    <tr id="assetInforTbl-r3">
+                      <td class="td-1">品牌型号</td>
+                      <td class="td-2" id="assetInforTbl-model">无记录</td>
+                    </tr>
+                    <tr id="assetInforTbl-r4">
+                      <td class="td-1">商品介绍</td>
+                      <td class="td-2" id="assetInforTbl-description">无记录</td>
+                    </tr>
+                    <tr id="assetInforTbl-r4">
+                      <td class="td-1">授权数量</td>
+                      <td class="td-2" id="assetInforTbl-qty">无记录</td>
+                    </tr>
+
+                    <tr id="assetInforTbl-r7">
+                      <td class="td-1">计量单位</td>
+                      <td class="td-2" id="assetInforTbl-unit">无记录</td>
+                    </tr>
+                    <tr id="assetInforTbl-r5">
+                      <td class="td-1">商品产地</td>
+                      <td class="td-2" id="assetInforTbl-madeIn">无记录</td>
+                    </tr>
+                    <tr id="assetInforTbl-r7">
+                      <td class="td-1">授权时间</td>
+                      <td class="td-2" id="assetInforTbl-issueDate">无记录</td>
+                    </tr>
+                    <tr id="assetInforTbl-r8">
+                      <td class="td-1">激活时间</td>
+                      <td class="td-2" id="assetInforTbl-activateDate">无记录</td>
+                    </tr>
+                    <tr id="assetInforTbl-r6">
+                      <td class="td-1">保质期</td>
+                      <td class="td-2" id="assetInforTbl-goodFor">无记录</td>
+                    </tr>
+                    <tr id="assetInforTbl-r9">
+                      <td class="td-1">区块链标识</td>
+                      <td class="td-2" id="assetInforTbl-fullHash">无记录</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flipIssuer">
+                <button id="btnIssuer" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelIssuer" aria-expanded="false" aria-controls="panelIssuer">
+                  <h4>&#x1F3E2; 企业信息</h4>
+                </button>
+              </h2>
+              <div id="panelIssuer" class="accordion-collapse collapse" aria-labelledby="flipIssuer" >
+                <div class="accordion-body">
+                  <table class="table table-sm table-borderless" id="issuerInfoTbl">
+                    <tr id="issuerInfoTbl-r1">
+                      <td class="td-1">授权企业</td>
+                      <td class="td-2" id="issuerInfoTbl-r1d2">无记录</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r2">
+                      <td class="td-1">钱包地址</td>
+                      <td class="td-2" id="issuerInfoTbl-r2d2">无记录</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r3">
+                      <td class="td-1">实体地址</td>
+                      <td class="td-2" id="issuerInfoTbl-r3d2">无记录</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r4">
+                      <td class="td-1">企业官网</td>
+                      <td class="td-2" id="issuerInfoTbl-r4d2">无记录</td>
+                    </tr>
+                    <tr id="issuerInfoTbl-r5">
+                      <td class="td-1">钱包有效期</td>
+                      <td class="td-2" id="issuerInfoTbl-r5d2">无记录</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flipAdvisory">
+                <button id="btnAdvisory" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelAdvisory" aria-expanded="false" aria-controls="panelAdvisory">
+                  <h4>&#x1F4AC; 购买建议</h4>
+                </button>
+              </h2>
+              <div id="panelAdvisory" class="accordion-collapse collapse" aria-labelledby="flipAdvisory">
+                <div class="accordion-body">
+                  <div>
+                    <p>请仔细阅读数字产权调查结果。留意红色警告。</p>
+                    <p class="d-none" id="advisoryA1">
+                      谨慎购买。请仔细核对该商品在各机构的库存状况，仅从有库存记录的机构购买该商品。
+                    </p>
+                    <p class="d-none" id="advisoryA2">
+                      不建议购买。您正在查询的商品未获得任何已知钱包授权，谨防假冒。
+                    </p>
+                    <p class="d-none" id="advisoryA3">
+                      不建议购买。您正在查询的商品授权来自于过期的授权钱包地址，谨防假冒。导致钱包过期的因素有：钱包密钥泄露、遗失 ...
+                    </p>
+                    <p class="d-none" id="advisoryA4">
+                      不建议购买。您正在查询的商品的产权通证已经被销毁，谨防假冒。产权通证被销毁有以下因素：产品过期、遗失、被盗、完全损坏、被污染、产品检验不合格 ...
+                    </p>
+                    <p class="d-none" id="advisoryA5">
+                      不建议购买。您正在查询的商品的产权通证已经被标识为焚毁，谨防假冒。<code class="yourCompanyName">yourConpamyName</code>已经不再为该商品提供任何服务。 产权通证被焚毁有以下因素：产品过期、遗失、被盗、完全损坏、被污染、产品检验不合格 ....
+                    </p>
+                    <p class="d-none" id="advisoryA6">
+                      谨慎购买。您正在查询的商品有召回、维修记录。该商品的保质期可能有变动，请留意。
+                    </p>
+                    <p class="d-none" id="advisoryA7">
+                       <code class="yourCompanyName">yourConpamyName</code>没有您正在查询商品的产权所有者信息，谨慎购买。建议使用<a href="evidence.html#token">信息存证/验证</a>工具验证卖家确实产权通证当前所在钱包的所有者。
+                    </p>
+                    <p class="d-none" id="advisoryA8">
+                      谨慎购买。您正在查询的商品有出售记录，请仔细检查该商品，谨防旧瓶新酒。
+                    </p>
+                    <p id="advisoryA9">
+                      不建议购买。您正在查询的商品没有被激活，谨防假冒。
+                    </p>
+                  </div>
+                  <table class="table table-sm fs-6 table-bordered border-info caption-top" id="testTable">
+                    <caption>数字产权调查</caption>
+                    <thead class="thead-light">
+                      <tr>
+                        <th>产权问卷</th>
+                        <th style="text-align:center;color:green" >安全</th>
+                        <th style="text-align:center;color:red"><span style="color:red;">警告</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="test-q1">
+                        <td class="td-t1">商品溯源防伪二维码是否符合DiTI的防伪标准？</td>
+                        <td  class="td-qa" id="test-q1-yes"></td>
+                        <td  class="td-qa alert1" id="test-q1-no">&#x2716;</td>
+                      </tr>
+                      <tr id="test-q2">
+                        <td class="td-2">商品数字产权是否由 <code class="yourCompanyName">yourCompanyName</code> 公告的钱包地址生成?</td>
+                        <td  class="td-qa" id="test-q2-yes"></td>
+                        <td  class="td-qa alert1" id="test-q2-no">&#x2716;</td>
+                      </tr>
+                      <tr id="test-q3">
+                        <td class="td-2">商品数字产权是否在区块链钱包有效期内获得？</td>
+                        <td  class="td-qa" id="test-q3-yes">&#x2714;</td>
+                        <td  class="td-qa alert1" id="test-q3-no"></td>
+                      </tr>
+                      <tr id="test-q4">
+                        <td class="td-2">商品数字产权是否依旧存在？</td>
+                        <td  class="td-qa" id="test-q4-yes">&#x2714;</td>
+                        <td  class="td-qa alert1" id="test-q4-no"></td>
+                      </tr>
+                      <tr id="test-q5">
+                        <td class="td-2">商品数字产权是否仍旧有效？</td>
+                        <td  class="td-qa" id="test-q5-yes">&#x2714;</td>
+                        <td  class="td-qa alert1" id="test-q5-no"></td>
+                      </tr>
+                      <tr id="test-q9">
+                        <td class="td-2">商品是否被激活？</td>
+                        <td  class="td-qa" id="test-q9-yes"></td>
+                        <td  class="td-qa alert1" id="test-q9-no">&#x2716;</td>
+                      </tr>
+                      <tr id="test-q6">
+                        <td class="td-2">商品是否曾经经历过维修、召回？</td>
+                        <td  class="td-qa" id="test-q6-yes">&#x2716;</td>
+                        <td  class="td-qa alert2" id="test-q6-no"></td>
+                      </tr>
+                      <tr id="test-q7">
+                        <!-- 企业版用以下问卷 -->
+                        <!-- <td class="td-2">Q5: 销售网点的区块链钱包是否获得企业认可？</td> -->
+                        <td class="td-2">商品产权所在钱包是否<code class="yourCompanyName">yourCompanyName</code>激活产品专用，或者是有记录的销售单位?</td>
+                        <td  class="td-qa" id="test-q7-yes">&#x2714;</td>
+                        <td  class="td-qa alert2" id="test-q7-no"></td>
+                      </tr>
+                      <tr id="test-q8">
+                        <td class="td-2">商品是否曾经出售?</td>
+                        <td  class="td-qa" id="test-q8-yes">&#x2716;</td>
+                        <td  class="td-qa alert2" id="test-q8-no"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flipHistory">
+                <button id="btnHistory" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelHistory" aria-expanded="false" aria-controls="panelHistory">
+                  <h4>&#x27B2; 交易明细</h4>
+                </button>
+              </h2>
+              <div id="panelHistory" class="accordion-collapse collapse" aria-labelledby="flipHistory" >
+                <div class="accordion-body">
+                  <table class="table word-break table-bordered table-sm caption-top" id="assetIssuerTbl">
+                    <caption>交易 0</caption>
+                    <tbody>
+                      <tr>
+                        <td class="td-1">授权机构</td>
+                        <td class="td-2" id="assetIssuerTbl-issuer">无记录</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">授权钱包</td>
+                        <td class="td-2" id="assetIssuerTbl-issuerRS">无记录</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">机构职责</td>
+                        <td class="td-2" id="assetIssuerTbl-duty">无记录</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">授权数量</td>
+                        <td class="td-2" id="assetIssuerTbl-qty">无记录</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">授权时间</td>
+                        <td class="td-2 text-break" id="assetIssuerTbl-date">无记录</td>
+                      </tr>
+                      <tr>
+                        <td class="td-1">区块链标识</td>
+                        <td class="td-2" id="assetIssuerTbl-fullhash">无记录</td>
+                      </tr>
+                    <tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h4 class="accordion-header" id="flipJSONresponse">
+                <button id="btnJSONresponse" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelJSONresponse" aria-expanded="false" aria-controls="panelJSONresponse">
+                  <h4>&#128279; 区块链响应</h4>
+                </button>
+              </h4>
+              <div id="panelJSONresponse" class="accordion-collapse collapse" aria-labelledby="flipJSONresponse" >
+                <div  class="accordion-body">
+                  <div id="JSONresponse" class="text-wrap text-break">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- 搜索结果 ================================================================-->
+<!-- Action modal start======================================================-->
+      <div class="row align-items-center d-none" style="height:100px" id="modalBlock">
+        <div class="col-12 col-sm-10 mx-auto " >
+          <div class="d-flex justify-content-center ">
+            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#requestTitle" value="&#x1F41E; 申请产权通证" id="requestTitleBtn">&nbsp;&nbsp;
+            <input type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#transferTitle" value="&#x1F41A; 接收产权通证">
+            <div class="modal fade" id="requestTitle" tabindex="-1" aria-labelledby="requestTitleLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="requestTitleLabel">申请产权通证</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="requestTitlTokenAction">
+                      <form id="requestTitlTokenForm">
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text" >消费者钱包</span>
+                          <input type="text" class="form-control" name='recipient' value="ARDOR-MJEK-6QAF-Y9WQ-58678">
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
+                          <input type="text" class="form-control" name='asset' placeholder="带有CC14标识的绿色防伪码..." list="requestDTasset">
+                          <datalist id="requestDTasset">
+                            <option value="9196924428286156815"></option>
+                            <option value="18246018467717841450"></option>
+                            <option value="2381810025932782993"></option>
+                            <option value="7627942908921392359"></option>
+                            <option value="5300661581399953428"></option>
+                          </datalist>
+                        </div>
+                        <div class="input-group mb-3" >
+                          <span class="input-group-text"><img src="images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;注册码</span>
+                          <input type="text" class="form-control" name='regCode' placeholder="带有CC14标识的蓝色注册码..." list="requestDTregCode">
+                          <datalist id="requestDTregCode">
+                            <option value="2f733efcb43abadf0c02e128e92e72b0ed9f959a034e7d30413d3f9de1cc5416"></option>
+                            <option value="c9967808e216f6b41db90717d1d52a45a560d24b8c4ec328e698f811f8235405"></option>
+                            <option value="aa9ed513c9d77e86ae9f2054d77238b9214747812a4467deb2106f722a7f465e"></option>
+                            <option value="289c900d5ed7c6cc7fc305b1b8bf9e35479fc942655b091a8e8a7b3170a9e322"></option>
+                            <option value="830256bcafc21f00fffdcffefae04f1f41dc8561cc480237ed14f479c218d084"></option>
+                          </datalist>
+                        </div>
+                        <div class="input-group justify-content-md-end">
+                          <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                          <input type="submit" class="btn btn-outline-secondary" id="requestDTbtn" value="&#x2714; Request">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="d-none" id="requestTitlTokeneResponse"  >
+                      <div class="text-wrap text-break overflow-auto">
+                        <h5>事件总结:</h5>
+                        <p id="requestTitlTokeneResult"></p>
+                      </div>
+                      <div class="text-wrap text-break overflow-auto">
+                        <h5>区块链响应</h5>
+                        <span id="requestTitlTokeneJSON"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="transferTitle" tabindex="-1" aria-labelledby="transferTitleLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="transferTitleLabel">接收产权通证</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <form id="modalTransferAssetForm" >
+                          <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text">消费者钱包</span>
+                            <input type="text" name='wallet' maxlength="26" class="form-control" value="ARDOR-MJEK-6QAF-Y9WQ-58678" placeholder="ARDOR-" >
+                          </div>
+                          <div class="input-group justify-content-md-end mb-3">
+                            <input type="button" class="btn btn-outline-secondary" style="width:100%" value="&#x2705; 生成二维码" onClick="qrCodeFn(modalTransferAssetForm.wallet.value)" >
+                          </div>
+                        </form>
+                      </div>
+                      <div class="row">
+                        <div class="border d-flex justify-content-center" >
+                            <span id="dispQRCode" ></span>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- Action modal end ===========================================-->
+
+    </div><!-- container end =============================================== -->
+  </div><!-- 100% vh end =================================================== -->
+  <footer id="footer" style="height: 50px;">
+    <!-- load by nav_footer.js -->
+  </footer>
+</body>
+<script>
+var isNode = false;
+</script>
+<script src='js/3rdparty/jquery-3.5.1.min.js'></script>
+<script src='js/3rdparty/bootstrap.bundle.min.js' ></script>
+<script src="js/3rdparty/easy.qrcode.js"  charset="utf-8"></script>
+<script src="js/3rdparty/crypto-js.min.js"></script>
+<script src="js/3rdparty/jsbn.js"></script>
+<script src="js/3rdparty/jsbn2.js"></script>
+<script src="js/3rdparty/extensions.js"></script>
+<script src="js/3rdparty/converters.js"></script>
+<script src="js/3rdparty/nrs.util.js"></script>
+<script src="js/3rdparty/jquery.table2excel.js"></script>
+<script src='js/scripts-cc14.js' ></script>
+<script src='js/nav_footer.js' ></script>
+<script src='data/myAddressBook.json' ></script>
+<script src='data/myAssetBook.json' ></script>
+<script>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
+$("#navbarSupportedContent").html(navbarSupportedContentHtml);
+$("#footer").html(footerHtml);
+$("input[type='text']").on("click", function () {$(this).select();});
+</script>
+</html>

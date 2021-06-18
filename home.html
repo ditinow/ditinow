@@ -368,7 +368,7 @@
                       <form id="requestTitlTokenForm">
                         <div class="input-group mb-3" >
                           <span class="input-group-text" >Consumer Wallet</span>
-                          <input type="text" class="form-control" name='recipient' value="ARDOR-MJEK-6QAF-Y9WQ-58678">
+                          <input type="text" class="form-control" name='recipient' value="CC14-">
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;Secure Code</span>
@@ -425,7 +425,7 @@
                         <form id="modalTransferAssetForm" >
                           <div class="input-group input-group-sm mb-3">
                             <span class="input-group-text">Recipient wallet</span>
-                            <input type="text" name='wallet' maxlength="26" class="form-control" value="ARDOR-MJEK-6QAF-Y9WQ-58678" placeholder="ARDOR-" >
+                            <input type="text" name='wallet' maxlength="26" class="form-control" value="CC14-" placeholder="CC14-" >
                           </div>
                           <div class="input-group justify-content-md-end mb-3">
                             <input type="button" class="btn btn-outline-secondary" style="width:100%" value="&#x2705; generate QR code" onClick="qrCodeFn(modalTransferAssetForm.wallet.value)" >
@@ -466,10 +466,11 @@ var isNode = false;
 <script src="js/3rdparty/converters.js"></script>
 <script src="js/3rdparty/nrs.util.js"></script>
 <script src="js/3rdparty/jquery.table2excel.js"></script>
-<script src='js/scripts-cc14en.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
+<script src='js/scripts-cc14en.js' ></script>
+<script src='js/nav_footer.js' ></script>
 <script>
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});

@@ -73,7 +73,7 @@
             <div class="accordion-item" name="Authorize anti-counterfeiting product">
               <h2 class="accordion-header" id="issueNFTflip">
                 <button id="issueNFTbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueNFTpanel" aria-expanded="false" aria-controls="issueNFTpanel" >
-                  <h4>&#x1F430; Authorize Anti-counterfeiting product</h4>
+                  <h4>&#x1F430; Issue title token (NFT)</h4>
                 </button>
               </h2>
               <div id="issueNFTpanel" class="accordion-collapse collapse" aria-labelledby="issueNFTflip" >
@@ -82,33 +82,34 @@
                     <form id="issueNFTForm">
                       <div class="input-group mb-3" >
                         <span class="input-group-text" >Barcode</span>
-                        <input type="text" class="form-control" name='barcode' list="barcodeList" maxlength="14" >
+                        <input type="number" class="form-control" name='barcode' list="barcodeList" min="10000000" max="9999999999999" value='690'>
                         <datalist id="barcodeList">
                           <option value="6901234567890">CC14 Collapsible Umbrella, Sky 43-inch</option>
                           <option value="6903456789012">CC14 logo polo shirts, set of two</option>
                           <option value="6902345678901">Dahongpao tea, set of two</option>
                         </datalist>
                       </div>
-                      <div class="input-group mb-3" >
+                      <div class="input-group mb-3 d-none" >
                         <span class="input-group-text">Description</span>
-                        <input type="text" class="form-control" value="text ..." name='description' maxlength="500"  >
+                        <input type="text" class="form-control" placeholder="text ..." name='description' maxlength="500"  >
                       </div>
                       <div class="input-group mb-3" >
-                        <span class="input-group-text">Additional Information</span>
+                        <span class="input-group-text">Message</span>
                         <input type="text" class="form-control" name='message' maxlength="500" placeholder="optional ..."  >
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Passphrase</span>
-                        <input type="password" class="form-control" name='secretPhrase' value="midnight seven through card squeeze point lovely joke gone own ink ancient">
+                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Quantity</span>
-                        <input type="number" class="form-control" name='issueQty' list="issueNFTList1" min="2" max="100">
-                        <datalist id="issueNFTList1">
+                        <input type="number" class="form-control" name='issueQty' value='2' min="2" max="100">
+                        <!-- <datalist id="issueNFTList1">
                           <option value="2">Quantity 2</option>
                           <option value="5">Quantity 5</option>
                           <option value="10">Quantity 10</option>
-                        </datalist>
+                        </datalist> -->
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
@@ -124,7 +125,7 @@
                   <div class="col-12 col-sm-12 d-none" id="issueNFTResponse">
                     <div class="overflow-auto" name="issueNFTResult">
                         <h5>Summary:</h5>
-                        <span>Save to <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; spreadsheet</button>. Transaction fee are paid in IGNIS.</span><br>
+                        <span>Save to <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; spreadsheet</button>. Transaction fee are paid in CC14.</span><br>
                         <span><br><b>Note: </b>in order to maintain minimum  blance in demonstration account, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> will be disabled if issue more than 2 title tokens.</span>
                       <div class="table-responsive">
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTResultTbl">
@@ -136,7 +137,7 @@
                               <th>Full hash</th>
                               <th>Barcode</th>
                               <th>Asset name</th>
-                              <th>Description</th>
+                              <th>Serial No.</th>
                               <th>Mssage</th>
                               <th>Issuer wallet</th>
                               <th>Issuance time</th>
@@ -158,10 +159,99 @@
               </div><!-- accordion-item panel end ========================== -->
             </div><!-- accordion-item end ================================== -->
 
-            <div class="accordion-item" name="Authorize anti-counterfeiting product">
+            <div class="accordion-item" name="Authorize anti-counterfeiting product with predefined serial number">
+              <h2 class="accordion-header" id="issueNFTwSNoflip">
+                <button id="issueNFTwSNobtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueNFTwSNopanel" aria-expanded="false" aria-controls="issueNFTwSNopanel" >
+                  <h4>&#128220; Issue title token with pre-defined serial number</h4>
+                </button>
+              </h2>
+              <div id="issueNFTwSNopanel" class="accordion-collapse collapse" aria-labelledby="issueNFTwSNoflip" >
+                <div class="accordion-body">
+                  <div id="issueNFTwSNoFormAction">
+                    <form id="issueNFTwSNoForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >Barcode</span>
+                        <input type="number" class="form-control" name='barcode' list="barcodeList" min="10000000" max="9999999999999" value="690">
+                        <datalist id="barcodeList">
+                          <option value="6901234567890">CC14 Collapsible Umbrella, Sky 43-inch</option>
+                          <option value="6903456789012">CC14 logo polo shirts, set of two</option>
+                          <option value="6902345678901">Dahongpao tea, set of two</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3 " >
+                        <span class="input-group-text">Serial No.</span>
+                        <textarea class="form-control" placeholder="['SN0001', 'SN0002', 'SN0003']" name='serialNo'>["SN0001", "SN0002", "SN0003"]</textarea>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Message</span>
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="optional ..."  >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">Passphrase</span>
+                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueNFTwSNoPasswordIcon" onclick="togglePasswordFn('issueNFTwSNoPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group mb-3 d-none" >
+                        <span class="input-group-text">Quantity</span>
+                        <input type="number" class="form-control" name='issueQty' list="issueNFTList1" min="2" max="100">
+                        <datalist id="issueNFTList1">
+                          <option value="2">Quantity 2</option>
+                          <option value="5">Quantity 5</option>
+                          <option value="10">Quantity 10</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group justify-content-end mb-3">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
+                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;Prepare transactionBytes">
+                      </div>
+                    </form>
+                    <form id="issueNFTwSNoBroadcastForm">
+                      <input type="hidden" name="requestType" value="broadcastTransaction">
+                      <input type="hidden" name="transactionBytes" value="">
+                      <input type="submit" id="issueNFTwSNoBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; Confirm broadcast">
+                    </form>
+                  </div>
+                  <div class="col-12 col-sm-12 d-none" id="issueNFTwSNoResponse">
+                    <div class="overflow-auto" name="issueNFTwSNoResult">
+                        <h5>Summary:</h5>
+                        <span>Save to <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; spreadsheet</button>. Transaction fee are paid in CC14.</span><br>
+                        <span><br><b>Note: </b>in order to maintain minimum  blance in demonstration account, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> will be disabled if issue more than 2 title tokens.</span>
+                      <div class="table-responsive">
+                        <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTwSNoResultTbl">
+                          <thead class="thead-light">
+                            <tr>
+                              <th>#</th>
+                              <th>Secure Code</th>
+                              <th>Registration Code</th>
+                              <th>Full hash</th>
+                              <th>Barcode</th>
+                              <th>Asset name</th>
+                              <th>Serial No.</th>
+                              <th>Mssage</th>
+                              <th>Issuer wallet</th>
+                              <th>Issuance time</th>
+                              <th>fee</th>
+                            </tr>
+                          </thead>
+                          <tbody id="issueNFTwSNoTable">
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="justify-content-center overflow-auto" id="issueNFTwSNoQRCode" style="max-height:320px"></div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response</h5>
+                      <span id="issueNFTwSNoJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-item panel body end =================== -->
+              </div><!-- accordion-item panel end ========================== -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Activate anti-counterfeiting product">
               <h2 class="accordion-header" id="activationSearchFlip">
                 <button id="activationSearchBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#activationSearchPanel" aria-expanded="false" aria-controls="activationSearchPanel" >
-                  <h4>&#x1F426; Activate anti-counterfeiting product</h4>
+                  <h4>&#x1F426; Activation or Burning</h4>
                 </button>
               </h2>
               <div id="activationSearchPanel" class="accordion-collapse collapse" aria-labelledby="activationSearchFlip" >
@@ -172,10 +262,8 @@
                         <span class="input-group-text" >Wallet</span>
                         <input type="text" class="form-control" name="account" list="activationSearchList" >
                         <datalist id="activationSearchList">
-                          <option value="ARDOR-6GHE-PZHL-A7NV-HPAYQ">Issuer wallet 1</option>
-                          <option value="ARDOR-8V6U-U34X-SSSZ-83ZLJ">Issuer wallet 2</option>
-                          <option value="ARDOR-JNYN-A76A-MHRC-BC5QQ">Activation 1</option>
-                          <option value="ARDOR-YU7X-Q4HS-X6H5-BD5TS">Activation 2</option>
+                          <option value="CC14-5KKJ-TXML-FKM3-4SLZB">Issuer address - CryptoC14 demo account</option>
+                          <option value="CC14-F4Z6-3E9T-EXSK-HPYWH">Activation - CryptoC14 demo account</option>
                         </datalist>
                       </div>
                       <div class="input-group mb-3">
@@ -198,7 +286,7 @@
                           <th>Issuer wallet</th>
                           <th>qty</th>
                           <th>decimals</th>
-                          <th>Transaction full hash</th>
+                          <!-- <th>Transaction full hash</th> -->
                         </tr>
                       </thead>
                       <tbody id="activationSearchTbody">
@@ -211,7 +299,7 @@
                           <th><span style="opacity:0.3" onclick="dataTablesFn()">Search issuer</span></th>
                           <th><span style="opacity:0.3" onclick="dataTablesFn()">Search qty</span></th>
                           <th><span style="opacity:0.3">decimals</span></th>
-                          <th><span style="opacity:0.3" onclick="dataTablesFn()">Search full hash</span></th>
+                          <!-- <th><span style="opacity:0.3" onclick="dataTablesFn()">Search full hash</span></th> -->
                         </tr>
                       </tfoot>
                     </table>
@@ -222,21 +310,21 @@
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Action</span>
                         <select class="form-select" type="text" name="recipient"  onchange="activationConfirmBtnFn(this.options[this.selectedIndex].value)">
-                          <option value="ARDOR-JNYN-A76A-MHRC-BC5QQ" class="activationConfirmRecipient">Product Activation 1 - ARDOR-JNYN-A76A-MHRC-BC5QQ</option>
-                          <option value="ARDOR-YU7X-Q4HS-X6H5-BD5TS" class="activationConfirmRecipient">Product Activation 2 - ARDOR-YU7X-Q4HS-X6H5-BD5TS</option>
-                          <option value="ARDOR-LK4C-4WAU-UEMU-8U3YB" >Burn unauthorized assets</option>
+                          <option value="CC14-F4Z6-3E9T-EXSK-HPYWH" class="activationConfirmRecipient">Product Activation - CC14 demo account</option>
+                          <option value="CC14-9QS5-MBBX-56MF-ESNEB" >Burn unauthorized assets</option>
                           </select>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Passphrase</span>
                         <input class="form-control" type="password" id="activationConfirmFormPassword" name="secretPhrase" value="">
+                        <span class="input-group-text fs-4"  id="activationConfirmFormPasswordIcon" onclick="togglePasswordFn('activationConfirmFormPassword')">&#128584;</span>
                       </div>
                       <input type="hidden"  name="message" id="activationConfirmFormMessage" value="autocomplete by DApp...">
                       <input type="submit" id="activationConfirmBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; Confirm Product Activation">
                     </form>
                   </div>
                   <div class="table-responsive d-none" id="activationConfirmTblDisp">
-                    <p>Filtered products keeps in <b id="activationConfirmWallet"></b>, a dedicated wallet for <span id="walletType">product activation</span>。Fee is paid in IGNIS</p>
+                    <p>Filtered products keeps in <b id="activationConfirmWallet"></b>, a dedicated wallet for <span id="walletType">product activation</span>。Fee is paid in CC14</p>
                     <table class="table table-sm table-bordered text-nowrap" id="activationConfirmTbl">
                       <thead class="thead-light">
                         <tr class="filters">
@@ -275,7 +363,7 @@
             <div class="accordion-item" name="Authorize traceable Product">
               <h2 class="accordion-header" id="issueAssetFlip">
                 <button id="issueAssetbtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueAssetPanel" aria-expanded="false" aria-controls="issueAssetPanel" >
-                  <h4>&#x1F426; Authorize traceable Product</h4>
+                  <h4>&#x1F426; Authorize traceable product</h4>
                 </button>
               </h2>
               <div id="issueAssetPanel" class="accordion-collapse collapse" aria-labelledby="issueAssetFlip" >
@@ -302,7 +390,8 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Passphrase</span>
-                        <input type="password" class="form-control" name='secretPhrase' value="midnight seven through card squeeze point lovely joke gone own ink ancient">
+                        <input type="password" class="form-control" name='secretPhrase' id='issueAssetPassword' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueAssetPasswordIcon" onclick="togglePasswordFn('issueAssetPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
@@ -342,7 +431,7 @@
                   <div id="setAssetPropertyAction">
                     <form id="setAssetPropertyForm">
                       <div class="input-group mb-3">
-                        <span class="input-group-text" >Asset ID</span>
+                        <span class="input-group-text" >NFT ID</span>
                         <input type="text" class="form-control" name="asset" value="10670286826004572249">
                       </div>
                       <div class="input-group mb-3">
@@ -366,7 +455,8 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">Passphrase</span>
-                        <input type="password" class="form-control" name='secretPhrase' value="midnight seven through card squeeze point lovely joke gone own ink ancient">
+                        <input type="password" class="form-control" name='secretPhrase' id='setAssetPropertyPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="setAssetPropertyPasswordIcon" onclick="togglePasswordFn('setAssetPropertyPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
@@ -497,7 +587,7 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">passphrase</span>
-                        <input type="password" class="form-control" name='secretPhrase' value="midnight seven through card squeeze point lovely joke gone own ink ancient">
+                        <input type="password" class="form-control" name='secretPhrase' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
@@ -555,11 +645,13 @@
 <script src="js/3rdparty/jquery.table2excel.js"></script>
 <script src="js/3rdparty/filter.js"></script>
 <script src="js/3rdparty/jquery.dataTables.min.js" ></script>
-<script src='js/scripts-cc14en.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
+<script src='data/doNotShare.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
-<script src='data/doNotShare.json' ></script>
+<script src='js/scripts-cc14en.js' ></script>
+<script src='js/nav_footer.js' ></script>
+
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
@@ -568,7 +660,7 @@
   $("input[type='text']").on("click", function () {$(this).select();});
   function activationConfirmBtnFn(selected){
     $("#activationConfirmWallet").html(selected);
-    if(selected == "ARDOR-LK4C-4WAU-UEMU-8U3YB"){
+    if(selected == "CC14-9QS5-MBBX-56MF-ESNEB"){
       $("#activationConfirmBtn").val(" 🔥 Confirm Burn Assets");
       $("#walletType").html("Burn only");
       $("#activationConfirmTblThead").html("Burned assets");

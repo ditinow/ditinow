@@ -34,22 +34,19 @@
         </div>
         <div class="col-12 col-sm-auto" style="padding: 0px">
           <form id="getAssetInfoAll" >
-            <input type="hidden" name='requestType' value='getAsset'>
+            <!-- <input type="hidden" name='requestType' value='getAsset'> -->
             <div class="input-group ">
               <div class="input-group-prepend">
                 <input type="button" class="btn btn-outline-secondary " style="border-color: #ced4da" onClick="reloadClearFn()" value="&#x1F503;">
               </div>
               <input type="text" class="form-control" name='asset' placeholder="scan QR code with CC14 logo..." list="assetsList">
                 <datalist id="assetsList">
-                  <option value="55222051926862118">no a asset ID</option>
-                  <option value="552220519268621185">asset issued by non-promulgated wallet</option>
-                  <option value="10670286826004572249">traceable product</option>
-                  <option value="2381810025932782993">title token owns by issuer</option>
-                  <option value="5086516663303406548">title token owns by cc14 NFT shop</option>
-                  <option value="5555730498349580575">sold product</option>
-                  <option value="15372808646477248834">returen product</option>
-                  <option value="1472173891428945831">title token in dumpster</option>
-                  <option value="8707545209071357100">title token removed from blockchain</option>
+                  <option value="9990048413986158969">demo account: authorized to built & activated for sale</option>
+                  <option value="16094914555359371696">demo account: authorized to built</option>
+                  <option value="16451992241381698202">demo account: sold item</option>
+                  <option value="8979558791471997978">demo account: burned secure code</option>
+                  <option value="130725379765346402">unknown account: try to fake the origin</option>
+                  <option value="1472173891428945831">unknown secure code</option>
                 </datalist>
               <div class="input-group-append">
                 <input type="submit" class="btn btn-outline-secondary " style="border-color: #ced4da" value="&#x1F50D;">
@@ -209,13 +206,13 @@
                       Title token deleted! Be aware of counterfeiting. This product is not an authentic product. Possible causes: last owner deleted the title token due to an expired warranty, or is lost, stolen, damaged, contaminated, or has a QA/QC failure. It is suggested to find another item with a clean title.
                     </p>
                     <p class="d-none" id="advisoryA5">
-                      The title token is burnt! Be aware of counterfeiting. This product is no longer authorized by <code class="yourCompanyName">yourConpamyName</code>. Plausible causes: warranty expired, lost, stolen, damaged, contaminated, or QA/QC failure. It is suggested to find another item with a clean title.
+                      The title token is burnt! Be aware of counterfeiting. This product is no longer authorized by <code class="yourCompanyName">demo account</code>. Plausible causes: warranty expired, lost, stolen, damaged, contaminated, or QA/QC failure. It is suggested to find another item with a clean title.
                     </p>
                     <p class="d-none" id="advisoryA6">
                       Recall/RMA record found. Warranty may vary. It is suggested to find another item with a clean title.
                     </p>
                     <p class="d-none" id="advisoryA7">
-                      This item is not owned by any retailers known by <code class="yourCompanyName">yourConpamyName</code>.
+                      This item is not owned by any retailers known by <code class="yourCompanyName">demo account</code>.
                     </p>
                     <p class="d-none" id="advisoryA8">
                       Sold record found. Beweare of new wine in an old bottle. It is suggested to find another item with clean title.
@@ -240,7 +237,7 @@
                         <td  class="td-qa alert1" id="test-q1-no">&#x2716;</td>
                       </tr>
                       <tr id="test-q2">
-                        <td class="td-2">Was the title token issued by <code class="yourCompanyName">yourConpamyName</code> a widely known wallet address?</td>
+                        <td class="td-2">Was the title token issued by <code class="yourCompanyName">demo account</code> a widely known wallet address?</td>
                         <td  class="td-qa" id="test-q2-yes"></td>
                         <td  class="td-qa alert1" id="test-q2-no">&#x2716;</td>
                       </tr>
@@ -272,7 +269,7 @@
                       <tr id="test-q7">
                         <!-- 企业版用以下问卷 -->
                         <!-- <td class="td-2">Q5: 销售网点的区块链钱包是否获得企业认可？</td> -->
-                        <td class="td-2">Is the current title token owner known by <code class="yourCompanyName">yourConpamyName</code>?</td>
+                        <td class="td-2">Is the current title token owner known by <code class="yourCompanyName">demo account</code>?</td>
                         <td  class="td-qa" id="test-q7-yes">&#x2714;</td>
                         <td  class="td-qa alert2" id="test-q7-no"></td>
                       </tr>
@@ -363,7 +360,7 @@
                       <form id="requestTitlTokenForm">
                         <div class="input-group mb-3" >
                           <span class="input-group-text" >Consumer Wallet</span>
-                          <input type="text" class="form-control" name='recipient' value="ARDOR-MJEK-6QAF-Y9WQ-58678">
+                          <input type="text" class="form-control" name='recipient' value="CC14-">
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;Secure Code</span>
@@ -420,7 +417,7 @@
                         <form id="modalTransferAssetForm" >
                           <div class="input-group input-group-sm mb-3">
                             <span class="input-group-text">Recipient wallet</span>
-                            <input type="text" name='wallet' maxlength="26" class="form-control" value="ARDOR-MJEK-6QAF-Y9WQ-58678" placeholder="ARDOR-" >
+                            <input type="text" name='wallet' maxlength="26" class="form-control" value="CC14-" placeholder="CC14-" >
                           </div>
                           <div class="input-group justify-content-md-end mb-3">
                             <input type="button" class="btn btn-outline-secondary" style="width:100%" value="&#x2705; generate QR code" onClick="qrCodeFn(modalTransferAssetForm.wallet.value)" >
@@ -461,10 +458,11 @@ var isNode = false;
 <script src="js/3rdparty/converters.js"></script>
 <script src="js/3rdparty/nrs.util.js"></script>
 <script src="js/3rdparty/jquery.table2excel.js"></script>
-<script src='js/scripts-cc14en.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
+<script src='js/scripts-cc14en.js' ></script>
+<script src='js/nav_footer.js' ></script>
 <script>
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});

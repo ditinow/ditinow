@@ -1,3 +1,6 @@
+var epochBeginning=1560945600;
+var epochBeginning2=1560902400;
+
 function reloadClearFn(){
   sessionStorage.clear();
   location.reload();
@@ -18,16 +21,17 @@ function togglePasswordFn(selector) {
 };
 
 // timestamp to local time
-  function timestampToLocalFn(timestamp,isNet){
-    var testnetEpochBeginning=1514275199;
-    var mainnetEpochBeginning=1514764800;
+  function timestampToLocalFn(timestamp){
+    // var testnetEpochBeginning=1514275199;
+    // var mainnetEpochBeginning=1514764800;
     var d =new Date();
     var offsetInSecond=60*d.getTimezoneOffset();
-    if(isNet=="mainnet"){
-      var timestampToEpoch = timestamp + mainnetEpochBeginning+offsetInSecond;
-    }else{
-      var timestampToEpoch = timestamp + testnetEpochBeginning+offsetInSecond;
-    };
+    // console.log(offsetInSecond);
+    // if(isNet=="mainnet"){
+      var timestampToEpoch = timestamp + epochBeginning;
+    // }else{
+    //   var timestampToEpoch = timestamp + testnetEpochBeginning+offsetInSecond;
+    // };
     var dateTime = new Date(timestampToEpoch * 1000);
     var daysPassed = Math.floor((d.getTime()-dateTime)/(1000*60*60*24));
     var year = dateTime.getFullYear();
@@ -116,11 +120,13 @@ function broadcastTransactionFn(selector){
 //New Ardor Wallet =============================================================
 $("#newWalletForm").submit(function(event){
   event.preventDefault();
-  var fromData = $(this).serializeArray();
+  var formData = $(this).serializeArray();
   var getAccountId = [
     {name:"requestType",value:"getAccountId"},
-    {name:"secretPhrase",value:fromData[0].value},
+    {name:"secretPhrase",value:formData[0].value},
   ];
+  console.log(url);
+  console.log(localStorage.getItem("apiUrl"));
   $.ajax({
     type:"POST",
     url: url,
@@ -128,9 +134,10 @@ $("#newWalletForm").submit(function(event){
     success:function(response){
       var responseObj=JSON.parse(response);
       $("#newWalletResultTbl1").html(responseObj.accountRS);
+      $("#newCC14Wallet").val(responseObj.accountRS);
+      $("#newCC14WalletPubKey").val(responseObj.publicKey);
       $("#newWalletResultTbl2").html(responseObj.publicKey);
-      $("#newWalletResultTbl3").html(fromData[0].value);
-      $("#newWalletResultTbl4").html(responseObj.privateKey);
+      $("#newWalletResultTbl3").html(formData[0].value);
       $("#newWalletJSON").append("<h6>getAccountId</h6><textarea class='form-control border border-info' rows='7'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
       var accountRSConfig={
         width: 300,
@@ -149,7 +156,7 @@ $("#newWalletForm").submit(function(event){
       var passphraseConfig={
         width: 300,
         height: 300,
-        text:fromData[0].value,
+        text:formData[0].value,
         PI:"#177CB0",
         quietZone: 25,
         logo:"images/logo-cc14-qr.png",
@@ -170,12 +177,12 @@ $("#newWalletForm").submit(function(event){
 //Account Balance =============================================================
 $("#getAccountBalancesForm").submit(function(event){
   event.preventDefault();
-  var fromData = $(this).serializeArray();
-  console.log(fromData);
+  var formData = $(this).serializeArray();
+  console.log(formData);
   var getAccountAssets = [
     {name:"requestType",value:"getAccountAssets"},
     {name:"includeAssetInfo",value:"true"},
-    {name:"account",value: fromData[0].value}
+    {name:"account",value: formData[0].value.trim()}
   ];
   $.ajax({
     type:"POST",
@@ -183,6 +190,7 @@ $("#getAccountBalancesForm").submit(function(event){
     data:getAccountAssets,
     success:function(response){
       var responseObj=JSON.parse(response);
+      console.log(responseObj);
       var length = responseObj.accountAssets.length;
         for(i=0; i<length; i++){
           var name = responseObj.accountAssets[i].name;
@@ -204,10 +212,10 @@ $("#getAccountBalancesForm").submit(function(event){
     }
   });
   var getBalances = [
-    {name:"requestType",value:"getBalances"},
-    {name:"chain",value:"1"},
-    {name:"chain",value:"2"},
-    {name:"account",value: fromData[0].value}
+    {name:"requestType",value:"getBalance"},
+    // {name:"chain",value:"1"},
+    // {name:"chain",value:"2"},
+    {name:"account",value: formData[0].value.trim()}
   ];
   $.ajax({
     type:"POST",
@@ -216,8 +224,8 @@ $("#getAccountBalancesForm").submit(function(event){
     success:function(response){
       var responseObj=JSON.parse(response);
       console.log(responseObj);
-        $("#getAccountBalancesResult").append("<b>ARDR:</b> " + responseObj.balances[1].balanceNQT/100000000 + " <b>IGNIS:</b> " + responseObj.balances[2].balanceNQT/100000000);
-        $("#getAccountBalancesJSON").append("<h6>getAccountBalances</h6><textarea class='form-control border border-info' rows='12'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+        $("#getAccountBalancesResult").html("<b>CC14:</b> " + responseObj.balanceNQT/100000000 + " . ");
+        $("#getAccountBalancesJSON").append("<h6>getAccountBalances</h6><textarea class='form-control border border-info' rows='6'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
       }
   });
     $("#getAccountBalancesResponse").removeClass("d-none");
@@ -226,11 +234,11 @@ $("#getAccountBalancesForm").submit(function(event){
 // Assets By Issuer ============================================================
 $("#getAssetsByIssuerForm").submit(function(event){
   event.preventDefault();
-  var fromData = $(this).serializeArray();
+  var formData = $(this).serializeArray();
   var getAssetsByIssuer = [
     {name:"requestType",value:"getAssetsByIssuer"},
     {name:"includeCounts",value:"true"},
-    {name:"account",value: fromData[0].value}
+    {name:"account",value: formData[0].value.trim()}
   ];
   $.ajax({
     type:"POST",
@@ -276,8 +284,8 @@ $("#getAssetTransfersForm").submit(function(event){
   var getAssetTransfers = [
     {name:"requestType",value:"getAssetTransfers"},
     {name:"includeAssetInfo",value:"true"},
-    {name:"asset",value: formData[0].value},
-    {name:"account",value: formData[1].value}
+    {name:"asset",value: formData[0].value.trim()},
+    {name:"account",value: formData[1].value.trim()}
   ];
   $.ajax({
     type:"POST",
@@ -295,7 +303,7 @@ $("#getAssetTransfersForm").submit(function(event){
         var name = responseObj.transfers[i].name;
         var timestamp = responseObj.transfers[i].timestamp;
         var fullHash = responseObj.transfers[i].assetTransferFullHash;
-        var transactionTime=timestampToLocalFn(timestamp, isNet);
+        var transactionTime=timestampToLocalFn(timestamp);
         var tableRow = "<tr><td>"+i+
                       "</td><td>"+name+
                       "</td><td>"+qty+
@@ -318,7 +326,7 @@ $("#historyTransactionForm").submit(function(event){
   var formData= $(this).serializeArray();
   var getAssetTransfers = [
     {name:"requestType",value:"getTransaction"},
-    {name:"chain",value:"2"},
+    // {name:"chain",value:"2"},
     {name:"fullHash",value: formData[0].value},
   ];
   $.ajax({
@@ -339,13 +347,14 @@ $("#sendMessageForm").submit(function(event){
   var formData= $(this).serializeArray();
   var sendMessage = [
     {name:"requestType",value:"sendMessage"},
-    {name:"chain",value:"2"},
+    // {name:"chain",value:"2"},
     {name:"broadcast", value:"false"},
-    {name:"feeNQT", value:"-1"},
-    {name:"feeRateNQTPerFXT", value:"-1"},
+    {name:"feeNQT", value:"0"},
+    {name:"deadline", value:"60"},
+    // {name:"feeRateNQTPerFXT", value:"0"},
     {name:"message",value: formData[0].value},
     {name:"recipient",value: formData[1].value},
-    {name:"secretPhrase",value: formData[2].value},
+    {name:"secretPhrase",value: formData[2].value}
   ];
   $.ajax({
     type:"POST",
@@ -353,8 +362,8 @@ $("#sendMessageForm").submit(function(event){
     data:sendMessage,
     success:function(response){
       var responseObj=JSON.parse(response);
-      var sendTime = timestampToLocalFn(responseObj.transactionJSON.timestamp, isNet);
-      var feeIgnis=responseObj.transactionJSON.feeNQT/100000000;
+      var sendTime = timestampToLocalFn(responseObj.transactionJSON.timestamp);
+      var feeCC14=responseObj.transactionJSON.feeNQT/100000000;
       var senderRS = responseObj.transactionJSON.senderRS;
       var recipientRS = responseObj.transactionJSON.recipientRS;
       var message = responseObj.transactionJSON.attachment.message;
@@ -362,7 +371,7 @@ $("#sendMessageForm").submit(function(event){
       $("#sendMessageTbl-senderRS").html(senderRS);
       $("#sendMessageTbl-recipientRS").html(recipientRS);
       $("#sendMessageTbl-message").html(message);
-      $("#sendMessageTbl-fee").html(feeIgnis+"&nbsp;Ignis");
+      $("#sendMessageTbl-fee").html(feeCC14+"&nbsp;CC14");
       $("#sendMessageTbl-sendTime").html(sendTime);
       $("#sendMessageTbl-fullHash").html(fullHash);
       $("#broadcastTransactionInput").val(responseObj.transactionBytes);
@@ -382,10 +391,11 @@ $("#requestTitlTokenForm").submit(function(event){
     url: "requestDT.php",
     data:formData,
     success:function(response){
+      console.log(response);
       var responseObj  = JSON.parse(response);
-      console.log(responseObj);
+          console.log(responseObj);
       if (responseObj.fullHash == "failed"){
-        var message = "<b style='color:red'>Decryption failed! Beware of counterfeiting. </b><br>Registration code was not generated by <b>YOUR_COMPANY_NAME_HERE</b>. ";
+        var message = "<b style='color:red'>Decryption failed! Beware of counterfeiting. </b><br>Registration code was not generated by <code>demo account</code>. ";
         $("#requestTitlTokeneResult").html(message);
         alert("Decryption failed!");
       }else if (responseObj.fullHash == "mismatch"){
@@ -398,11 +408,96 @@ $("#requestTitlTokenForm").submit(function(event){
         var timestamp    = responseObj.transactionJSON.timestamp;
         var recipientRS  = responseObj.transactionJSON.recipientRS;
         var asset        = responseObj.transactionJSON.attachment.asset;
-        var transferTime = timestampToLocalFn(timestamp, isNet);
+        var transferTime = timestampToLocalFn(timestamp);
         var note = '<br><br><p><b>Note:</b> no transactionBytes will be broadcasted - broadcasted: false. For production version please download<a href="download.html">DApp</a> and review instructions.<br>'
         var requestDTResult = "<b style='color:green'>Request granted!</b><br> Title token, ID "+asset+" , transfered to wallet address: "+recipientRS+" . Transaction fullHash:"+fullHash+".";
         $("#requestTitlTokeneResult").html(requestDTResult+note);
         $("#requestTitlTokeneJSON").append("<h6>transferAsset</h6><textarea class='form-control border border-info' rows='12'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+      };
+    }
+  });
+ $("#requestTitlTokeneResponse").removeClass("d-none");
+});
+
+
+$("#pin2newWallet").submit(function(event){
+  event.preventDefault();
+  var formData = $(this).serializeArray();
+  console.log(formData);
+  var getAccountId = [
+    {name:"requestType",value:"getAccountId"},
+    {name:"secretPhrase",value:formData[0].value},
+  ];
+  console.log(getAccountId);
+  $.ajax({
+    type:"POST",
+    url: url,
+    data:getAccountId,
+    success:function(response){
+      var responseObj  = JSON.parse(response);
+      console.log(responseObj);
+      $("#consumerWallet").val(responseObj.accountRS);
+      $("#consumerPubKey").val(responseObj.publicKey);
+      var accountRSConfig={
+        width: 210,
+        height: 210,
+        text:responseObj.accountRS,
+        PI:"#0C8918",
+        quietZone: 25,
+        logo:"images/logo-cc14-qr.png",
+        logoWidth:100,
+        logoHeight:50,
+        title:"accountRS",
+        titleHeight:30,
+        titleTop:10,
+        correctLevel: QRCode.CorrectLevel.H
+      };
+      var passphraseConfig={
+        width: 210,
+        height: 210,
+        text:getAccountId[1].value,
+        PI:"#177CB0",
+        quietZone: 25,
+        logo:"images/logo-cc14-qr.png",
+        logoWidth:100,
+        logoHeight:50,
+        title:"Passphrase",
+        titleHeight:30,
+        titleTop:10,
+        correctLevel: QRCode.CorrectLevel.Q
+      };
+      $("#requestTitlTokeneResponse").removeClass("d-none");
+      var t=new QRCode(document.getElementById("newWalletQRCode"), accountRSConfig);
+      var t=new QRCode(document.getElementById("newWalletQRCode"), passphraseConfig);
+    }
+  });
+});
+
+
+//Request CC14 Token =======================================================================================================
+$("#requestCC14Form").submit(function(event){
+  $("#requestCC14Response").removeClass("d-none");
+  event.preventDefault();
+  var formData = $(this).serializeArray();
+  console.log(formData);
+  var requestCC14 = [
+    {name:"account",value: formData[0].value.trim()},
+    {name:"publicKey",value: formData[1].value.trim()},
+  ]
+  $.ajax({
+    type:"POST",
+    url: "requestCC14.php",
+    data: requestCC14,
+    success:function(response){
+      var responseObj  = JSON.parse(response);
+      console.log(responseObj);
+      if(responseObj.request =="rejected"){
+        $("#requestCC14Result").html("Request reject");
+        $("#requestCC14Result").html(responseObj.responses);
+      }else{
+        $("#requestCC14Result").html("Request approved");
+        $("#requestCC14JSON").html("<h6>sendMoney</h6><textarea class='form-control border border-info' rows='12'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+
       };
     }
   });
@@ -415,8 +510,9 @@ $("#transferAssetForm").submit(function(event){
   var formData = $(this).serializeArray();
   var getAsset = [
     {name:"requestType",value:"getAsset"},
-    {name:"asset",value: formData[1].value},
+    {name:"asset",value: formData[1].value.trim()},
   ];
+  console.log(url);
   $.ajax({
     type:"POST",
     url: url,
@@ -428,12 +524,13 @@ $("#transferAssetForm").submit(function(event){
       var quantityQNT = factor*formData[2].value;
       var transferAsset = [
         {name:"requestType",value:"transferAsset"},
-        {name:"chain",value:"2"},
+        // {name:"chain",value:"2"},
         {name:"broadcast", value:"false"},
-        {name:"feeNQT", value:"-1"},
-        {name:"feeRateNQTPerFXT", value:"-1"},
-        {name:"recipient",value: formData[0].value},
-        {name:"asset",value: formData[1].value},
+        {name:"feeNQT", value:"0"},
+        {name:"deadline", value:"60"},
+        // {name:"feeRateNQTPerFXT", value:"-1"},
+        {name:"recipient",value: formData[0].value.trim()},
+        {name:"asset",value: formData[1].value.trim()},
         {name:"quantityQNT",value: quantityQNT},
         {name:"message",value: formData[3].value},
         {name:"secretPhrase",value: formData[4].value},
@@ -446,8 +543,8 @@ $("#transferAssetForm").submit(function(event){
           var responseObj  = JSON.parse(response);
           var senderRS= responseObj.transactionJSON.senderRS;
           var recipientRS = responseObj.transactionJSON.recipientRS;
-          var fee = responseObj.transactionJSON.feeNQT/10000000+" Ignis";
-          var transactionTime = timestampToLocalFn(responseObj.transactionJSON.timestamp,isNet);
+          var fee = responseObj.transactionJSON.feeNQT/10000000+" CC14";
+          var transactionTime = timestampToLocalFn(responseObj.transactionJSON.timestamp);
           var fullHash = responseObj.fullHash;
           var transactionBytes = responseObj.transactionBytes;
           $("#transferAssetTbl-fee").html(fee);
@@ -472,11 +569,12 @@ $("#createVoucherForm").submit(function(event){
   var formData = $(this).serializeArray();
   var transferAsset = [
     {name:"requestType",value:"transferAsset"},
-    {name:"chain",value:"2"},
-    {name:"feeNQT", value:"-1"},
-    {name:"feeRateNQTPerFXT", value:"-1"},
-    {name:"recipient",value: formData[4].value},
-    {name:"asset",value: formData[1].value},
+    // {name:"chain",value:"2"},
+    {name:"feeNQT", value:"0"},
+    {name:"deadline", value:"60"},
+    // {name:"feeRateNQTPerFXT", value:"-1"},
+    {name:"recipient",value: formData[4].value.trim()},
+    {name:"asset",value: formData[1].value.trim()},
     {name:"quantityQNT",value: ""},
     {name:"message",value: formData[3].value},
     {name:"secretPhrase",value: formData[5].value},
@@ -485,7 +583,7 @@ $("#createVoucherForm").submit(function(event){
   ];
   var getAsset = [                                            //get quantityQNT
     {name:"requestType",value:"getAsset"},
-    {name:"asset",value: formData[1].value},
+    {name:"asset",value: formData[1].value.trim()},
   ];
   $.ajax({
     type:"POST",
@@ -499,7 +597,7 @@ $("#createVoucherForm").submit(function(event){
       transferAsset[6].value = quantityQNT.toString();
       var getAccountPublicKey = [                             //get sender PublicKey
         {name:"requestType",value:"getAccountPublicKey"},
-        {name:"account",value: formData[0].value},
+        {name:"account",value: formData[0].value.trim()},
       ];
       $.ajax({
         type:"POST",
@@ -519,8 +617,8 @@ $("#createVoucherForm").submit(function(event){
               $("#createVoucherJSON").append("<h6>transferAsset - Voucher JSON</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
               var senderRS= responseObj.transactionJSON.senderRS;
               var recipientRS = responseObj.transactionJSON.recipientRS;
-              var fee = responseObj.transactionJSON.feeNQT/10000000+" Ignis";
-              var transactionTime = timestampToLocalFn(responseObj.transactionJSON.timestamp,isNet);
+              var fee = responseObj.transactionJSON.feeNQT/10000000+" CC14";
+              var transactionTime = timestampToLocalFn(responseObj.transactionJSON.timestamp);
               var fullHash = responseObj.fullHash;
               var recipientSignature = responseObj.signature;
               $("#createVoucherTbl-fee").html(fee);
@@ -562,19 +660,19 @@ $("#createVoucherForm").submit(function(event){
 //processVoucher validation ====================================================
 $("#processVoucherValidationForm").submit(function(event){
   event.preventDefault();
-  var fromData = $(this).serializeArray();
-  var voucherStr=fromData[1].value;
+  var formData = $(this).serializeArray();
+  var voucherStr=formData[1].value;
   var voucherObj = JSON.parse(voucherStr);
   $("#processVoucherInput").val(voucherStr);
-  if (fromData[0].value != voucherObj.signature){
+  if (formData[0].value != voucherObj.signature){
     $("#processVoucherConfirmBtn").prop("disabled",true);
     $("#processVoucherResult").html("Mismatch! Recipient signature doesn't match with voucher, please review.");
   }else{
     $("#processVoucherResult").html("Matched! Recipient signature match with voucher, please proceed.");
     var senderRS= voucherObj.transactionJSON.senderRS;
     var recipientRS = voucherObj.transactionJSON.recipientRS;
-    var fee = voucherObj.transactionJSON.feeNQT/10000000+" Ignis";
-    var transactionTime = timestampToLocalFn(voucherObj.transactionJSON.timestamp,isNet);
+    var fee = voucherObj.transactionJSON.feeNQT/10000000+" CC14";
+    var transactionTime = timestampToLocalFn(voucherObj.transactionJSON.timestamp);
     var asset = voucherObj.transactionJSON.attachment.asset;
     var message = voucherObj.transactionJSON.attachment.message
     var fullHash = voucherObj.fullHash;
@@ -635,10 +733,10 @@ function decodeFileTokenFn(formData){
       var valid = decFileTokenXhrObj.valid;
       var accountRS = decFileTokenXhrObj.accountRS;
       var timestamp = decFileTokenXhrObj.timestamp;
-      var localTime = timestampToLocalFn(timestamp,isNet);
+      var localTime = timestampToLocalFn(timestamp);
       var file = input.files[0];
       var fileName = file.name;
-      var lastModified=timestampToLocalFn(file.lastModified/1000-1514296800,isNet);
+      var lastModified=timestampToLocalFn(file.lastModified/1000-epochBeginning);
       var fileSize = returnFileSizeFn(file.size);
       if (valid==true){
         var message = "<b>Validation passed! </b>";
@@ -649,7 +747,7 @@ function decodeFileTokenFn(formData){
       $("#decFileTokenResult").html(message);
       $("#decFileTokenTbl-generator").html(accountRS);
       $("#decFileTokenTbl-time").html(localTime[0] + " " +localTime[1]);
-      $("#decFileTokenTbl-file").html("name: "+fileName + ", size: " + fileSize+" , last modified:  " + lastModified[0] + " , " +lastModified[1]);
+      $("#decFileTokenTbl-file").html("file name: "+fileName + ", <br>file size: " + fileSize+" , <br>last modified:  " + lastModified[0] + " , " +lastModified[1]);
       $("#decFileTokenJSON").html("<h6>decodeFileToken</h6><textarea class='form-control border border-info' rows='6'>" + JSON.stringify(decFileTokenXhrObj,undefined, 4)+"</textarea>");
     }
   };
@@ -669,21 +767,22 @@ $("#issueNFTForm").submit(function(event){
   var name = barcode.toString(32);
   var issueAsset = [
     {name:"requestType",value:"issueAsset"},
-    {name:"chain",value: "2"},
+    // {name:"chain",value: "2"},
     {name:"name",value: name},
-    {name:"description",value: formData[1].value},
+    {name:"description",value: "NFTID"},
     {name:"quantityQNT",value:"1"},
     {name:"decimals",value: "0"},
     {name:"secretPhrase",value:formData[3].value},
-    {name:"feeNQT",value:"-1"},
-    {name:"feeRateNQTPerFXT",value: "-1"},
+    {name:"feeNQT",value:"0"},
+    {name:"deadline", value:"60"},
+    // {name:"feeRateNQTPerFXT",value: "-1"},
     {name:"broadcast",value:"false"},
     {name:"message",value:formData[2].value},
   ];
   var issueQty=parseInt(formData[4].value);
-  if(issueQty >2 && (issueAsset[6].value)==secretPhraseIssuance){
-    $("#issueNFTBroadcastBtn").prop('disabled', true);
-  };
+  // if(issueQty >2 && (issueAsset[6].value)==secretPhraseIssuance){
+  //   $("#issueNFTBroadcastBtn").prop('disabled', true);
+  // };
   var fullHashArray=new Array(issueQty);
   var assetIDArray=new Array(issueQty);
   var transactionBytesArray=new Array(issueQty);
@@ -697,7 +796,8 @@ $("#issueNFTForm").submit(function(event){
         data:issueAsset,
         success:function(response){
           var responseObj = JSON.parse(response);
-          var feeIgnis=responseObj.transactionJSON.feeNQT/100000000;
+          console.log(responseObj);
+          var feeCC14=responseObj.transactionJSON.feeNQT/100000000;
           fullHashArray[i]=responseObj.fullHash;
           var timestamp=responseObj.transactionJSON.timestamp;
           var senderRS=responseObj.transactionJSON.senderRS;
@@ -706,28 +806,28 @@ $("#issueNFTForm").submit(function(event){
           var message=responseObj.transactionJSON.attachment.message;
           assetIDArray[i]=NRS.fullHashToId(fullHashArray[i]);
           var regCodeText = encryptAESFn(assetIDArray[i], keyAES, ivAES);
-          var issueTime = timestampToLocalFn(timestamp,isNet);
+          var issueTime = timestampToLocalFn(timestamp);
           var n=i+1;
           var issueNFTTbl = "<tr><td>"+n+
-                            "</td><td>"+assetIDArray[i] +
+                            "</td><td>&#160;"+assetIDArray[i] +
                             "</td><td>"+regCodeText+
                             "</td><td>"+fullHashArray[i]+
-                            "</td><td>"+barcode+
+                            "</td><td>&#160;"+barcode+
                             "</td><td>"+name+
-                            "</td><td>"+description+
+                            "</td><td>&#160;"+assetIDArray[i]+
                             "</td><td>"+message+
                             "</td><td>"+senderRS+
                             "</td><td>"+issueTime[0]+" "+issueTime[1]+
-                            "</td><td>"+feeIgnis+
+                            "</td><td>"+feeCC14+
                             "</td></tr>";
           if(i==0){
-            issurNFTQRCodeFn(assetIDArray[i],regCodeText);
+            issueNFTQRCodeFn(assetIDArray[i],regCodeText);
             $("#issueNFTResultTbl tbody").append(issueNFTTbl);
             $("#issueNFTJSON").after("<h6>issueAsset - NFT#"+n+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
             i++;
             issueNFTFn();
           }else if (assetIDArray[i] != assetIDArray[i-1]) {
-            issurNFTQRCodeFn(assetIDArray[i],regCodeText);
+            issueNFTQRCodeFn(assetIDArray[i],regCodeText);
             $("#issueNFTResultTbl tbody").append(issueNFTTbl);
             $("#issueNFTJSON").after("<h6>issueAsset - NFT#"+n+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
             sessionStorage.setItem("issueNFTBroadcast", JSON.stringify(transactionBytesArray));
@@ -781,7 +881,7 @@ $("#issueNFTBroadcastForm").submit(function(event){
 });
 
 //  issue anti counterfeit product QR code =====================================
-function issurNFTQRCodeFn(assetID,regCode){
+function issueNFTQRCodeFn(assetID,regCode){
   var config = {
     width: 240,
     height: 240,
@@ -807,13 +907,152 @@ function issurNFTQRCodeFn(assetID,regCode){
   var s=new QRCode(document.getElementById("issueNFTQRCode"), regCodeConfig);
 };
 
+// issue anti counterfeit product with predefined serial number=================
+$("#issueNFTwSNoForm").submit(function(event){
+  event.preventDefault();
+  sessionStorage.clear();
+  var formData = $(this).serializeArray();
+  console.log(formData);
+  var barcode=parseInt(formData[0].value);
+  var name = barcode.toString(32);
+  var serialNumbers=JSON.parse(formData[1].value);
+  var serialNoQty = serialNumbers.length;
+  // console.log(serialNumbers);
+  // console.log(serialNumbers.length);
+  console.log(serialNoQty);
+  var fullHashArray=new Array(serialNoQty);
+  var assetIDArray=new Array(serialNoQty);
+  var transactionBytesArray=new Array(serialNoQty);
+  var i=0;
+  issueNFTwSNoFn();
+  function issueNFTwSNoFn(){
+    if(i<serialNoQty){
+      var issueAsset = [
+        {name:"requestType",value:"issueAsset"},
+        {name:"name",value: name},
+        {name:"description",value: serialNumbers[i]},
+        {name:"quantityQNT",value:"1"},
+        {name:"decimals",value: "0"},
+        {name:"secretPhrase",value:formData[3].value},
+        {name:"feeNQT",value:"0"},
+        {name:"deadline", value:"60"},
+        {name:"broadcast",value:"false"},
+        {name:"message",value:formData[2].value},
+      ];
+
+      $.ajax({
+        type:"POST",
+        url: url,
+        data:issueAsset,
+        success:function(response){
+          var responseObj = JSON.parse(response);
+          console.log(responseObj);
+          var feeCC14=responseObj.transactionJSON.feeNQT/100000000;
+          fullHashArray[i]=responseObj.fullHash;
+          var timestamp=responseObj.transactionJSON.timestamp;
+          var senderRS=responseObj.transactionJSON.senderRS;
+          transactionBytesArray[i]=responseObj.transactionBytes;
+          var description=responseObj.transactionJSON.attachment.description;
+          var message=responseObj.transactionJSON.attachment.message;
+          assetIDArray[i]=NRS.fullHashToId(fullHashArray[i]);
+          var regCodeText = encryptAESFn(assetIDArray[i], keyAES, ivAES);
+          var issueTime = timestampToLocalFn(timestamp);
+          var n=i+1;
+          var issueNFTTbl = "<tr><td>"+n+
+                            "</td><td>&#160;"+assetIDArray[i] +
+                            "</td><td>"+regCodeText+
+                            "</td><td>"+fullHashArray[i]+
+                            "</td><td>&#160;"+barcode+
+                            "</td><td>"+name+
+                            "</td><td>&#160;"+serialNumbers[i]+
+                            "</td><td>"+message+
+                            "</td><td>"+senderRS+
+                            "</td><td>"+issueTime[0]+" "+issueTime[1]+
+                            "</td><td>"+feeCC14+
+                            "</td></tr>";
+          if(i==0){
+            issueNFTwSNoQRCodeFn(assetIDArray[i],regCodeText);
+            $("#issueNFTwSNoResultTbl tbody").append(issueNFTTbl);
+            $("#issueNFTwSNoJSON").after("<h6>issueAsset - NFT#"+n+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+            i++;
+            issueNFTwSNoFn();
+          }else if (assetIDArray[i] != assetIDArray[i-1]) {
+            issueNFTwSNoQRCodeFn(assetIDArray[i],regCodeText);
+            $("#issueNFTwSNoResultTbl tbody").append(issueNFTTbl);
+            $("#issueNFTwSNoJSON").after("<h6>issueAsset - NFT#"+n+"</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
+            sessionStorage.setItem("issueNFTwSNoBroadcast", JSON.stringify(transactionBytesArray));
+            i++;
+            issueNFTwSNoFn();
+          }else if (assetIDArray[i] == assetIDArray[i-1]) {
+            setTimeout(function() {
+              issueNFTwSNoFn();
+            }, 1000);
+          };
+        }
+      });
+    };
+  };
+  $("#issueNFTwSNoResponse").removeClass("d-none");
+});
+
+// issue anti counterfeit product broadcast ====================================
+$("#issueNFTwSNoBroadcastForm").submit(function(event){
+  event.preventDefault();
+  var formData = $(this).serializeArray();
+  console.log(formData);
+  var arrayData = sessionStorage.getItem("issueNFTwSNoBroadcast");
+  var array = JSON.parse(arrayData);
+  console.log(array);
+  for (var i=0; i <array.length; i++){
+    formData[1].value = array[i];
+      console.log(formData);
+    $.ajax({
+      type:"POST",
+      url: url,
+      data:formData,
+      success:function(response)
+      {
+        var n=i+1;
+        $("#issueNFTwSNoJSON").after("<h6>broadcastTransaction - NFT#"+n+"</h6>"+response);
+      }
+    });
+  }
+});
+
+
+function issueNFTwSNoQRCodeFn(assetID,regCode){
+  var config = {
+    width: 240,
+    height: 240,
+    text:assetID,
+    PI:"#0C8918",
+    quietZone: 25,
+    logo:"images/logo-cc14-qr.png",
+    logoWidth:100,
+    logoHeight:50,
+    title:"Secure Code",
+    subTitle:"ID: "+assetID,
+    titleHeight:50,
+    titleTop:20,
+    subTitleTop: 40,
+    correctLevel: QRCode.CorrectLevel.H
+    };
+  var t=new QRCode(document.getElementById("issueNFTwSNoQRCode"), config);
+  var regCodeConfig=config;
+  regCodeConfig.text=regCode;
+  regCodeConfig.PI="#177CB0";
+  regCodeConfig.title="Registration Code";
+  correctLevel: QRCode.CorrectLevel.Q
+  var s=new QRCode(document.getElementById("issueNFTwSNoQRCode"), regCodeConfig);
+};
+
 //assetActivation search =======================================================
 $("#activationSearchForm").submit(function(event){
   event.preventDefault();
   var formData = $(this).serializeArray();
   var getAccountAssets = [
     {name:"requestType", value:"getAccountAssets"},
-    {name:"account", value:formData[0].value},
+    {name:"account", value:formData[0].value.trim()},
     {name:"includeAssetInfo", value:"true"},
   ];
   if (walletActivation.includes(formData[0].value)){
@@ -851,18 +1090,19 @@ $("#activationSearchForm").submit(function(event){
       data:getAssetHistory,
       success:function(response){
         var responseObj=JSON.parse(response);
+        // console.log(responseObj);
         var length      = responseObj.assetHistory.length;
         var name        = responseObj.assetHistory[length-1].name;
         var decimals    = responseObj.assetHistory[length-1].decimals;
         var timestamp   = responseObj.assetHistory[length-1].timestamp;
         var asset       = responseObj.assetHistory[length-1].asset;
         var issuer      = responseObj.assetHistory[length-1].accountRS;
-        var fullHash    = responseObj.assetHistory[length-1].assetHistoryFullHash;
+        // var fullHash    = responseObj.assetHistory[length-1].assetHistoryFullHash;
         var quantityQNT = responseObj.assetHistory[length-1].quantityQNT;
         var factor      = Math.pow(10, decimals);
         var issuedQty   = quantityQNT/factor;
         var barcode     = parseInt(name, 32).toString(10);
-        var issueTime   = timestampToLocalFn(timestamp, isNet);
+        var issueTime   = timestampToLocalFn(timestamp);
         if (!walletIssuance.includes(issuer)){
           var activationSearchTbl = "<tr><td>"+barcode+
             "</td><td>"+asset+
@@ -870,7 +1110,7 @@ $("#activationSearchForm").submit(function(event){
             "</td><td class='alert3'>Burn "+issuer+
             "</td><td>"+issuedQty+
             "</td><td>"+decimals+
-            "</td><td>"+fullHash+
+            // "</td><td>"+fullHash+
             "</td></tr>";
         }else {
           var activationSearchTbl = "<tr><td>"+barcode+
@@ -879,7 +1119,7 @@ $("#activationSearchForm").submit(function(event){
             "</td><td>"+issuer+
             "</td><td>"+issuedQty+
             "</td><td>"+decimals+
-            "</td><td>"+fullHash+
+            // "</td><td>"+fullHash+
             "</td></tr>";
         };
         $("#activationJSON").append("<h6>getAssetHistory</h6><textarea class='form-control border border-info' rows='17'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
@@ -925,12 +1165,12 @@ $("#activationConfirmForm").submit(function(event){
   function activateAssetFn(item){
     var transferAsset = [
       {name:"requestType",      value:"transferAsset"},
-      {name:"chain",            value:"2"},
+      {name:"deadline",         value:"60"},
       {name:"recipient",        value:formData[0].value},
       {name:"asset",            value:item},
       {name:"quantityQNT",      value:"1"},
       {name:"secretPhrase",     value:formData[1].value},
-      {name:"feeNQT",           value:"2500000"},
+      {name:"feeNQT",           value:"100000000"},
       {name:"message",          value:formData[2].value}
     ];
     $.ajax({
@@ -940,14 +1180,14 @@ $("#activationConfirmForm").submit(function(event){
       success:function(response){
         var responseObj  = JSON.parse(response);
         var fullHash     = responseObj.fullHash;
-        var feeIGNIS     = responseObj.transactionJSON.feeNQT/100000000;
+        var feeCC14     = responseObj.transactionJSON.feeNQT/100000000;
         var timestamp    = responseObj.transactionJSON.timestamp;
         var recipientRS  = responseObj.transactionJSON.recipientRS;
         var asset        = responseObj.transactionJSON.attachment.asset;
-        var activateTime = timestampToLocalFn(timestamp, isNet);
+        var activateTime = timestampToLocalFn(timestamp);
         var activationConfirmTbl = "<tr><td>"+asset+
                                    "</td><td>"+recipientRS+
-                                   "</td><td>"+feeIGNIS+
+                                   "</td><td>"+feeCC14+
                                    "</td><td>"+activateTime[0]+ " " + activateTime[1]+
                                    "</td><td>"+fullHash+
                                    "</td></tr>";
@@ -970,14 +1210,15 @@ $("#issueAssetForm").submit(function(event){
   var name        = barcode.toString(32);
   var issueAsset  = [
     {name:"requestType",      value:"issueAsset"},
-    {name:"chain",            value:"2"},
+    // {name:"chain",            value:"2"},
     {name:"name",             value:name},
     {name:"description",      value:formData[3].value},
     {name:"quantityQNT",      value:quantityQNT},
     {name:"decimals",         value:formData[1].value},
     {name:"secretPhrase",     value:formData[5].value},
-    {name:"feeNQT",           value:"-1"},
-    {name:"feeRateNQTPerFXT", value:"-1"},
+    {name:"feeNQT",           value:"0"},
+    {name:"deadline",         value:"60"},
+    // {name:"feeRateNQTPerFXT", value:"-1"},
     {name:"broadcast",        value:"false"},
     {name:"message",          value:formData[4].value}
   ];
@@ -992,7 +1233,7 @@ $("#issueAssetForm").submit(function(event){
     data:issueAsset,
     success:function(response){
       var responseObj      = JSON.parse(response);
-      var feeIgnis         = responseObj.transactionJSON.feeNQT/100000000;
+      var feeCC14         = responseObj.transactionJSON.feeNQT/100000000;
       var issuerRS         = responseObj.transactionJSON.senderRS;
       var timestamp        = responseObj.transactionJSON.timestamp;
       var transactionBytes = responseObj.transactionBytes;
@@ -1003,7 +1244,7 @@ $("#issueAssetForm").submit(function(event){
       var factor           = Math.pow(10, responseObj.transactionJSON.attachment.decimals);
       var quantity         = quantityQNT/factor;
       var assetID          = NRS.fullHashToId(fullHash);
-      var issueTime        = timestampToLocalFn(timestamp,isNet);
+      var issueTime        = timestampToLocalFn(timestamp);
       var descriptionObj   = JSON.parse(descriptionStr);
       var unit             = descriptionObj.unit;
       var lotNo            = descriptionObj.lotNo;
@@ -1016,7 +1257,7 @@ $("#issueAssetForm").submit(function(event){
         "<tr><td>decimals</td><td>"+responseObj.transactionJSON.attachment.decimals+"</td></tr>"+
         "<tr><td>lot No</td><td>"+lotNo+"</td></tr>"+
         "<tr><td>fullHash</td><td>"+responseObj.fullHash+"</td></tr>"+
-        "<tr><td>fee</td><td>"+feeIgnis+" Ignis </td></tr>"+
+        "<tr><td>fee</td><td>"+feeCC14+" CC14 </td></tr>"+
         "<tr><td>message</td><td>"+responseObj.transactionJSON.attachment.message+"</td></tr></table> ";
       $("#issueAssetResult").html(issueAssetResult);
       $("#issueAssetTransactionBytes").val(transactionBytes);
@@ -1051,13 +1292,14 @@ $("#setAssetPropertyForm").submit(function(event){
   console.log(formData);
   var setAssetProperty  = [
     {name:"requestType",      value:"setAssetProperty"},
-    {name:"chain",            value:"2"},
-    {name:"asset",            value:formData[0].value},
+    // {name:"chain",            value:"2"},
+    {name:"asset",            value:formData[0].value.trim()},
     {name:"property",         value:formData[1].value},
     {name:"value",            value:formData[2].value},
     {name:"secretPhrase",     value:formData[4].value},
-    {name:"feeNQT",           value:"-1"},
-    {name:"feeRateNQTPerFXT", value:"-1"},
+    {name:"feeNQT",           value:"0"},
+    {name:"deadline",         value:"60"},
+    // {name:"feeRateNQTPerFXT", value:"-1"},
     {name:"broadcast",        value:"false"},
     {name:"message",          value:formData[3].value}
   ];
@@ -1068,14 +1310,14 @@ $("#setAssetPropertyForm").submit(function(event){
     success:function(response){
       var responseObj = JSON.parse(response);
       console.log(responseObj);
-      var feeIgnis         = responseObj.transactionJSON.feeNQT/100000000;
+      var feeCC14         = responseObj.transactionJSON.feeNQT/100000000;
       var setterRS         = responseObj.transactionJSON.senderRS;
       var timestamp        = responseObj.transactionJSON.timestamp;
       var transactionBytes = responseObj.transactionBytes;
       var property         = responseObj.transactionJSON.attachment.property;
       var propertyValue    = responseObj.transactionJSON.attachment.value;
       var assetID          = responseObj.transactionJSON.attachment.asset;
-      var setTime          = timestampToLocalFn(timestamp,isNet);
+      var setTime          = timestampToLocalFn(timestamp);
       var result = "<table class='table table-sm text-nowrap fs-6 table-bordered border-info caption-top'>"+
         "<tr><td>setterRS</td><td>"+setterRS+"</td></tr>"+
         "<tr><td>setTime</td><td>"+setTime[0]+" "+setTime[1]+"</td></tr>"+
@@ -1083,7 +1325,7 @@ $("#setAssetPropertyForm").submit(function(event){
         "<tr><td>property</td><td>"+property+"</td></tr>"+
         "<tr><td>value</td><td>"+propertyValue+"</td></tr>"+
         "<tr><td>fullHash</td><td>"+responseObj.fullHash+"</td></tr>"+
-        "<tr><td>fee</td><td>"+feeIgnis+" Ignis </td></tr></table>";
+        "<tr><td>fee</td><td>"+feeCC14+" CC14 </td></tr></table>";
       $("#setAssetPropertyResult").html(result);
       $("#setAssetPropertyTransactionBytes").val(transactionBytes);
       $("#setAssetPropertyJSON").after("<h6>setAssetProperty</h6><textarea class='form-control border border-info' rows='17'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
@@ -1124,62 +1366,74 @@ $("#getAssetInfoAll").submit(function(event){
   $("#panelJSONresponse").addClass("show");
   $("#btnJSONresponse").removeClass("collapsed");
   $("#btnJSONresponse").attr("aria-expanded","true");
-  var formData= $(this).serialize();
-  $.post(url,formData,function(response){
-    var assetObj = JSON.parse(response);
-    $("#assetInforTbl-assetID").html(assetObj.asset);
-    $("#JSONresponse").append("<h6>getAsset</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(assetObj,undefined, 4)+"</textarea>");
-    if (assetObj.errorDescription =="Unknown asset"){
-      $("#panelAdvisory").html("<h6>No blockchain record found，Crypto C14 is unable to provide any suggestion nor advisory. please verify secure code sanned.</h6>");
-      $("#testTable").hide();
-    }else{
-      $("#panelProduct").addClass("show");
-      $("#btnProduct").removeClass("collapsed");
-      $("#btnProduct").attr("aria-expanded","true");
-      $("#panelIssuer").addClass("show");
-      $("#btnIssuer").removeClass("collapsed");
-      $("#btnIssuer").attr("aria-expanded","true");
-      $("#testTable").show();
-      assetInfoFn(assetObj.name,assetObj.asset);         // assetInfoFn 商品信息
-      assetPropertyFn(assetObj.asset);                             //产品附加信息
-      assetIssueDateFn(assetObj.asset);                                 //q2, q3
-      assetInventoryFn(assetObj.asset, assetObj.decimals);         //溯源产品库存
-      if (assetObj.quantityQNT==0) {
-        assetTransferNFTFn(assetObj.asset);
-        $("#test-q4-yes").html("");
-        $("#test-q4-no").html("&#x2716;");
-        $("#advisoryA4").removeClass("d-none");
-        $("#test-q5-yes").html("");
-        $("#test-q5-no").html("&#x2716;");
-        $("#advisoryA5").removeClass("d-none");
-        $("#test-q7-yes").html("");
-        $("#test-q7-no").html("&#x2716;");
-        $("#advisoryA7").removeClass("d-none");
-      }else if (assetObj.quantityQNT >1) {
-        assetTransferTraceableFn(assetObj.asset);
-        $("#test-q1").hide();
-        $("#test-q5").hide();
-        $("#test-q6").hide();
-        $("#test-q7").hide();
-        $("#test-q8").hide();
-        $("#test-q9").hide();
-        $("#advisoryA5").hide();
-        $("#advisoryA6").hide();
-        $("#advisoryA7").hide();
-        $("#advisoryA8").hide();
-        $("#advisoryA9").hide();
-        $("#assetInforTbl-r8").hide();
-        $("#test-q4-yes").html("&#x2714;");
-        $("#test-q4-no").html("");
-        $("#advisoryA1").removeClass("d-none");
-        $("#requestTitleBtn").prop("disabled",true);
-      }else if(assetObj.quantityQNT==1 && assetObj.decimals == 0){
-        assetTransferNFTFn(assetObj.asset);
-        $("#test-q1-yes").html("&#x2714;");
-        $("#test-q1-no").html("");
-        $("#modalRequestAsset").val(assetObj.asset);
+  var formData= $(this).serializeArray();
+  console.log(formData);
+  console.log(formData[0].value.trim());
+  var getAsset= [
+    {name:"requestType",value:"getAsset"},
+    {name:"asset",value:formData[0].value.trim()},
+  ];
+  // $.post(url,formData,function(response){
+  $.ajax({
+    type:"POST",
+    url: url,
+    data:getAsset,
+    success:function(response){
+      var assetObj = JSON.parse(response);
+      $("#assetInforTbl-assetID").html(assetObj.asset);
+      $("#JSONresponse").append("<h6>getAsset</h6><textarea class='form-control border border-info' rows='10'>" + JSON.stringify(assetObj,undefined, 4)+"</textarea>");
+      if (assetObj.errorDescription =="Unknown asset"){
+        $("#panelAdvisory").html("<h6>No blockchain record found，Crypto C14 is unable to provide any suggestion nor advisory. please verify secure code sanned.</h6>");
+        $("#testTable").hide();
+      }else{
+        $("#panelProduct").addClass("show");
+        $("#btnProduct").removeClass("collapsed");
+        $("#btnProduct").attr("aria-expanded","true");
+        $("#panelIssuer").addClass("show");
+        $("#btnIssuer").removeClass("collapsed");
+        $("#btnIssuer").attr("aria-expanded","true");
+        $("#testTable").show();
+        assetInfoFn(assetObj.name,assetObj.asset);         // assetInfoFn 商品信息
+        assetPropertyFn(assetObj.asset);                             //产品附加信息
+        assetIssueDateFn(assetObj.asset);                                 //q2, q3
+        assetInventoryFn(assetObj.asset, assetObj.decimals);         //溯源产品库存
+        if (assetObj.quantityQNT==0) {
+          assetTransferNFTFn(assetObj.asset);
+          $("#test-q4-yes").html("");
+          $("#test-q4-no").html("&#x2716;");
+          $("#advisoryA4").removeClass("d-none");
+          $("#test-q5-yes").html("");
+          $("#test-q5-no").html("&#x2716;");
+          $("#advisoryA5").removeClass("d-none");
+          $("#test-q7-yes").html("");
+          $("#test-q7-no").html("&#x2716;");
+          $("#advisoryA7").removeClass("d-none");
+        }else if (assetObj.quantityQNT >1) {
+          assetTransferTraceableFn(assetObj.asset);
+          $("#test-q1").hide();
+          $("#test-q5").hide();
+          $("#test-q6").hide();
+          $("#test-q7").hide();
+          $("#test-q8").hide();
+          $("#test-q9").hide();
+          $("#advisoryA5").hide();
+          $("#advisoryA6").hide();
+          $("#advisoryA7").hide();
+          $("#advisoryA8").hide();
+          $("#advisoryA9").hide();
+          $("#assetInforTbl-r8").hide();
+          $("#test-q4-yes").html("&#x2714;");
+          $("#test-q4-no").html("");
+          $("#advisoryA1").removeClass("d-none");
+          $("#requestTitleBtn").prop("disabled",true);
+        }else if(assetObj.quantityQNT==1 && assetObj.decimals == 0){
+          assetTransferNFTFn(assetObj.asset);
+          $("#test-q1-yes").html("&#x2714;");
+          $("#test-q1-no").html("");
+          $("#modalRequestAsset").val(assetObj.asset);
+        };
       };
-    };
+    }
   });
 });
 
@@ -1270,7 +1524,7 @@ function assetTransferNFTFn(asset){
         var fullHash    = assetTransferObj.transfers[i].assetTransferFullHash;
         var factor    = Math.pow(10, decimals);
         var qty       = quantityQNT/factor;
-        var localTime = timestampToLocalFn(timestamp, isNet);
+        var localTime = timestampToLocalFn(timestamp);
         if(walletActivation.includes(recipientRS)){
           $("#test-q9-yes").html("&#x2714;");
           $("#test-q9-no").html("");
@@ -1356,7 +1610,7 @@ function assetTransferTraceableFn(asset){
         var fullHash    = assetTransferObj.transfers[i].assetTransferFullHash;
         var factor    = Math.pow(10, decimals);
         var qty       = quantityQNT/factor;
-        var localTime = timestampToLocalFn(timestamp, isNet);
+        var localTime = timestampToLocalFn(timestamp);
         var m = myAddressBookObj.map(function(e){return e.accountRS;}).indexOf(senderRS);
         if (m < 0){
           var sender = "Unknow wallet, anonumous sender.)";
@@ -1406,8 +1660,8 @@ function assetIssueDateFn(asset){
     var decimals          = assetHistoryObj.assetHistory[i].decimals
     var quantityQNT       = assetHistoryObj.assetHistory[i].quantityQNT;
     var issuanceFullHash  = assetHistoryObj.assetHistory[i].assetHistoryFullHash;
-    var issuanceTimes     = timestampToLocalFn(assetHistoryObj.assetHistory[i].timestamp, isNet);
-    var issuanceEpoch     = timestampToEpochFn(assetHistoryObj.assetHistory[i].timestamp, isNet);
+    var issuanceTimes     = timestampToLocalFn(assetHistoryObj.assetHistory[i].timestamp);
+    var issuanceEpoch     = epochBeginning + assetHistoryObj.assetHistory[i].timestamp;
     var factor = Math.pow(10, decimals);
     var issuedQuantity = quantityQNT/factor;
 
@@ -1457,15 +1711,15 @@ function isoToEpochFn(isoDateTime){
 };
 
 // timestampToEpochFn ==========================================================
-function timestampToEpochFn(timestamp,isNet){
-  var testnetEpochBeginning=1514275199, mainnetEpochBeginning=1514764800;
-  if(isNet=="mainnet"){
-    var timestampToEpoch = timestamp + mainnetEpochBeginning;
-  }else{
-    var timestampToEpoch = timestamp + testnetEpochBeginning;
-  };
-  return timestampToEpoch;
-};
+// function timestampToEpochFn(timestamp){
+//   var testnetEpochBeginning=1514275199, mainnetEpochBeginning=1514764800;
+//   if(isNet=="mainnet"){
+//     var timestampToEpoch = timestamp + mainnetEpochBeginning;
+//   }else{
+//     var timestampToEpoch = timestamp + testnetEpochBeginning;
+//   };
+//   return timestampToEpoch;
+// };
 
 // 时间换算 ISO DATE TIME 换算显示成当地时间 =====================================
   function expDateDisplayFn(isoDateTime){
@@ -1524,7 +1778,7 @@ function genFileTokenFn(formData){
       if (input.files[0]){
         var file = input.files[0];
         var fileName = file.name;
-        var lastModified=timestampToLocalFn(file.lastModified/1000-1514296800,isNet);
+        var lastModified=timestampToLocalFn(file.lastModified/1000-epochBeginning);
         var fileSize = returnFileSizeFn(file.size);
       };
       var secEpoch = Math.floor( Date.now() / 1000 );
@@ -1532,13 +1786,13 @@ function genFileTokenFn(formData){
       var fileToken = genFileTokenXhrObj.token;
       var accountRS = genFileTokenXhrObj.accountRS;
       var timestamp = genFileTokenXhrObj.timestamp;
-      var secEpoch = timestampToEpochFn(timestamp, isNet);
+      var secEpoch = epochBeginning + timestamp;
       var txtFileName =fileName+'_'+secEpoch+'.txt';
-      var localTime = timestampToLocalFn(timestamp,isNet);
+      var localTime = timestampToLocalFn(timestamp);
       var description = fileToken;
       var message = fileName+", "+fileSize+", "+lastModified[0]+" "+lastModified[1];
-      var displayResult = "<p><b>Transaction: </b>fileToken was generated on "+localTime[0]+" , "+localTime[1]+", by Account " + accountRS+".</p>"+
-                          "<p><b>About the file: </b>" + fileName+" , "+fileSize+" , last modified on "+lastModified[0]+" , "+lastModified[1]+".</p>"+
+      var displayResult = "<p><b>Transaction: </b><br>FileToken was generated on "+localTime[0]+" , "+localTime[1]+", by Account " + accountRS+".</p>"+
+                          "<p><b>About the file: </b><br> File name: " + fileName+"<br>File size: "+fileSize+"<br>last modified on: "+lastModified[0]+" , "+lastModified[1]+".</p>"+
                           "<p><b>fileToken: </b>" + fileToken+" </p>";
       $("#save2txt").attr("download",txtFileName);
       $("#genFileTokenDisplay").removeClass("d-none");
@@ -1563,19 +1817,20 @@ function genFileTokenFn(formData){
 $("#tokenizeForm").submit(function(event){
   event.preventDefault();
   var formData = $(this).serializeArray();
-  console.log(formData);
+  // console.log(formData);
   var tokenizeData  = [
     {name:"requestType",      value:"issueAsset"},
-    {name:"chain",            value:"2"},
+    // {name:"chain",            value:"2"},
     {name:"name",             value:formData[0].value},
     {name:"description",      value:formData[1].value},
     {name:"quantityQNT",      value:"1"},
     {name:"decimals",         value:"0"},
     {name:"secretPhrase",     value:formData[4].value},
-    {name:"feeNQT",           value:"-1"},
-    {name:"feeRateNQTPerFXT", value:"-1"},
+    {name:"feeNQT",           value:"0"},
+    {name:"deadline",         value:"60"},
+    // {name:"feeRateNQTPerFXT", value:"-1"},
     {name:"broadcast",        value:"false"},
-    {name:"message",          value:formData[3].value +", " +formData[2].value}
+    {name:"message",          value:'License type: '+formData[3].value +"<br>File detail:  " +formData[2].value}
   ];
   $.ajax({
     type:"POST",
@@ -1583,15 +1838,15 @@ $("#tokenizeForm").submit(function(event){
     data:tokenizeData,
     success:function(response){
       var responseObj = JSON.parse(response);
-      console.log(responseObj);
+      // console.log(responseObj);
       if (responseObj.errorCode == 6){
         alert("账户内余额不足，不能生成NFT！");
       }else {
-        var feeIGNIS = responseObj.transactionJSON.feeNQT/100000000;
+        var feeCC14 = responseObj.transactionJSON.feeNQT/100000000;
         var transactionBytes = responseObj.transactionBytes;
         var senderRS = responseObj.transactionJSON.senderRS;
         var timestamp = responseObj.transactionJSON.timestamp;
-        var localTime = timestampToLocalFn(timestamp,isNet);
+        var localTime = timestampToLocalFn(timestamp);
         var fielToken = responseObj.transactionJSON.attachment.description;
         var message = responseObj.transactionJSON.attachment.message;
         var name = responseObj.transactionJSON.attachment.name;
@@ -1601,7 +1856,7 @@ $("#tokenizeForm").submit(function(event){
         $("#tokenizeTblAccountRS").html(senderRS);
         $("#tokenizeTblTime").html(localTime[0] + "," + localTime[1]);
         $("#tokenizeTblAssetID").html(assetID);
-        $("#tokenizeTblFee").html(feeIGNIS+" Ignis");
+        $("#tokenizeTblFee").html(feeCC14+" CC14");
         $("#tokenizeTblFullHash").html(fullHash);
         $("#tokenizeTblFielToken").html(fielToken);
         $("#tokenizeTblFile").html(message);
@@ -1625,7 +1880,7 @@ $("#genTokenForm").submit(function(event){
       var token = responseObj.token;
       var accountRS = responseObj.accountRS;
       var timestamp = responseObj.timestamp;
-      var localTime = timestampToLocalFn(timestamp,isNet);
+      var localTime = timestampToLocalFn(timestamp);
       var result = "<span>Zero cost message token created on " + localTime[0] + " , " + localTime[1] + " by account " + accountRS + " . Transaction fullHash： <br> "+token;
       $("#evidenceJSONBtn").removeClass("collapsed");
       $("#evidenceJSONPanel").addClass("show");
@@ -1651,11 +1906,11 @@ $("#decTokenForm").submit(function(event){
       var valid = responseObj.valid;
       var accountRS = responseObj.accountRS;
       var timestamp = responseObj.timestamp;
-      var localTime = timestampToLocalFn(timestamp,isNet);
+      var localTime = timestampToLocalFn(timestamp);
       if (valid==true){
-        var displayResult = "<b>Valid! </b>Message token was created on " + localTime[0] + " , " + localTime[1] + " , by account "+accountRS+" .";
+        var displayResult = "<b>Valid! </b><br>Message token was created by account " + accountRS +" on " + localTime[0] + " at " + localTime[1] + " .";
       }else {
-        var displayResult = "<b>Invalid! </b>Message token was created on " + localTime[0] + " , " + localTime[1] + " , by account "+accountRS+" .";
+        var displayResult = "<b>Invalid! </b><br>Message token was created by account " + accountRS +" on " + localTime[0] + " at " + localTime[1] + " .";
       };
       $("#decTokenDisplay").removeClass("d-none");
       $("#decTokenResult").html(displayResult);
@@ -1736,38 +1991,66 @@ $("#combineSecretForm").submit(function(event){
       var responseObj = JSON.parse(response);
       console.log(responseObj.secret);
       $("#combineSecretResult").append(responseObj.secret);
-      // $("#combineSecretResult").append("<hr style='color:red;border-top: 1px solid red'>");
     }
   });
 });
 
-// // 防伪码+注册码QR code生成器
-// function dualQRcodeFn(assetID){
-//   var textStr=assetID.replace(/[\n\r\t]/g,"");
-//   var config = {
-//     width: 240,
-//     height: 240,
-//     text:textStr,
-//     PI:"#00A1DB",
-//     quietZone: 25,
-//     logo:"images/logo-cc14-qr.png",
-//     logoWidth:100,
-//     logoHeight:50,
-//     title:"防伪码",
-//     subTitle:"ID: "+textStr,
-//     subTitleFont: "14px",
-//     titleHeight:50,
-//     titleTop:20,
-//     subTitleTop: 40,
-//     correctLevel: QRCode.CorrectLevel.H
-//     };
-//   var t=new QRCode(document.getElementById("secureCode"), config);
-//   key = textStr.substring(textStr.length-16,textStr.length);
-//   var encryptedMessage = CryptoJS.AES.encrypt(textStr, key);
-//   var regCodeText = encryptedMessage.toString();
-//   var regCodeConfig=config;
-//   regCodeConfig.text=regCodeText;
-//   regCodeConfig.PI="#009B4C";
-//   regCodeConfig.title="注册码";
-//   var s=new QRCode(document.getElementById("regCode"), configRegCode);
-// };
+$("#aesKeyIvForm").submit(function(event){
+  event.preventDefault();
+  function getRandomIntInclusive() {
+    min = Math.ceil(1000000000000000);
+    max = Math.floor(9999999999999999);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+  };
+
+  var keyStr = getRandomIntInclusive();
+  var ivStr = getRandomIntInclusive();
+  console.log("ivStr: " + ivStr);
+  console.log("keyStr: " + keyStr);
+  dualQRcodeFn(keyStr,ivStr);
+});
+
+//AES key and iv qrCode generator==============================================
+function dualQRcodeFn(keyStr,ivStr){
+  var configKey = {
+    width: 240,
+    height: 240,
+    text:keyStr,
+    PI:"#00A1DB",
+    quietZone: 25,
+    logo:"images/logo-cc14-qr.png",
+    logoWidth:100,
+    logoHeight:50,
+    title:"key",
+    subTitle:keyStr,
+    titleHeight:50,
+    titleTop:20,
+    subTitleTop: 40,
+    correctLevel: QRCode.CorrectLevel.H
+    };
+  var t=new QRCode(document.getElementById("dispKeyIvQRCode"), configKey);
+  var configIv=configKey;
+  configIv.text=ivStr;
+  configIv.title="iv";
+  configIv.subTitle=ivStr;
+  var s=new QRCode(document.getElementById("dispKeyIvQRCode"), configIv);
+};
+
+$("#reproduceRegCodeForm").submit(function(event){
+  event.preventDefault();
+  var formData = $(this).serializeArray();
+  console.log(formData);
+  var secureCode=formData[0].value;
+  var regCode = encryptAESFn(secureCode, keyAES, ivAES);
+  console.log(secureCode);
+  console.log(regCode);
+  $("#dispReproduceRegCode").html(regCode);
+  issueNFTQRCodeFn(secureCode,regCode);
+});
+
+$("#apiUrlForm").submit(function(event){
+  event.preventDefault();
+  localStorage.clear();
+  var formData = $(this).serializeArray();
+  localStorage.setItem("apiUrl", formData[0].value);
+});

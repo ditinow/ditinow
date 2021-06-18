@@ -71,11 +71,11 @@
 
             <div class="accordion-item" name="Data integrity">
               <h2 class="accordion-header" id="integrityFlip">
-                <button id="integrityBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#integrityPanel" aria-expanded="false" aria-controls="integrityPanel">
+                <button id="integrityBtn" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#integrityPanel" aria-expanded="false" aria-controls="integrityPanel">
                   <h4>&#x1F512; Data integrity</h4>
                 </button>
               </h2>
-              <div id="integrityPanel" class="accordion-collapse collapse " aria-labelledby="integrityFlip" >
+              <div id="integrityPanel" class="accordion-collapse  " aria-labelledby="integrityFlip" >
                 <div class="accordion-body">
                   <div id="integrityAction">
                     <form id="decFileTokenForm" enctype="multipart/form-data" onsubmit="return decodeFileTokenFn(this,['file'])">
@@ -85,9 +85,9 @@
                       </div>
                       <div class="input-group " >
                         <span class="input-group-text" >File Token</span>
-                        <textarea class="form-control" style="height:60px" name='token'>crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fmorpiliqdv5nhtg5ekpffm3r4rdtdi6d3uuhkn11itop0nlfjfomdum9dj6gdl2978l97cogukts7nkpjvsqbkuvfomn69al8sim26tplpuoj4p4</textarea>
+                        <textarea class="form-control" style="height:60px" name='token'>crnh9rosg2oeshsbc776kdasdlgci0m66cc23c565kq33e3fnai52liqk50kfeg3cukpq63g3tbnfbjkcm6pvdho8f7cke2di9t36a873500i3l4n5ajpadkh7mobmqjj51lbqc8cgmkto3k6b0qle6sm816simr</textarea>
                       </div>
-                      <label for="basic-url" class="form-label  mb-3 "><small>Above file token was generated for <a href="./data/myAddressBook.json">myAddressBook.json</a> using throught out all demonstration, digitally signed by Crypto C14. Crypto C14 held responsibility to activitis if and only if a File Token is associated with and was digitally signed by Crypto C14 official wallet address, ARDOR-49CE-CXZZ-3QHW-AH4JK, </small></label>
+                      <label for="basic-url" class="form-label  mb-3 "><small>Above file token was generated for <a href="./data/myAddressBook.json">myAddressBook.json</a> using throught out all demonstration, digitally signed by Crypto C14. Crypto C14 held responsibility to activitis if and only if a File Token is associated with and was digitally signed by Crypto C14 official wallet address, CC14-49CE-CXZZ-3QHW-AH4JK, </small></label>
                       <div class="input-group justify-content-end mb-3" >
                         <input type='submit' class='btn btn-outline-secondary' value='Validate File Token'/>
                       </div>
@@ -113,153 +113,6 @@
                 </div>
               </div>
             </div><!-- accordion-item end ================================== -->
-
-
-
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="passphraseExFlip">
-                <button id="passphraseExBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#passphraseExPanel" aria-expanded="false" aria-controls="passphraseExPanel">
-                  <h4>&#x1F510; Account Safty</h4>
-                </button>
-              </h2>
-              <div id="passphraseExPanel" class="accordion-collapse collapse " aria-labelledby="passphraseExFlip" >
-                <div class="accordion-body">
-                  <div class="col-12 col-sm-12 mb-3">
-                    <div class="col-12 col-sm-12 mb-3">
-                      <p>Passphrase is used by operators for daily activity. Since it is entered by front-end, user can discover it with litter effort. Ardor suppoet Shamir's Secret Sharing (SSS in short) to reduct the risk.  </p>
-                      <!-- <hr style="color:red;border-top: 1px solid red"> -->
-
-                      <form id="passphraseExForm">
-                          <input type='hidden' name='requestType' value='generateToken'/>
-                          <div class="input-group mb-3">
-                            <span class="input-group-text" >Message</span>
-                            <input type="text" name="website" class="form-control" onclick="this.select();" value="Random message...">
-                          </div>
-                          <div class="input-group mb-3" >
-                            <span class="input-group-text" >Passphrase</span>
-                            <input class="form-control" type='text' name='secretPhrase' id="genTokenFormPassword" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
-                          </div>
-                          <label for="basic-url" class="form-label  mb-3 "><small>Passphrase entered at front end hide no secert from user. I use clear text for demonstration. </small></label>
-                          <div class="input-group justify-content-end mb-3" >
-                            <input type='submit' class='btn btn-outline-secondary' value='Generate Token'/>
-                        </div>
-                      </form>
-                    </div><!-- form section end ============================== -->
-                    <div class="col-12 col-sm-12 " id="genTokenDisplay">
-                      <div class="text-wrap text-break overflow-auto mb-3">
-                        <!-- <hr style="color:red;border-top: 1px solid blue"> -->
-                        <!-- <h5>事件总结：</h5> -->
-                        <h5>Summary:</h5>
-                        <span id="passphraseExResult"></span><br>
-                        <span id="passphraseExJSON"></span>
-                      </div>
-                    </div><!-- display result JSON end ======================= -->
-
-                    <div class="col-12 col-sm-12 mb-3">
-                      <form id="passphraseEx2Form">
-                          <input type='hidden' name='requestType' value='generateToken'/>
-                          <div class="input-group mb-3">
-                            <span class="input-group-text" >Message</span>
-                            <input type="text" name="website" class="form-control" value="Random message...">
-                          </div>
-
-                          <div class="input-group ">
-                            <span class="input-group-text" >Shared Secret 1</span>
-                            <input type="text" name="sharedPiece" class="form-control pieces" value="0:-547495371:3:2:0:1:00a4d610e121814d5f92027fa51dedf473bd10864e82f70edc9adba2767706260ee78184c284034d4d55b3a88954b0dc1e1077b45b">
-                          </div>
-                          <label for="basic-url" class="form-label  mb-3 "><small>Shared Secret 1 is used by operators for daily activity. Since it is entered at front-end, user can discover it with litter effort. </small></label>
-
-
-                          <div class="input-group">
-                            <span class="input-group-text" >Shared Secret 2</span>
-                            <input type="password" name="sharedPiece" class="form-control pieces" id="sharedPiece" value="0:-547495371:3:2:0:2:00e643015dd9e2234a038b95dc1b68877959beab33e581b457c750248588ebe9b4ae8ba816a0e635288b04dbf245fc49d5007af941">
-                              <span class="input-group-text fs-4"  id="sharedPieceIcon" onclick="togglePasswordFn('sharedPiece')">&#128584;</span>
-                          </div>
-                          <label for="basic-url" class="form-label  mb-3 "><small>Shared Secret 2 should be add to Arodr nxt.properties on a remote node, or save to a back end script. It should never exposes to front end user. </small></label>
-                          <div class="input-group justify-content-end mb-3" >
-                            <input type='submit' class='btn btn-outline-secondary' value='Generate Token'/>
-                        </div>
-                      </form>
-                    </div><!-- form section end ============================== -->
-                    <div class="col-12 col-sm-12 " id="genTokenDisplay">
-                      <div class="text-wrap text-break overflow-auto">
-                        <!-- <hr style="color:red;border-top: 1px solid blue"> -->
-                        <!-- <h5>事件总结：</h5> -->
-                        <h5>Summary:</h5>
-                        <span id="passphraseEx2Result"></span><br>
-                        <span id="passphraseEx2JSON"></span>
-                      </div>
-                      <h5>Conclusion:</h5>
-                      <p>Token generated by both methods shown digitally signed by wallet address ARDOR-K9LV-RSRW-N5FX-9UPRW. </p>
-                      <!-- <p>真正的商业环境下暗码的1/3密钥分片将保存在远程的专用ARDOR节点的配置文件里，用户端无法读取。员工在用户端只需要扫码输入另外的1/3密钥分片，API就能通过专用ARDOR节点获取配置里的其余1/3分片从而完成数字签字。</p>
-                      <p>同时因为用户端能接触到的只有1/3的密钥分片，达不到设定的2/3的最低要求所以无法复原密钥。企业还可以设置传统方式进一步加强安全管理例如子网、账户认证(传统账号，非区块链账号)。</p>
-                      <p>企业用户可以通过以下工具自己进行密钥分片，然后将不足以还原密钥的一部分交给Crypto C14去配置ARDOR API节点，另一部分交由应用维护者去更新客户端。详情请联系Crypto C14。</p> -->
-                    </div><!-- display result JSON end ======================= -->
-                  </div><!-- form section end ============================== -->
-                </div>
-              </div>
-            </div><!-- accordion-item end ================================== -->
-
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="passphraseFlip">
-                <button id="passphraseBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#passphrasePanel" aria-expanded="false" aria-controls="passphrasePanel">
-                  <h4>&#x1F511; Split Secret (SSS)</h4>
-                </button>
-              </h2>
-              <div id="passphrasePanel" class="accordion-collapse collapse " aria-labelledby="passphraseFlip" >
-                <div class="accordion-body">
-                  <div class="col-12 col-sm-12 mb-3">
-                    <p>Following form demonstrata split passphrase into 5 pieces, minimum pieces to reproduct origin passphrase is 3. For other combination please read summary. </p>
-                    <form id="splitSecretForm">
-                        <input type='hidden' name='requestType' value='splitSecret'/>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text" >Passphrase</span>
-                          <input type="text" name="secret" class="form-control" value='ci di wu yin san bai liang ge bi wang er bu ceng tou'>
-                        </div>
-                        <div class="input-group mb-3" >
-                          <span class="input-group-text" >Total # of pieces</span>
-                          <input type="number" name="totalPieces" class="form-control" value="5" >
-                          <span class="input-group-text" >Minimun # of pieces</span>
-                          <input type="number" name="minimumPieces" class="form-control" value="3" >
-                        </div>
-                        <div class="input-group justify-content-end mb-3" >
-                          <input type='submit' class='btn btn-outline-secondary' value='Split Secret'/>
-                      </div>
-                    </form>
-                    <div class="text-wrap text-break overflow-auto">
-                      <!-- <hr style="color:red;border-top: 1px solid blue"> -->
-                      <h5>Summary：</h5>
-                      <span id="splitSecretResult"></span>
-                    </div>
-
-                    <form id="combineSecretForm">
-                        <input type='hidden' name='requestType' value='combineSecret'/>
-                        <div class="input-group mb-1">
-                          <span class="input-group-text" >Shared Secret 1/5</span>
-                          <input type="text" name="pieces" class="form-control pieces" id="combineSecretForm0">
-                        </div>
-                        <div class="input-group mb-1">
-                          <span class="input-group-text" >Shared Secret 2/5</span>
-                          <input type="text" name="pieces" class="form-control pieces" id="combineSecretForm1">
-                        </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text" >Shared Secret 3/5</span>
-                          <input type="text" name="pieces" class="form-control pieces" id="combineSecretForm2">
-                        </div>
-                        <div class="input-group justify-content-end mb-3" >
-                          <input type='submit' class='btn btn-outline-secondary' value='Conbin Secret'/>
-                      </div>
-                    </form>
-                    <div class="text-wrap text-break overflow-auto">
-                      <!-- <hr style="color:red;border-top: 1px solid blue"> -->
-                      <h5>Passphrase:</h5>
-                      <span id="combineSecretResult"></span>
-                    </div>
-                  </div><!-- form section end ============================== -->
-                </div>
-              </div>
-            </div><!-- accordion-item end ================================== -->
-
           </div><!-- accordion end ========================================= -->
         </div><!-- col-12 col-sm-10 mx-auto end ============================ -->
       </div><!-- row end ====================================================-->
@@ -282,10 +135,11 @@
 <script src="js/3rdparty/converters.js"></script>
 <script src="js/3rdparty/nrs.util.js"></script>
 <script src="js/3rdparty/jquery.table2excel.js"></script>
-<script src='js/scripts-cc14en.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
+<script src='js/scripts-cc14en.js' ></script>
+<script src='js/nav_footer.js' ></script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
