@@ -78,31 +78,41 @@
               <div id="requestTitlTokenPanel" class="accordion-collapse collapse" aria-labelledby="requestTitlTokenFlip" >
                 <div class="accordion-body">
                   <div id="requestTitlTokenAction">
-                    <form id="requestTitlTokenForm">
+                    <form id="pin2newWallet">
                       <div class="input-group mb-3" >
-                        <span class="input-group-text" >消费者钱包</span>
-                        <input type="text" class="form-control" name='recipient' value="ARDOR-MJEK-6QAF-Y9WQ-58678">
+                        <span class="input-group-text" >生成新钱包</span>
+                        <input type="text" class="form-control" name='passphrase' minlength="6"  placeholder="请输入至少6位数字和字母组合">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#128296;">
+                      </div>
+                    </form>
+                    <div id="hrContainer">
+                      <hr id="hrText" data-content="OR">
+                    </div>
+                    <form id="requestTitlTokenForm">
+                      <input type="hidden" id="consumerPubKey" name='publicKey'>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >使用现有钱包</span>
+                        <input type="text" class="form-control" id="consumerWallet" name='recipient' value="CC14-" placeholder="请输入以 CC14- 开头的钱包地址">
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
                         <input type="text" class="form-control" name='asset' placeholder="Scan green QR code with CC14 logo..." list="requestDTasset">
                         <datalist id="requestDTasset">
-                          <option value="9196924428286156815"></option>
-                          <option value="18246018467717841450"></option>
-                          <option value="2381810025932782993"></option>
-                          <option value="7627942908921392359"></option>
-                          <option value="5300661581399953428"></option>
+                          <option value="6081132971218252451"></option>
+                          <option value="8780717788303414133"></option>
+                          <option value="15200409551401343201"></option>
+                          <option value="1961837512695565320"></option>
                         </datalist>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text"><img src="images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;注册码</span>
                         <input type="text" class="form-control" name='regCode' placeholder="Scan blue QR code with CC14 logo..." list="requestDTregCode">
                         <datalist id="requestDTregCode">
-                          <option value="2f733efcb43abadf0c02e128e92e72b0ed9f959a034e7d30413d3f9de1cc5416"></option>
-                          <option value="c9967808e216f6b41db90717d1d52a45a560d24b8c4ec328e698f811f8235405"></option>
-                          <option value="aa9ed513c9d77e86ae9f2054d77238b9214747812a4467deb2106f722a7f465e"></option>
-                          <option value="289c900d5ed7c6cc7fc305b1b8bf9e35479fc942655b091a8e8a7b3170a9e322"></option>
-                          <option value="830256bcafc21f00fffdcffefae04f1f41dc8561cc480237ed14f479c218d084"></option>
+                          <option value="8df242f13ec2a0af99fb41efa0f90ca2d98fde83e663a48581d3e8045a505a75"></option>
+                          <option value="f43829fd08c04ca880b267d1bccad0a5f4771120961e6f78c5157c296b09607d"></option>
+                          <option value="f1d9cdfc5b278ac01a069defd795a163e133f8c3d0f44a7fa1acf94638574a2e"></option>
+                          <option value="1e44b580375f25d052fd06654dd3c0e019b9af752658ce1ce96c11f370055773"></option>
                         </datalist>
                       </div>
                       <div class="input-group justify-content-md-end">
@@ -115,6 +125,7 @@
                     <div class="text-wrap text-break overflow-auto">
                       <h5>事件总结:</h5>
                       <p id="requestTitlTokeneResult"></p>
+                      <span id="newWalletQRCode"></span>
                     </div>
                     <div class="text-wrap text-break overflow-auto">
                       <h5>区块链响应</h5>
@@ -129,7 +140,7 @@
             <div class="accordion-item" name="Transfer Asset">
               <h2 class="accordion-header" id="transferAssetFlip">
                 <button id="transferAssetBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transferAssetPanel" aria-expanded="false" aria-controls="transferAssetPanel">
-                  <h4>&#x1F41A; 转让通证: 直接交易</h4>
+                  <h4>&#x1F41A; 转让权益证明: 直接交易</h4>
                 </button>
               </h2>
               <div id="transferAssetPanel" class="accordion-collapse collapse" aria-labelledby="transferAssetFlip" >
@@ -137,16 +148,16 @@
                   <div id="transferAssetAction">
                     <form id="transferAssetForm">
                       <div class="input-group mb-3">
-                        <span class="input-group-text">消费者钱包</span>
-                        <input type="text" name='recipient' maxlength="26" class="form-control" value="ARDOR-MJEK-6QAF-Y9WQ-58678" placeholder="ARDOR-" >
+                        <span class="input-group-text">接收者钱包</span>
+                        <input type="text" name='recipient' maxlength="26" class="form-control" value="CC14-" placeholder="请接收者输入以 CC14- 开始的钱包地址" >
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
                         <input type="text" name='asset' maxlength="26" class="form-control" list="transferAssetList">
                         <datalist id="transferAssetList">
-                          <option value="11915173620220756639"></option>
-                          <option value="5371938612539839028"></option>
-                          <option value="4005331118746277554"></option>
+                          <option value="18074922285296238240"></option>
+                          <option value="4305132591471288247"></option>
+                          <option value="9990048413986158969"></option>
                         </datalist>
                       </div>
                       <div class="input-group mb-3">
@@ -158,8 +169,9 @@
                         <input type="text" name='message' class="form-control" placeholder="" >
                       </div>
                       <div class="input-group mb-3">
-                        <span class="input-group-text">钱包密钥</span>
-                        <input type="password" name='secretPhrase' class="form-control" value="),vktPVJ[E}A+)F!QBk-~Vg%Rx<me[4/S.tj" placeholder="" >
+                        <span class="input-group-text">出让者钱包密钥</span>
+                        <input type="password" name='secretPhrase' class="form-control" id='transferAssetPassword'>
+                        <span class="input-group-text fs-4"  id="transferAssetPasswordIcon" onclick="togglePasswordFn('transferAssetPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-md-end mb-3">
                         <input type="button" class="btn btn-outline-secondary" value="&#x1F503; 重置" onClick="location.reload()">
@@ -171,7 +183,7 @@
                         <textarea style="height:120px" class="form-control" name='transactionBytes' id="transferAssetTransactionBytes">autocomplete by DApp...
                         </textarea>
                       </div>
-                      <!-- <small>“&#x2714;Boradcase Transactio” disabled to maintian minimun balance of demonstration account.</small> -->
+                      <small>“&#x2714;Boradcase Transactio” disabled to maintian minimun balance of demonstration account.</small>
                       <div class="input-group justify-content-md-end mb-3">
                         <input type="button" class="btn btn-outline-secondary" value="&#x1F4E2; 确认转让" onClick="broadcastTransactionFn('transferAsset')">
                       </div>
@@ -193,7 +205,6 @@
                           <tr><td>区块链标识</td><td id="transferAssetTbl-fullHash"></td></tr>
                         </tbody>
                       </table>
-
                     </div>
                     <div class="text-wrap text-break overflow-auto"  >
                       <h5>区块链响应</h5>
@@ -239,11 +250,12 @@
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text">买家钱包</span>
-                        <input type="text" name='recipient' class="form-control" value="ARDOR-XZFA-LLYK-FW9M-ACJCU" placeholder="" >
+                        <input type="text" name='recipient' class="form-control" value="CC14-" placeholder="" >
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text">买家密钥</span>
-                        <input type="password" name='secretPhrase' class="form-control" value="k]Wupt}EHE2rD@RpWxJ;QQ-KaPLgBH`3F]nd" placeholder="" >
+                        <input type="password" name='secretPhrase' id='createVoucherPassword' class="form-control">
+                        <span class="input-group-text fs-4"  id="createVoucherPasswordIcon" onclick="togglePasswordFn('createVoucherPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-md-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503; 重置">
@@ -304,13 +316,14 @@
                       </div>
                     </form>
                     <!-- <form id="processVoucherForm"> -->
-                    <form id="processVoucherForm" action="https://testardor.jelurida.com/nxt" method="post" onsubmit="return processVoucherFn(this)">
+                    <form id="processVoucherForm" action="http://40.124.110.187:19886/nxt" method="post" onsubmit="return processVoucherFn(this)">
                       <input type='hidden' name='requestType' value='processVoucher'/>
                       <input type='hidden' name='broadcast' value='false'/><br>
                       <input type="hidden" class="form-control" name='voucher' id="processVoucherInput" value=''/>
                       <div class="input-group mb-3">
                         <span class="input-group-text">卖家密钥</span>
-                        <input type='password' class="form-control" name='secretPhrase' style="width:200px" value='),vktPVJ[E}A+)F!QBk-~Vg%Rx<me[4/S.tj'><br><br>
+                        <input type='password' class="form-control" name='secretPhrase' id='processVoucherPassword' style="width:200px" ><br><br>
+                        <span class="input-group-text fs-4"  id="processVoucherPasswordIcon" onclick="togglePasswordFn('processVoucherPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-md-end mb-3">
                         <button type='submit' class="btn btn-success" id="processVoucherConfirmBtn" style="width:100%">&#x2714;卖家数字签字并广播上链字节</button>
@@ -423,17 +436,16 @@
 <script src="js/3rdparty/converters.js"></script>
 <script src="js/3rdparty/nrs.util.js"></script>
 <script src="js/3rdparty/jquery.table2excel.js"></script>
-<script src='js/scripts-cc14.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
+<script src='js/scripts-cc14cn.js' ></script>
+<script src='js/nav_footer.js' ></script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
   $("#navbarSupportedContent").html(navbarSupportedContentHtml);
   $("#footer").html(footerHtml);
   $("input[type='text']").on("click", function () {$(this).select();});
-  var voucher = '{"requestType":"transferAsset","transactionJSON":{"senderPublicKey":"91d79431648e15b8d6359574e9170cada422d5469ecc22a5e9e53a3d664b0634","chain":2,"signature":null,"feeNQT":"2500000","type":2,"version":1,"fxtTransaction":"0","phased":false,"ecBlockId":"9885193803091631107","signatureHash":"e8c0dac8a35faa64f73d261b8cb629495cbb1660f2623f4f4755f6fc08dfeba4","attachment":{"version.AssetTransfer":1,"quantityQNT":"1","asset":"11915173620220756639"},"senderRS":"ARDOR-RKSJ-C4A7-AL7V-D7YJ7","subtype":1,"amountNQT":"0","sender":"12881356309019739920","recipientRS":"ARDOR-MJEK-6QAF-Y9WQ-58678","recipient":"3680714291370639761","ecBlockHeight":6399005,"deadline":15,"timestamp":94867779,"height":2147483647},"unsignedTransactionBytes":"020000000201014391a7050f0091d79431648e15b8d6359574e9170cada422d5469ecc22a5e9e53a3d664b063491c1d990258614330000000000000000a025260000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001da46100035c2bd163432f8900000000019f025d3e47335ba50100000000000000000000000000000000000000000000000000000000000000000000000000000000000000","signature":"8a45312c466460ac051c3a66247118b36cac76a3a74a5d4922574d6819091e0f6fb97d5bba1c94671e65c94ab510e5f65400429748a0e5909ebc5f76318b21f8","publicKey":"91d79431648e15b8d6359574e9170cada422d5469ecc22a5e9e53a3d664b0634","requestProcessingTime":3}';
-  $("#voucherValidTextarea").val(voucher);
 </script>
 </html>

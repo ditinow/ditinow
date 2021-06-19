@@ -82,33 +82,34 @@
                     <form id="issueNFTForm">
                       <div class="input-group mb-3" >
                         <span class="input-group-text" >产品条码</span>
-                        <input type="text" class="form-control" name='barcode' list="barcodeList" maxlength="14" >
+                        <input type="number" class="form-control" name='barcode' list="barcodeList" min="10000000" max="9999999999999" value='690'>
                         <datalist id="barcodeList">
                           <option value="6901234567890">CC14 雨伞, 天空之境 43寸</option>
                           <option value="6903456789012">CC14 工作 polo 杉, 两件套</option>
                           <option value="6902345678901">CC14 大红袍茶, 两件套</option>
                         </datalist>
                       </div>
-                      <div class="input-group mb-3" >
+                      <div class="input-group mb-3 d-none" >
                         <span class="input-group-text">产品描述</span>
                         <input type="text" class="form-control" value="文本文字 ..." name='description' maxlength="500"  >
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">操作信息</span>
-                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="选项：批次号，操作员工号 ..."  >
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="选项：操作员工号 ..."  >
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' value="midnight seven through card squeeze point lovely joke gone own ink ancient">
+                        <input type="password" class="form-control" name='secretPhrase' id="issueNFTPassword" value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueNFTPasswordIcon" onclick="togglePasswordFn('issueNFTPassword')">&#128584;</span>
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">授权数量</span>
-                        <input type="number" class="form-control" name='issueQty' list="issueNFTList1" min="2" max="100">
-                        <datalist id="issueNFTList1">
+                        <input type="number" class="form-control" name='issueQty' value='2' min="2" max="100">
+                        <!-- <datalist id="issueNFTList1">
                           <option value="2">授权 2 件</option>
                           <option value="5">授权 5 件</option>
                           <option value="10">授权 10 件</option>
-                        </datalist>
+                        </datalist> -->
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
@@ -158,10 +159,99 @@
               </div><!-- accordion-item panel end ========================== -->
             </div><!-- accordion-item end ================================== -->
 
-            <div class="accordion-item" name="Authorize anti-counterfeiting product">
+            <div class="accordion-item" name="Authorize anti-counterfeiting product with predefined serial number">
+              <h2 class="accordion-header" id="issueNFTwSNoflip">
+                <button id="issueNFTwSNobtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#issueNFTwSNopanel" aria-expanded="false" aria-controls="issueNFTwSNopanel" >
+                  <h4>&#128220; 防伪产品上链-已知序列号</h4>
+                </button>
+              </h2>
+              <div id="issueNFTwSNopanel" class="accordion-collapse collapse" aria-labelledby="issueNFTwSNoflip" >
+                <div class="accordion-body">
+                  <div id="issueNFTwSNoFormAction">
+                    <form id="issueNFTwSNoForm">
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text" >产品条码</span>
+                        <input type="number" class="form-control" name='barcode' list="barcodeList" min="10000000" max="9999999999999" value="690">
+                        <datalist id="barcodeList">
+                          <option value="6901234567890">CC14 雨伞, 天空之境 43寸</option>
+                          <option value="6903456789012">CC14 工作 polo 杉, 两件套</option>
+                          <option value="6902345678901">CC14 大红袍茶, 两件套</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group mb-3 " >
+                        <span class="input-group-text">序列号</span>
+                        <textarea class="form-control" placeholder="['SN0001', 'SN0002', 'SN0003']" name='serialNo'>["SN0001", "SN0002", "SN0003"]</textarea>
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">操作信息</span>
+                        <input type="text" class="form-control" name='message' maxlength="500" placeholder="选项：批次号，操作员工号 ..."  >
+                      </div>
+                      <div class="input-group mb-3" >
+                        <span class="input-group-text">钱包密钥</span>
+                        <input type="password" class="form-control" name='secretPhrase' id='issueNFTwSNoPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueNFTwSNoPasswordIcon" onclick="togglePasswordFn('issueNFTwSNoPassword')">&#128584;</span>
+                      </div>
+                      <div class="input-group mb-3 d-none" >
+                        <span class="input-group-text">授权数量</span>
+                        <input type="number" class="form-control" name='issueQty' list="issueNFTList1" min="2" max="100">
+                        <datalist id="issueNFTList1">
+                          <option value="2">Quantity 2</option>
+                          <option value="5">Quantity 5</option>
+                          <option value="10">Quantity 10</option>
+                        </datalist>
+                      </div>
+                      <div class="input-group justify-content-end mb-3">
+                        <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;重置">
+                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;准备上链字节">
+                      </div>
+                    </form>
+                    <form id="issueNFTwSNoBroadcastForm">
+                      <input type="hidden" name="requestType" value="broadcastTransaction">
+                      <input type="hidden" name="transactionBytes" value="">
+                      <input type="submit" id="issueNFTwSNoBroadcastBtn" class="btn btn-success btn-lg" style="width:100%" value="&#x2714; 确认上链">
+                    </form>
+                  </div>
+                  <div class="col-12 col-sm-12 d-none" id="issueNFTwSNoResponse">
+                    <div class="overflow-auto" name="issueNFTwSNoResult">
+                      <h5>事件总结:</h5>
+                      <p>下载 <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; 电子表格</button>。费用单位为火链币IGNIS.</p><br>
+                      <p><b>注: </b>为节省演示账户余额，一次授权超过两件以上商品将不会被广播至区块链上, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> 被停用，商用版将取消这个限制。</p>
+                      <div class="table-responsive">
+                        <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTwSNoResultTbl">
+                          <thead class="thead-light">
+                            <tr>
+                              <th>#</th>
+                              <th>防伪码</th>
+                              <th>注册码</th>
+                              <th>区块链标识</th>
+                              <th>产品条码</th>
+                              <th>资产名字</th>
+                              <th>产品描述</th>
+                              <th>操作信息</th>
+                              <th>授权钱包</th>
+                              <th>授权时间</th>
+                              <th>费用</th>
+                            </tr>
+                          </thead>
+                          <tbody id="issueNFTwSNoTable">
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="justify-content-center overflow-auto" id="issueNFTwSNoQRCode" style="max-height:320px"></div>
+                    </div>
+                    <div class="text-wrap text-break overflow-auto" style="max-height:800px">
+                      <h5>JSON response</h5>
+                      <span id="issueNFTwSNoJSON"></span>
+                    </div>
+                  </div>
+                </div><!-- accordion-item panel body end =================== -->
+              </div><!-- accordion-item panel end ========================== -->
+            </div><!-- accordion-item end ================================== -->
+
+            <div class="accordion-item" name="Activation or burning">
               <h2 class="accordion-header" id="activationSearchFlip">
                 <button id="activationSearchBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#activationSearchPanel" aria-expanded="false" aria-controls="activationSearchPanel" >
-                  <h4>&#x1F426; 激活防伪产品</h4>
+                  <h4>&#x1F426; 激活、销毁权益通证</h4>
                 </button>
               </h2>
               <div id="activationSearchPanel" class="accordion-collapse collapse" aria-labelledby="activationSearchFlip" >
@@ -172,10 +262,8 @@
                         <span class="input-group-text" >钱包地址</span>
                         <input type="text" class="form-control" name="account" list="activationSearchList" >
                         <datalist id="activationSearchList">
-                          <option value="ARDOR-6GHE-PZHL-A7NV-HPAYQ">授权钱包 之一</option>
-                          <option value="ARDOR-8V6U-U34X-SSSZ-83ZLJ">授权钱包 之二</option>
-                          <option value="ARDOR-JNYN-A76A-MHRC-BC5QQ">激活钱包 之一</option>
-                          <option value="ARDOR-YU7X-Q4HS-X6H5-BD5TS">激活钱包 之二</option>
+                          <option value="CC14-5KKJ-TXML-FKM3-4SLZB">授权钱包 CryptoC14演示账户</option>
+                          <option value="ARDOR-8V6U-U34X-SSSZ-83ZLJ">产品激活 CryptoC14演示账户</option>
                         </datalist>
                       </div>
                       <div class="input-group mb-3">
@@ -198,7 +286,7 @@
                           <th>授权钱包</th>
                           <th>授权数量</th>
                           <th>小数点</th>
-                          <th>区块链标识</th>
+                          <!-- <th>区块链标识</th> -->
                         </tr>
                       </thead>
                       <tbody id="activationSearchTbody">
@@ -211,7 +299,7 @@
                           <th><span style="opacity:0.3" onclick="dataTablesFn()">过滤钱包</span></th>
                           <th><span style="opacity:0.3" onclick="dataTablesFn()">过滤数量</span></th>
                           <th><span style="opacity:0.3" onclick="dataTablesFn()">过滤小数点</span></th>
-                          <th><span style="opacity:0.3">区块链标识</span></th>
+                          <!-- <th><span style="opacity:0.3">区块链标识</span></th> -->
                         </tr>
                       </tfoot>
                     </table>
@@ -222,9 +310,8 @@
                       <div class="input-group mb-3" >
                         <span class="input-group-text">选择钱包</span>
                         <select class="form-select" type="text" name="recipient"  onchange="activationConfirmBtnFn(this.options[this.selectedIndex].value)">
-                          <option value="ARDOR-JNYN-A76A-MHRC-BC5QQ" class="activationConfirmRecipient">激活专用之一 ARDOR-JNYN-A76A-MHRC-BC5QQ</option>
-                          <option value="ARDOR-YU7X-Q4HS-X6H5-BD5TS" class="activationConfirmRecipient">激活专用之二 ARDOR-YU7X-Q4HS-X6H5-BD5TS</option>
-                          <option value="ARDOR-LK4C-4WAU-UEMU-8U3YB" >焚毁专用</option>
+                          <option value="CC14-F4Z6-3E9T-EXSK-HPYWH" class="activationConfirmRecipient">激活专用 CryptoC14演示账户</option>
+                          <option value="CC14-LK4C-4WAU-UEMU-8U3YB" >焚毁专用</option>
                           </select>
                       </div>
                       <div class="input-group mb-3" >
@@ -236,7 +323,7 @@
                     </form>
                   </div>
                   <div class="table-responsive d-none" id="activationConfirmTblDisp">
-                    <p>上表过滤后的资产将被转移至选定钱包。交易费用单位为火链币IGNIS</p>
+                    <p>上表过滤后的资产将被转移至选定钱包。交易费用单位为CC14代币</p>
                     <table class="table table-sm table-bordered text-nowrap" id="activationConfirmTbl">
                       <thead class="thead-light">
                         <tr class="filters">
@@ -302,17 +389,18 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' value="midnight seven through card squeeze point lovely joke gone own ink ancient">
+                        <input type="password" class="form-control" name='secretPhrase' id='issueAssetPassword' value="ci di wu yin 301 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="issueAssetPasswordIcon" onclick="togglePasswordFn('issueAssetPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
-                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;Prepear transactionBytes">
+                        <input type="submit" class="btn btn-outline-secondary " id="requestDTbtn" value="&#x2705;准备上链字节">
                       </div>
                     </form>
                     <div>
                       <form id="issueAssetBroadcastTransactionForm">
-                        <input type="text" id="issueAssetTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="autocomplete by DApp...">
-                        <input type="button" id="issueAssetBroadcastBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; Boradcast transactionBytes" onClick="broadcastTransactionFn('issueAsset')">
+                        <input type="text" id="issueAssetTransactionBytes" class="form-control mb-3" name="transactionBytes" placeholder="应用自动填写...">
+                        <input type="button" id="issueAssetBroadcastBtn" class="btn btn-success btn-lg" style="width:100%"  value="&#x2714; 广播上链字节" onClick="broadcastTransactionFn('issueAsset')">
                       </form>
                     </div>
                   </div>
@@ -366,7 +454,8 @@
                       </div>
                       <div class="input-group mb-3" >
                         <span class="input-group-text">钱包密钥</span>
-                        <input type="password" class="form-control" name='secretPhrase' value="midnight seven through card squeeze point lovely joke gone own ink ancient">
+                        <input type="password" class="form-control" name='secretPhrase' id='setAssetPropertyPassword' value="ci di wu yin 300 liang ge bi wang er bu ceng tou">
+                        <span class="input-group-text fs-4"  id="setAssetPropertyPasswordIcon" onclick="togglePasswordFn('setAssetPropertyPassword')">&#128584;</span>
                       </div>
                       <div class="input-group justify-content-end mb-3">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">

@@ -120,7 +120,6 @@
                             <tr><td class="text-end">accountRS: </td><td id="newWalletResultTbl1"></td></tr>
                             <tr><td class="text-end">publicKey: </td><td id="newWalletResultTbl2"></td></tr>
                             <tr><td class="text-end">Passphrase: </td><td id="newWalletResultTbl3"></td></tr>
-                            <!-- <tr><td class="text-end">privateKey: </td><td id="newWalletResultTbl4"></td></tr> -->
                           </tbody>
                         </table>
                         <span id="newWalletQRCode"></span>
@@ -176,10 +175,10 @@
                   </div>
                 </div>
               </div>
-            </div><!-- Request CC14 Wallet end ================================ -->
+            </div><!-- Request CC14 coin end ================================ -->
 
-            <div class="accordion-item" name="request CC14">
-              <h2 class="accordion-header" id="requestCC14">
+            <div class="accordion-item" name="generate aes key and iv">
+              <h2 class="accordion-header" id="aesKeyIv">
                 <button id="aesKeyIvBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aesKeyIvFPanel" aria-expanded="false" aria-controls="aesKeyIvFPanel">
                   <h4>&#128273; Generate AES key and iv</h4>
                 </button>
@@ -188,16 +187,7 @@
                 <div class="accordion-body">
                   <div id="aesKeyIvAction" >
                     <form id="aesKeyIvForm" >
-                      <!-- <div class="input-group mb-3" >
-                        <span class="input-group-text">Password</span>
-                        <input type="text" class="form-control" name='password' id="arbitraryText">
-                      </div> -->
-                      <!-- <div class="input-group mb-3" >
-                        <span class="input-group-text">Message</span>
-                        <input type="text" class="form-control" name='message'  value="No amount of experimentation can ever prove me right; a single experiment can prove me wrong.">
-                      </div> -->
                       <div class="input-group mb-3 justify-content-md-end">
-                        <!-- <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()"> -->
                         <input type="submit" class="btn btn-outline-secondary" style="width:100%" value="&#x1F528; Generate">
                       </div>
                     </form>
@@ -223,12 +213,7 @@
                         <span class="input-group-text">Secure Code</span>
                         <input type="text" class="form-control" name='secureCode' id="secureCode">
                       </div>
-                      <!-- <div class="input-group mb-3" >
-                        <span class="input-group-text">Message</span>
-                        <input type="text" class="form-control" name='message'  value="No amount of experimentation can ever prove me right; a single experiment can prove me wrong.">
-                      </div> -->
                       <div class="input-group mb-3 justify-content-md-end">
-                        <!-- <input type="button" class="btn btn-outline-secondary" value="&#x1F503; Reload" onClick="location.reload()"> -->
                         <input type="submit" class="btn btn-outline-secondary" value="&#x1F528; Reproduce">
                       </div>
                     </form>

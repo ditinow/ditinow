@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Crypto C14 一站式区块链应用</title>
+  <title>Crypto C14 One stop blockchain DApp</title>
   <meta charset="utf-8">
-  <meta name="description" content="Crypto C14 一站式区块链应用">
+  <meta name="description" content="Crypto C14 One stop blockchain DApp">
   <meta name="keywords" content="blockchain, crypto evidence, digital evidence, DAPP, anti-counterfeiting, traceability, NFT, reward points">
   <meta name="author" content="wechat ID: fengyun_houston">
   <meta name="wallet" content="ARDOR-49CE-CXZZ-3QHW-AH4JK">
@@ -69,67 +69,163 @@
           <div class="accordion">
 
             <div class="accordion-item">
-              <h2 class="accordion-header" id="flipProduct">
-                <button id="btnProduct" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelProduct" aria-expanded="false" aria-controls="panelProduct">
-                  <h4>&#x1F4D6; 区块链防伪</h4>
+              <h2 class="accordion-header" id="flipOne">
+                <button id="btnOen" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelOne" aria-expanded="false" aria-controls="panelOne">
+                  <h4>&#x1F4D6; 区块链防伪-原理</h4>
                 </button>
               </h2>
-              <div id="panelProduct" class="accordion-collapse collapse" aria-labelledby="flipProduct" >
+              <div id="panelOne" class="accordion-collapse collapse" aria-labelledby="flipOne" >
                 <div class="accordion-body">
-                  <p>假冒伪劣是个世界性问题，资料显示全球每年3.3%的贸易是假冒伪劣品的交易。也就是每30元的贸易，就有1元发生在假冒伪劣品上。2020年全球花在防伪包装上的费用高达1060亿美元，预期2025年能达到1882亿美元的市场规模。但是防伪效果不彰。打假为什么这么难？我们从定义假冒伪劣开始。</p>
-                  <p><b>假冒伪劣 Counterfeiting: </b>未经授权，冒用他人名义生产、销售的产品。</p>
-                  <p>中文的“假冒伪劣”事实上包含了“假冒 counterfeiting good”与“伪劣 inferior good”这两大类。举个例子，长生药业生产的疫苗是伪劣产品而不是假冒产品。但是如果永生药业盗用长生药业的品牌生产疫苗，那么这就产生了假冒产品。不过出于尊重习惯的力量，本站将用“假冒伪劣”泛指全球贸易额这3.3%的counterfeiting good-假冒产品。造假者对利润的追求，大部分时候假冒产品也伴生着低劣的品质。</p>
-                  <p>从定义里我们看到一件商品是否真品决定于商品捆绑的“授权”，而不是物理商品本身。但是“授权”不是一个物理参数，它存在于“授权证书”这一类非结构性数据中。所以不论从物理角度或者传统数据处理角度都难以有效的防伪。</p>
-                  <img src="images/hiw-anti-0.jpg" class="img-fluid">
-                  <p>上图是LV 2007年春季时尚展，由设计师Jacobs推出的时尚购物包。决定这个上千美元的时尚购物包价值的不是原创、设计、材质、工艺或产地，而是品牌溢价，由LV授权而获得的品牌溢价。</p>
-                  <p>防伪从技术角度出发基本分成三大类别：品质防伪，防伪标识，数码防伪。</p>
-                  <p><b>品质防伪</b>传承最久，防伪逻辑简单明了：不怕不识货，就怕货比货。这个逻辑当下已经不能满足打假需求。因为仿冒品可能产自同一条生产线，使用同一批原材料，接受同样的品质监控。在一些不是以耐用为诉求的奢侈品牌上A货的品质甚至超过正品。</p>
-                  <p><b>防伪标识</b>从早期的商标、水印、镭射标签到量子点打印技术。防伪逻辑: 有防伪标识的是正品，否则是仿冒。这个防伪类别新技术层出不穷，但缺陷也是明显的。</p>
-                    <ol>
-                      <li>最根本问题是它不能保障授权信息的真实性。没有获得授权的工厂溢价购买品牌的标识早已经是公开密密。防伪标识防伪防了个寂寞。</li>
-                      <li>它在企业与消费者之间形成巨大的信息差。不是专业人士根本不知道企业又使用了什么新技术，这点洽洽被造假者利用。</li>
-                    </ol>
-                  <p><b>数码防伪</b>这是近年最热门的防伪技术。基本原理都是通过一物一码去保障商品的唯一性和独占性。主流防伪逻辑是：如果一个溯源防伪码被识读超过一次以上，那么出现了假冒。区块链因为账本的不可篡改特性，目前大量数码防伪解决方案都尝试结合区块链技术。数码防伪的缺陷在逻辑层面:</p>
-                  <ol>
-                    <li>无法在购物前进行防伪鉴定。因为是基于防伪码被扫码统计次数判断是否出现仿冒，所以具有唯一性的防伪码不能公开，消费者只有在付费之后才能扫码鉴定。这点在电商时代对消费者很不利，因为如果电商坚持它发的是真货，消费者拿回去退的是假货，那么肯定不是它的发货。这个要求有它的合理性，因为踏踏实实只销售真品的商店，确实不会有仿冒品出售，所以不接受假冒品退货是合理的。购物后才能进行的防伪鉴定导致的最坏结果就是专卖店放心大胆的销售仿冒，除非当场揭穿，否则离柜概不负责。</li>
-                    <li>一旦防伪码泄露，就可能给企业带来巨大损失。例如茅台2018年被泄露的700个防伪码，如果这700万个码被茅台用在实际生产中，那么只要反复扫码，就能把这700万真酒给扫描成仿冒，因为防伪码被扫描超过一次。在当前主流数码防伪机制下，一个防伪码是否有效决定于它是否符合企业的编码原则。相比物理防伪，数码防伪更接近真品的真相，那就是授权的唯一性和独占性。但是不论企业是之间把编码机密与防伪标签厂分享，或者是直接提供已经编好的防伪码，都不可避免的会面临被泄露的风险。而一旦泄露，基于扫码统计次数的防伪逻辑就变得不但无助，反而可能会把真品变成假冒。</li>
-                  </ol>
-                  <h4>数字产权防伪技术</h4>
-                  <p>数字产权是最新一代的防伪技术。它利用产权机制与区块链技术结合，将授权信息通证化，解决了以上三种防伪机制的弊端。它可以在购物前进行无限次防伪鉴定，它能保障每件授权信息的真实性，而且不受防伪码泄露影响产品的真伪。数字产权的防伪逻辑简单易懂：没有授权通证商品是仿冒，有授权通证的商品是真品。下图是数字产权的流程。</p>
-                  <img src="images/flowchart.png" class="img-fluid">
-                  <h5>授权、生产、供销、购买及售后过程如下</h5>
-                  <ol>
-                    <li><p>企业授权。企业通过专用区块链钱包为每一件商品<a href="issuance.html">授权</a>并将每个授权通证化，得到一个产权通证、对应产权通证编号(即及防伪码)和一个注册码。如下图:</p>
-                      <img src="images/hiw-anti-1.jpg" class="img-fluid">
-                    </li>
-                    <li><p>生产制造。产权通证编号将交给防伪标签厂家及工厂进行产品的生产和整合。这个流程下企业将不需制定产品序列号，因为每一个产权通证号码都是独一无的。防伪号码将公开附着在商品内外包装，方便消费者进行防伪鉴定。</p>
-                    <p>注册码将以内标签、暗码形式存在，不公开。它的作用在《6》中详细说明。</p>
-                    <img src="images/hiw-anti-2.jpg" class="img-fluid"></li>
-                    <li><p>商品完成生产、供应流程之后抵达销售机构。在正式激活这个商品之前消费者查询这个编码的商品都会显示：商品已获授权，但并未激活，谨防假冒，请勿购买的提示。因为商品虽然获得授权生产，但并未获得企业授权销售，这时候出现的在售商品只能是仿冒品，这个事实和该商品的质量、材质、工艺、防伪标识并无关联。</p>
-                    <img src="images/hiw-anti-3.jpg" class="img-fluid"></li></li>
-                    <li><p>销售机构将向企业申请激活准备上架的商品。以下图例我们看到在日常操作中，作业员发现授权钱包被加塞了很多非授权通证（红色burn标识)，这是造假者试图将自己生成的授权通过企业钱包（ARDOR-6GHE 开头)洗白。作业员可以通过右下角的“过滤钱包”对话框选择这部分未经授权的商品，并选择“焚毁专用”钱包将其焚毁。由企业钱包生成的产权通证应选择“激活专用”将产品激活达到可销售状态。</p>
-                    <img src="images/hiw-anti-4.jpg" class="img-fluid"></li></li></li>
-                    <li><p>消费者通过公开的防伪码进行真伪鉴定。DApp会根据鉴定结果向消费者提供购买建议。例如，DApp会建议消费者不要购买未经授权、未激活、授权通证作废的商品，DApp也会提醒经过维修的商品保质期会有变更，或者谨防旧瓶新酒...这个过程大家可以通过<a href="search.html">查询</a>进行体验。</p>
-                    <img src="images/hiw-anti-5.jpg" class="img-fluid"></li></li>
-                    <p>建议企业使用二维码做防伪码载体。这样即便电商也能通过客服向消费者提供二维码，远程进行防伪鉴定。而RFID，NFC芯片均不具备远程鉴定的可能。</p>
-                    <p>消费者使用智能手机对公开的防伪进行扫码鉴定，DApp将根据产权调查结果给予消费者购买建议。</p></li>
-                    <li>
-                      <p>获得商品的商品权益证明</p>
-                      <p>如果消费者是从企业官方网站直接购买商品，那么企业对真正的消费者认定过程就很简单：谁支付，那么谁就将获得与商品相对应的产权通证，而这个产权通证也将是消费者获得售后服务的首选凭证。</p>
-                      <p>但当消费者没有通过企业官方网站进行购物，那么如何确认真正的消费者对企业来说是一个巨大挑战。传统做法是产品注册：由消费者提供购物小票、支付方法等大量细节以后企业才能落实真正的消费者。这个过程繁琐而且需要大量个人信息，可以说出来极高端商品和特殊商品之外，几乎没有消费者对购买的商品进行注册。而为了提供商品注册服务，企业也需要额外维护一个数据库，增加了企业负担，最终还是由消费者在承担这些费用。</p>
-                    <p>CC14采用了一种全新的基于区块链技术的产品权益转让机制。首先产品产权证明由NFT<sup>1</sup>做载体，NFT （即产权通证）保障了这个商品授权的唯一性和独占性。其次《3》里提到的注册码将为简化注册过程起到关键作用。注册码是企业将产权通证编号经由AES加密而得来，因为加密过程使用的key<sup>2</sup>和iv<sup>2</sup>只有企业知晓，所以造假者无法进行假冒。</p></li>
-                    <p>以下图例显示消费者刮去注册码码的涂层之后获得完整的防伪码和注册码，以及申请产权通证的应用页面。 (体验<a href="transfer.html#request">演示版</a>) 消费者向企业提供一个私有但完全没有无需捆绑人信息的区块链钱包用以收藏这个商品的产权通证，产权通证将是获得产品售后服务的首选凭证。</p>
-                    <img src="images/hiw-anti-6.jpg" width="400">
-                    <img src="images/hiw-anti-6a.jpg" width="400">
-                    </li>
-                    <li><p>售后。消费者在申请售后服务或者转卖该商品的时候需要向对方证实他/她是产权权益的真正所有者。因为产权通证保存于区块链钱包里，所以业主需要证明他/她是这个钱包的所有者。这个过程可以通过<a href="evidence.html">加密任意短信</a>可以得到验证。</p></li>
-                  </ol>
-
-
+                  <h5>《一》权益证明技术</h5>
+                  <h5>《二》物理防伪技术</h5>
+                  <h5>《三》追溯防伪技术</h5>
 
                 </div>
               </div>
             </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flipTwo">
+                <button id="btnTwo" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTwo" aria-expanded="false" aria-controls="panelTwo">
+                  <h4>&#x1F4D6; 区块链防伪-使用说明</h4>
+                </button>
+              </h2>
+              <div id="panelTwo" class="accordion-collapse collapse" aria-labelledby="flipTwo" >
+                <div class="accordion-body">
+                  <h5>《一》查询</h5>
+                  <h5>《二》主张权益证明</h5>
+                  <h5>《三》转让权益证明</h5>
+                  <h5>《四》授权通证化</h5>
+                  <h5>《五》产品激活</h5>
+                  <h5>《六》存证及权益证明</h5>
+                  <h5>《六》存证及权益证明</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flipThree">
+                <button id="btnThree" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelThree" aria-expanded="false" aria-controls="panelThree">
+                  <h4>&#x1F4D6; 区块链防伪-安装方法</h4>
+                </button>
+              </h2>
+              <div id="panelThree" class="accordion-collapse collapse" aria-labelledby="flipThree" >
+                <div class="accordion-body">
+                  <h5>《一》生成账号</h5>
+                  <h5>《二》申请CC14代币</h5>
+                  <h5>《三》生成AES加密算法的key及iv</h5>
+                  <h5>《四》产品授权通证化</h5>
+                  <h5>《五》激活产品</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flipFour">
+                <button id="btnFour" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelFour" aria-expanded="false" aria-controls="panelFour">
+                  <h4>&#x1F4D6; 安装CC14区块链全节点</h4>
+                </button>
+              </h2>
+              <div id="panelFour" class="accordion-collapse collapse" aria-labelledby="flipFour" >
+                <div class="accordion-body">
+                  <div>
+                    <h5><a class="text-secondary text-decoration-none" href="#vpsSetup">《一》云服务器选购及安装</a></h5>
+                    <h5><a class="text-secondary text-decoration-none" href="#xtermConfig">《二》终端配置MobaXterm</a></h5>
+                    <h5><a class="text-secondary text-decoration-none" href="#nodeSetup">《三》安装及启动CC14区块链全节点</a></h5>
+                    <h5><a class="text-secondary text-decoration-none" href="#nodeCongif">《四》区块链本地节点设置</a></h5>
+                  </div>
+                  <div id='vpsSetup'>
+                    <h3>《一》云服务器选购及安装</h3>
+                    <p>范例以腾讯云为例，其它云服务的安装方法类似。</p><br>
+                    <img src="images/nodesetup001.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>CC14区块链全节点硬件要求较低，1核1G既能满足目前需求。建议选择1核2G的3年促销款。</p><br>
+                    <img src="images/nodesetup002.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>请选择Ubuntu 18.01.1 LTS。更新版本的Ubuntu也适用。</p><br>
+                    <img src="images/nodesetup003.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>支付成功之后点击页面右上方的“控制台”进行下一步操作。</p><br>
+                    <img src="images/nodesetup004.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>根据刚刚订购的服务器类型进入管理页面。</p><br>
+                    <img src="images/nodesetup005.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>请选择“更多”->“关机”。之后我们需要将实例（云服务器）与密钥绑定。</p><br>
+                    <img src="images/nodesetup006.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>请选择“密钥”->“创建密钥”。</p><br>
+                    <img src="images/nodesetup007.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>请输入密钥名称，点击“确认”。刚刚创建的密钥将会被下载至默认的下载文件夹。</p><br>
+                    <img src="images/nodesetup008.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>点击右方的“操作”下的“绑定/解绑实例”。</p><br>
+                    <img src="images/nodesetup009.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>此时您应该只有一个密钥和实例可以绑定，&#10004;实例并点击“确认”。</p><br>
+                    <img src="images/nodesetup005.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>密钥绑定结束后请选择“服务器”->“更多”->“管理”。下一步将设置防火墙。</p><br>
+                    <img src="images/nodesetup010.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>请选择“防火墙”->“添加规则”。我们需要为即将安装的CC14区块链全节点开放端口以便与其它节点交换数据。</p><br>
+                    <img src="images/nodesetup011.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>端口请填写“19884-19886”，备注请填“CC14”；点击“确定”。</p><br>
+                    <img src="images/nodesetup012.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>回到“服务器”->“概要”，选择开机。请记录页面左下方信息“实例IP”->“(公)xxx.xxx.xxx.xxx”</p>
+                    <p>此时可以离开腾讯云控制台，之后的操作将通过远程登录在命令行下完成。</p>
+                  </div>
+                  <div id='xtermConfig'>
+                    <h3 >《二》配置MobaXterm</h3>
+                    <p>根据个人喜好选择Xterm终端。这里用MobaXterm举例。</p><br>
+                    <img src="images/nodesetup013.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>点击MobaXterm左上方的“Session”设置登录刚刚创建并开机的腾讯实例（云服务器）。</p><br>
+                    <img src="images/nodesetup014.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>点击对话框左上方的“SSH”，输入之前获得的实例IP（公）-公网IP，每段数字之间由小数点“.”间隔。&#10004;Specify username 并输入“ubuntu”，这是腾讯云Ubuntu的默认用户名。
+                      <br>&#10004;Use private key，点击淡蓝色文件图标，并选择您在上一步创建密钥时自动下载的文件。点击“OK”结束此次配置。
+                    </p>
+                    <p>操作无误的前提下，您此时进入腾讯云Ubuntu实例的远程控制端口。我们将通过命令行完成CC14公链的安装及启动。</p>
+                  </div>
+                  <div id='nodeSetup'>
+                    <h3 >《三》安装及启动CC14区块链全节点</h3>
+                    <p>以下操作参考 <a href="https://gitee.com/ditinow/CC14/blob/main/Readme_CC14.txt">DITINOW的gitee仓库文件Readme_CC14.txt </a> </p>
+                    <img src="images/nodesetup015.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>在终端分布输入以下命令行。可以依次将以下命令“拷贝/复制”到MobaXterm界面上。
+                      <br><code>sudo apt update</code>
+                      <br><code>sudo apt upgrade -y</code>
+                      <br><code>sudo apt install zip -y</code>
+                      <br><code>sudo apt install dos2unix -y</code>
+                      <br><code>sudo apt install openjdk-11-jre-headless -y</code>
+                      <br><code>sudo apt install openjdk-11-jdk-headless -y</code>
+                      <br><code>git clone https://gitee.com/ditinow/CC14.git</code>
+                    </p>
+                    <img src="images/nodesetup016.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>安装过程截图</p>
+                    <p>需要的系统更新、运行环境及节点源码已经下载完成，下一步进行编译，系统防火墙配置及启动区块链节点。
+                      <br><code>cd cc14</code>
+                      <br><code>sh ./compile.sh</code>
+                      <br><code>sudo ufw allow 19884:19886/tcp</code>
+                      <br><code>chmod 751 run.sh</code>
+                      <br><code>chmod 751 stop.sh</code>
+                      <br><code>./run.sh --daemon</code>
+                    </p>
+                    <p>系统防火墙配置有别于腾讯实例（云服务器）防火墙设置。节点将在后台运行，您可以关闭终端，这不会影响节点的正常运行。</p>
+                    <p>您可以通过浏览器和实例的公共IP访问这个节点的在线钱包。请在浏览器输入以下链接，用实例的公网地址替代“xxx.xxx.xxx.xxx”
+                      <br><code>http://xxx.xxx.xxx.xxx:19886/</code>
+                    </p>
+                  </div>
+                  <div id='nodeCongif'>
+                    <h3 >《四》区块链本地节点设置</h3>
+                    <p>以下使用本地工作站，这里以视窗工作站为例。
+                    <img src="images/nodesetup017.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>从gitee下载CC14.zip文件并解压。</p><br>
+                    <p>请修改“cc14/conf/文件夹内的“nxt.properties”文件，将其中的“#”号去掉并保存：
+                      <br><code>nxt.adminPassword=</code>
+                      <br><code>nxt.maxPrunableLifetime=7776000</code>
+                      <br><code>nxt.maxUploadFileSize=10240000</code>
+                    </p>
+                    <p>“7776000”秒，即90天。这是可修剪的数据在工作站保存的时间。例如两个CC14钱包之间可以相互短信，为了保障工作站区块链数据包不至于过于臃肿，这类数据将在90天后从工作站自动删除。但用户仍可以通过云端全节点读取这些数据。</P>
+                    <p>默认区块链存证文件上限为“512000”，即512。修改为“10240000”，10MB，能满足一般文本文件的存证需要，可根据您的需求进一步调整。</p>
+                    <img src="images/nodesetup018.jpg" width=80% class="rounded mx-auto d-block"></img>
+                    <p>“nxt.properties”文件修改完成之后，如果您视窗环境的JAVA安装无误，您可以运行解压后文件夹内的“run.bat”启动CC14节点。</p>
+                    <p>本地工作站运行节点的目的是方便用户在使用CryptoC14提供的DApp应用时，能够更快捷的使用本地的接口服务以及突破512KB的存证上限。请勿关闭这个CMD视窗。</p>
+                    <p>局域网内的节点为公网提供API服务可以使用VPN或者通过路由器传递。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
 
           </div><!-- accordion end ========================================= -->
         </div><!-- col-12 col-sm-10 mx-auto end ============================ -->
@@ -154,10 +250,11 @@
 <script src="js/3rdparty/converters.js"></script>
 <script src="js/3rdparty/nrs.util.js"></script>
 <script src="js/3rdparty/jquery.table2excel.js"></script>
-<script src='js/scripts-cc14.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
+<script src='js/scripts-cc14cn.js' ></script>
+<script src='js/nav_footer.js' ></script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});

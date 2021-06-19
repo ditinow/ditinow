@@ -19,7 +19,6 @@
 	  .navbar .nav-item:hover .dropdown-menu{ display: block; }
 	  .navbar .nav-item .dropdown-menu{ margin-top:0; }
   }
-
 </style>
 </head>
 <body>
@@ -92,7 +91,7 @@
                     </div>
                     <form id="requestTitlTokenForm">
                       <input type="hidden" id="consumerPubKey" name='publicKey'>
-                      <div class="input-group  mb-3" >
+                      <div class="input-group mb-3" >
                         <span class="input-group-text" >Use existing wallet</span>
                         <input type="text" class="form-control" id="consumerWallet" name='recipient' value="CC14-" placeholder="Enter consumer wallet address with prefix CC14-">
                       </div>
@@ -153,7 +152,7 @@
                         <input type="text" name='recipient' maxlength="26" class="form-control" value="CC14-" placeholder="please enter your wallet address with prefix CC14-" >
                       </div>
                       <div class="input-group mb-3">
-                        <span class="input-group-text">Asset ID</span>
+                        <span class="input-group-text">Title token ID</span>
                         <input type="text" name='asset' maxlength="26" class="form-control" list="transferAssetList">
                         <datalist id="transferAssetList">
                           <option value="18074922285296238240"></option>
@@ -252,7 +251,7 @@
                         <input type="text" name='recipient' class="form-control" value="CC14-" placeholder="Please enter buyer's wallet address with prefix CC14-" >
                       </div>
                       <div class="input-group mb-3">
-                        <span class="input-group-text">Buyer's Passphrase</span>
+                        <span class="input-group-text">Buyer's's Passphrase</span>
                         <input type="password" name='secretPhrase' id='createVoucherPassword' class="form-control">
                         <span class="input-group-text fs-4"  id="createVoucherPasswordIcon" onclick="togglePasswordFn('createVoucherPassword')">&#128584;</span>
                       </div>

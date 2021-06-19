@@ -42,15 +42,12 @@
               </div>
               <input type="text" class="form-control" name='asset' placeholder="扫描带CC14标识的二维码..." list="assetsList">
                 <datalist id="assetsList">
-                  <option value="55222051926862118">未上链二维码</option>
-                  <option value="552220519268621185">上链但未登记的商品</option>
-                  <option value="10670286826004572249">cc14标准溯源码</option>
-                  <option value="2381810025932782993">数字产权在授权企业钱包内</option>
-                  <option value="5086516663303406548">商品转让给cc14 NFT shop然后上架</option>
-                  <option value="5555730498349580575">商品已经出售</option>
-                  <option value="15372808646477248834">商品曾经出售，谨防旧瓶新酒</option>
-                  <option value="1472173891428945831">数字产权被转入垃圾桶的商品</option>
-                  <option value="8707545209071357100">产品出厂前数字产权已经注销)</option>
+                  <option value="9990048413986158969">演示品牌：授权生产并已激活的商品</option>
+                  <option value="16094914555359371696">演示品牌：授权生产</option>
+                  <option value="16451992241381698202">演示品牌：已售商品</option>
+                  <option value="8979558791471997978">演示品牌：权益证明已销毁</option>
+                  <option value="130725379765346402">未知授权钱包，试图假冒演示品牌</option>
+                  <option value="1472173891428945831">未知权益证明</option>
                 </datalist>
               <div class="input-group-append">
                 <input type="submit" class="btn btn-outline-secondary " style="border-color: #ced4da" value="&#x1F50D;查询">
@@ -147,10 +144,7 @@
                       <td class="td-1">保质期</td>
                       <td class="td-2" id="assetInforTbl-goodFor">无记录</td>
                     </tr>
-                    <tr id="assetInforTbl-r9">
-                      <td class="td-1">区块链标识</td>
-                      <td class="td-2" id="assetInforTbl-fullHash">无记录</td>
-                    </tr>
+
                   </table>
                 </div>
               </div>
@@ -322,10 +316,6 @@
                         <td class="td-1">授权时间</td>
                         <td class="td-2 text-break" id="assetIssuerTbl-date">无记录</td>
                       </tr>
-                      <tr>
-                        <td class="td-1">区块链标识</td>
-                        <td class="td-2" id="assetIssuerTbl-fullhash">无记录</td>
-                      </tr>
                     <tbody>
                   </table>
                 </div>
@@ -373,27 +363,25 @@
                           <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;防伪码</span>
                           <input type="text" class="form-control" name='asset' placeholder="带有CC14标识的绿色防伪码..." list="requestDTasset">
                           <datalist id="requestDTasset">
-                            <option value="9196924428286156815"></option>
-                            <option value="18246018467717841450"></option>
-                            <option value="2381810025932782993"></option>
-                            <option value="7627942908921392359"></option>
-                            <option value="5300661581399953428"></option>
+                            <option value="6081132971218252451"></option>
+                            <option value="8780717788303414133"></option>
+                            <option value="15200409551401343201"></option>
+                            <option value="1961837512695565320"></option>
                           </datalist>
                         </div>
                         <div class="input-group mb-3" >
                           <span class="input-group-text"><img src="images/icon-qrcode-b.png" width="20" height="20" alt="langurage">&nbsp;注册码</span>
                           <input type="text" class="form-control" name='regCode' placeholder="带有CC14标识的蓝色注册码..." list="requestDTregCode">
                           <datalist id="requestDTregCode">
-                            <option value="2f733efcb43abadf0c02e128e92e72b0ed9f959a034e7d30413d3f9de1cc5416"></option>
-                            <option value="c9967808e216f6b41db90717d1d52a45a560d24b8c4ec328e698f811f8235405"></option>
-                            <option value="aa9ed513c9d77e86ae9f2054d77238b9214747812a4467deb2106f722a7f465e"></option>
-                            <option value="289c900d5ed7c6cc7fc305b1b8bf9e35479fc942655b091a8e8a7b3170a9e322"></option>
-                            <option value="830256bcafc21f00fffdcffefae04f1f41dc8561cc480237ed14f479c218d084"></option>
+                            <option value="8df242f13ec2a0af99fb41efa0f90ca2d98fde83e663a48581d3e8045a505a75"></option>
+                            <option value="f43829fd08c04ca880b267d1bccad0a5f4771120961e6f78c5157c296b09607d"></option>
+                            <option value="f1d9cdfc5b278ac01a069defd795a163e133f8c3d0f44a7fa1acf94638574a2e"></option>
+                            <option value="1e44b580375f25d052fd06654dd3c0e019b9af752658ce1ce96c11f370055773"></option>
                           </datalist>
                         </div>
                         <div class="input-group justify-content-md-end">
                           <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;Reset">
-                          <input type="submit" class="btn btn-outline-secondary" id="requestDTbtn" value="&#x2714; Request">
+                          <input type="submit" class="btn btn-outline-secondary" id="requestDTbtn" value="&#x2714; 重置">
                         </div>
                       </form>
                     </div>
@@ -465,10 +453,11 @@ var isNode = false;
 <script src="js/3rdparty/converters.js"></script>
 <script src="js/3rdparty/nrs.util.js"></script>
 <script src="js/3rdparty/jquery.table2excel.js"></script>
-<script src='js/scripts-cc14.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
+<script src='js/scripts-cc14cn.js' ></script>
+<script src='js/nav_footer.js' ></script>
 <script>
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});

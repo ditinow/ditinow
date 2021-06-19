@@ -1,12 +1,28 @@
-var keyAES    = 4637379464008381;
-var ivAES     = 6394680564231843;
+var keyAES    = 5399631576047603;
+var ivAES     = 9958509500228432;
 
-var secretPhraseIssuance = "midnight seven through card squeeze point lovely joke gone own ink ancient";
-var secretPhraseActivation = "dreamer cruel swallow mean pray judge hang shown concrete chin scale void";
+var secretPhraseIssuance = "ci di wu yin 300 liang ge bi wang er bu ceng tou";
+var secretPhraseActivation = "ci di wu yin 302 liang ge bi wang er bu ceng tou";
 
 var walletsObj=[
-  {accountRS:"ARDOR-6GHE-PZHL-A7NV-HPAYQ", secretPhrase: "midnight seven through card squeeze point lovely joke gone own ink ancient"},
-  {accountRS:"ARDOR-8V6U-U34X-SSSZ-83ZLJ", secretPhrase: "pride snake raw verse dove pulse situation glory cheek trip shower show"},
-  {accountRS:"ARDOR-JNYN-A76A-MHRC-BC5QQ", secretPhrase: "dreamer cruel swallow mean pray judge hang shown concrete chin scale void"},
-  {accountRS:"ARDOR-YU7X-Q4HS-X6H5-BD5TS", secretPhrase: "creep bee ruin couch white true tonight glove attack cover describe descend"}
+  {
+    accountRS:"CC14-5KKJ-TXML-FKM3-4SLZB",
+    secretPhrase: "ci di wu yin 300 liang ge bi wang er bu ceng tou"
+  },
+  {
+    accountRS:"CC14-UEM4-XQBX-HZWW-G2FNW",
+    secretPhrase: "ci di wu yin 301 liang ge bi wang er bu ceng tou"
+  },
+  {
+    accountRS:"CC14-F4Z6-3E9T-EXSK-HPYWH",
+    secretPhrase: "ci di wu yin 302 liang ge bi wang er bu ceng tou"
+  },
+  {
+    accountRS:"CC14-DUPL-QDTD-ZGDJ-7YJTW",
+    secretPhrase: "ci di wu yin 303 liang ge bi wang er bu ceng tou"
+  },
+  {
+    accountRS:"CC14-6LFR-HCTG-F2LR-87ZB4",
+    secretPhrase: "ci di wu yin 304 liang ge bi wang er bu ceng tou"
+  }
 ];
