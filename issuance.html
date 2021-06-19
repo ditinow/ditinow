@@ -214,8 +214,8 @@
                   <div class="col-12 col-sm-12 d-none" id="issueNFTwSNoResponse">
                     <div class="overflow-auto" name="issueNFTwSNoResult">
                         <h5>Summary:</h5>
-                        <span>Save to <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; spreadsheet</button>. Transaction fee are paid in CC14.</span><br>
-                        <span><br><b>Note: </b>in order to maintain minimum  blance in demonstration account, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> will be disabled if issue more than 2 title tokens.</span>
+                        <span>Save to <button id="table2excelwSNo" class="btn btn-outline-secondary btn-sm">&#x1F4E5; spreadsheet</button>. Transaction fee are paid in CC14.</span><br>
+                        <!-- <span><br><b>Note: </b>in order to maintain minimum  blance in demonstration account, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> will be disabled if issue more than 2 title tokens.</span> -->
                       <div class="table-responsive">
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTwSNoResultTbl">
                           <thead class="thead-light">
@@ -248,7 +248,7 @@
               </div><!-- accordion-item panel end ========================== -->
             </div><!-- accordion-item end ================================== -->
 
-            <div class="accordion-item" name="Activate anti-counterfeiting product">
+            <div class="accordion-item" name="Activation or burning">
               <h2 class="accordion-header" id="activationSearchFlip">
                 <button id="activationSearchBtn" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#activationSearchPanel" aria-expanded="false" aria-controls="activationSearchPanel" >
                   <h4>&#x1F426; Activation or Burning</h4>
@@ -660,7 +660,7 @@
   $("input[type='text']").on("click", function () {$(this).select();});
   function activationConfirmBtnFn(selected){
     $("#activationConfirmWallet").html(selected);
-    if(selected == "CC14-9QS5-MBBX-56MF-ESNEB"){
+    if(selected == walletBurner){
       $("#activationConfirmBtn").val(" 🔥 Confirm Burn Assets");
       $("#walletType").html("Burn only");
       $("#activationConfirmTblThead").html("Burned assets");

@@ -389,7 +389,6 @@ $("#requestTitlTokenForm").submit(function(event){
     url: "requestDT.php",
     data:formData,
     success:function(response){
-
       var responseObj  = JSON.parse(response);
       console.log(responseObj);
       if (responseObj.fullHash == "failed"){
@@ -397,7 +396,7 @@ $("#requestTitlTokenForm").submit(function(event){
         $("#requestTitlTokeneResult").html(message);
         alert("解密失败！");
       }else if (responseObj.fullHash == "mismatch"){
-        var message= "<b style='color:red'>匹配失败! 谨防假冒。 </b><br>您提供的防伪码: "+formData[1].value+"<br>与注册码解密结果不匹配: "+responseObj.decrypted;
+        var message= "<b style='color:red'>匹配失败! 谨防假冒。 </b><br>您提供的防伪码: "+formData[2].value+" 与注册码解密结果 "+responseObj.decrypted + " 不匹配。";
         $("#requestTitlTokeneResult").html(message);
         alert("匹配失败！");
       }else{
@@ -539,7 +538,7 @@ $("#transferAssetForm").submit(function(event){
           var responseObj  = JSON.parse(response);
           var senderRS= responseObj.transactionJSON.senderRS;
           var recipientRS = responseObj.transactionJSON.recipientRS;
-          var fee = responseObj.transactionJSON.feeNQT/10000000+" CC14";
+          var fee = responseObj.transactionJSON.feeNQT/100000000+" CC14";
           var transactionTime = timestampToLocalFn(responseObj.transactionJSON.timestamp);
           var fullHash = responseObj.fullHash;
           var transactionBytes = responseObj.transactionBytes;
@@ -762,7 +761,6 @@ $("#issueNFTForm").submit(function(event){
   var name = barcode.toString(32);
   var issueAsset = [
     {name:"requestType",value:"issueAsset"},
-    // {name:"chain",value: "2"},
     {name:"name",value: name},
     {name:"description",value: "NFTID"},
     {name:"quantityQNT",value:"1"},
@@ -770,14 +768,13 @@ $("#issueNFTForm").submit(function(event){
     {name:"secretPhrase",value:formData[3].value},
     {name:"feeNQT",value:"0"},
     {name:"deadline", value:"60"},
-    // {name:"feeRateNQTPerFXT",value: "-1"},
     {name:"broadcast",value:"false"},
     {name:"message",value:formData[2].value},
   ];
   var issueQty=parseInt(formData[4].value);
-  // if(issueQty >2 && (issueAsset[6].value)==secretPhraseIssuance){
-  //   $("#issueNFTBroadcastBtn").prop('disabled', true);
-  // };
+  if(issueQty >5 && (issueAsset[5].value)==secretPhraseIssuance){
+    $("#issueNFTBroadcastBtn").prop('disabled', true);
+  };
   var fullHashArray=new Array(issueQty);
   var assetIDArray=new Array(issueQty);
   var transactionBytesArray=new Array(issueQty);
@@ -1044,11 +1041,13 @@ function issueNFTwSNoQRCodeFn(assetID,regCode){
 $("#activationSearchForm").submit(function(event){
   event.preventDefault();
   var formData = $(this).serializeArray();
+  console.log(formData);
   var getAccountAssets = [
     {name:"requestType", value:"getAccountAssets"},
     {name:"account", value:formData[0].value.trim()},
     {name:"includeAssetInfo", value:"true"},
   ];
+  console.log(getAccountAssets);
   if (walletActivation.includes(formData[0].value)){
     $(".activationConfirmRecipient").prop("disabled", true)
   }
@@ -1331,6 +1330,16 @@ $("#setAssetPropertyForm").submit(function(event){
 $("#table2excel").click(function(){
   var secEpoch = Math.floor( Date.now() / 1000 );
   $("#issueNFTResultTbl").table2excel({
+    exclude: ".noExl",
+    name: "Worksheet Name",
+    filename:"NFT_"+secEpoch,
+    fileext: ".xls"
+  });
+});
+
+$("#table2excelwSno").click(function(){
+  var secEpoch = Math.floor( Date.now() / 1000 );
+  $("#issueNFTwSNoResultTbl").table2excel({
     exclude: ".noExl",
     name: "Worksheet Name",
     filename:"NFT_"+secEpoch,

@@ -125,8 +125,8 @@
                   <div class="col-12 col-sm-12 d-none" id="issueNFTResponse">
                     <div class="overflow-auto" name="issueNFTResult">
                         <h5>事件总结:</h5>
-                        <p>下载 <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; 电子表格</button>。费用单位为火链币IGNIS.</p><br>
-                        <p><b>注: </b>为节省演示账户余额，一次授权超过两件以上商品将不会被广播至区块链上, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> 被停用，商用版将取消这个限制。</p>
+                        <p>下载 <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; 电子表格</button>。费用单位为CC14代币。</p><br>
+                        <p><b>注: </b>为节省演示账户余额，一次授权超过五件以上商品将不会被广播至CC14公链, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> 被停用，商用版将取消这个限制。</p>
                       <div class="table-responsive">
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTResultTbl">
                           <thead class="thead-light">
@@ -137,7 +137,7 @@
                               <th>区块链标识</th>
                               <th>产品条码</th>
                               <th>资产名字</th>
-                              <th>产品描述</th>
+                              <th>序列号</th>
                               <th>操作信息</th>
                               <th>授权钱包</th>
                               <th>授权时间</th>
@@ -214,8 +214,7 @@
                   <div class="col-12 col-sm-12 d-none" id="issueNFTwSNoResponse">
                     <div class="overflow-auto" name="issueNFTwSNoResult">
                       <h5>事件总结:</h5>
-                      <p>下载 <button id="table2excel" class="btn btn-outline-secondary btn-sm">&#x1F4E5; 电子表格</button>。费用单位为火链币IGNIS.</p><br>
-                      <p><b>注: </b>为节省演示账户余额，一次授权超过两件以上商品将不会被广播至区块链上, <input type="button" class="btn btn-success btn-sm" disabled value="&#x2714;Confirm broadcast"> 被停用，商用版将取消这个限制。</p>
+                      <p>下载 <button id="table2excelwSno" class="btn btn-outline-secondary btn-sm">&#x1F4E5; 电子表格</button>。费用单位为CC14代币。</p><br>
                       <div class="table-responsive">
                         <table class="table table-sm text-nowrap fs-6 table-bordered border-info caption-top" id="issueNFTwSNoResultTbl">
                           <thead class="thead-light">
@@ -226,7 +225,7 @@
                               <th>区块链标识</th>
                               <th>产品条码</th>
                               <th>资产名字</th>
-                              <th>产品描述</th>
+                              <th>序列号</th>
                               <th>操作信息</th>
                               <th>授权钱包</th>
                               <th>授权时间</th>
@@ -263,7 +262,7 @@
                         <input type="text" class="form-control" name="account" list="activationSearchList" >
                         <datalist id="activationSearchList">
                           <option value="CC14-5KKJ-TXML-FKM3-4SLZB">授权钱包 CryptoC14演示账户</option>
-                          <option value="ARDOR-8V6U-U34X-SSSZ-83ZLJ">产品激活 CryptoC14演示账户</option>
+                          <option value="CC14-F4Z6-3E9T-EXSK-HPYWH">产品激活 CryptoC14演示账户</option>
                         </datalist>
                       </div>
                       <div class="input-group mb-3">
@@ -311,7 +310,7 @@
                         <span class="input-group-text">选择钱包</span>
                         <select class="form-select" type="text" name="recipient"  onchange="activationConfirmBtnFn(this.options[this.selectedIndex].value)">
                           <option value="CC14-F4Z6-3E9T-EXSK-HPYWH" class="activationConfirmRecipient">激活专用 CryptoC14演示账户</option>
-                          <option value="CC14-LK4C-4WAU-UEMU-8U3YB" >焚毁专用</option>
+                          <option value="CC14-9QS5-MBBX-56MF-ESNEB" >焚毁专用</option>
                           </select>
                       </div>
                       <div class="input-group mb-3" >
@@ -644,11 +643,14 @@
 <script src="js/3rdparty/jquery.table2excel.js"></script>
 <script src="js/3rdparty/filter.js"></script>
 <script src="js/3rdparty/jquery.dataTables.min.js" ></script>
-<script src='js/scripts-cc14.js' ></script>
-<script src='js/nav_footer.js' ></script>
+<script src='data/conf.json' ></script>
+<script src='data/doNotShare.json' ></script>
 <script src='data/myAddressBook.json' ></script>
 <script src='data/myAssetBook.json' ></script>
-<script src='data/doNotShare.json' ></script>
+<script src='js/scripts-cc14cn.js' ></script>
+<script src='js/nav_footer.js' ></script>
+
+
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {return new bootstrap.Tooltip(tooltipTriggerEl)});
@@ -657,7 +659,7 @@
   $("input[type='text']").on("click", function () {$(this).select();});
   function activationConfirmBtnFn(selected){
     $("#activationConfirmWallet").html(selected);
-    if(selected == "ARDOR-LK4C-4WAU-UEMU-8U3YB"){
+    if(selected == walletBurner){
       $("#activationConfirmBtn").val(" 🔥 Confirm Burn Assets");
       $("#walletType").html("Burn only");
       $("#activationConfirmTblThead").html("Burned assets");

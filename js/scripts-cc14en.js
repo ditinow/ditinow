@@ -540,7 +540,7 @@ $("#transferAssetForm").submit(function(event){
           var responseObj  = JSON.parse(response);
           var senderRS= responseObj.transactionJSON.senderRS;
           var recipientRS = responseObj.transactionJSON.recipientRS;
-          var fee = responseObj.transactionJSON.feeNQT/10000000+" CC14";
+          var fee = responseObj.transactionJSON.feeNQT/100000000+" CC14";
           var transactionTime = timestampToLocalFn(responseObj.transactionJSON.timestamp);
           var fullHash = responseObj.fullHash;
           var transactionBytes = responseObj.transactionBytes;
@@ -763,7 +763,6 @@ $("#issueNFTForm").submit(function(event){
   var name = barcode.toString(32);
   var issueAsset = [
     {name:"requestType",value:"issueAsset"},
-    // {name:"chain",value: "2"},
     {name:"name",value: name},
     {name:"description",value: "NFTID"},
     {name:"quantityQNT",value:"1"},
@@ -771,14 +770,13 @@ $("#issueNFTForm").submit(function(event){
     {name:"secretPhrase",value:formData[3].value},
     {name:"feeNQT",value:"0"},
     {name:"deadline", value:"60"},
-    // {name:"feeRateNQTPerFXT",value: "-1"},
     {name:"broadcast",value:"false"},
     {name:"message",value:formData[2].value},
   ];
   var issueQty=parseInt(formData[4].value);
-  // if(issueQty >2 && (issueAsset[6].value)==secretPhraseIssuance){
-  //   $("#issueNFTBroadcastBtn").prop('disabled', true);
-  // };
+  if(issueQty >5 && (issueAsset[5].value)==secretPhraseIssuance){
+    $("#issueNFTBroadcastBtn").prop('disabled', true);
+  };
   var fullHashArray=new Array(issueQty);
   var assetIDArray=new Array(issueQty);
   var transactionBytesArray=new Array(issueQty);
@@ -1218,9 +1216,11 @@ $("#issueAssetForm").submit(function(event){
     {name:"broadcast",        value:"false"},
     {name:"message",          value:formData[4].value}
   ];
+  console.log(formData[5].value);
   // remove this line for production version====================================
-  if((formData[5].value)=="ci di wu yin 300 liang ge bi wang er bu ceng tou"){
+  if((formData[5].value)=="ci di wu yin 301 liang ge bi wang er bu ceng tou"){
     $("#issueAssetBroadcastBtn").prop('disabled', true);
+
   };
   // remove this line for production version====================================
   $.ajax({
@@ -1340,6 +1340,15 @@ $("#table2excel").click(function(){
   });
 });
 
+$("#table2excelwSno").click(function(){
+  var secEpoch = Math.floor( Date.now() / 1000 );
+  $("#issueNFTwSNoResultTbl").table2excel({
+    exclude: ".noExl",
+    name: "Worksheet Name",
+    filename:"NFT_"+secEpoch,
+    fileext: ".xls"
+  });
+});
 // return File Size Fn =========================================================
 function returnFileSizeFn(number) {
   if(number < 1024) {

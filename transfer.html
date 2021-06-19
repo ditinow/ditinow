@@ -83,11 +83,11 @@
                         <span class="input-group-text" >Create new wallet</span>
                         <input type="text" class="form-control" name='passphrase' minlength="6"  placeholder="Use minimum 6 alphanumeric to create a new wallet">
                         <input type="reset" class="btn btn-outline-secondary" value="&#x1F503;">
-                        <input type="submit" class="btn btn-outline-secondary" value="&#128296;">
+                        <input type="submit" class="btn btn-outline-secondary" value="&#128296;create">
                       </div>
                     </form>
-                    <div id="hrContainer">
-                      <hr id="hrText" data-content="OR">
+                    <div>
+                      <p class="text-center text-muted">OR</p>
                     </div>
                     <form id="requestTitlTokenForm">
                       <input type="hidden" id="consumerPubKey" name='publicKey'>
@@ -95,6 +95,7 @@
                         <span class="input-group-text" >Use existing wallet</span>
                         <input type="text" class="form-control" id="consumerWallet" name='recipient' value="CC14-" placeholder="Enter consumer wallet address with prefix CC14-">
                       </div>
+                        <hr>
                       <div class="input-group mb-3" >
                         <span class="input-group-text"><img src="images/icon-qrcode-g.png" width="20" height="20" alt="langurage">&nbsp;Secure Code</span>
                         <input type="text" class="form-control" name='asset' placeholder="Scan green QR code with CC14 logo..." list="requestDTasset">
