@@ -442,7 +442,7 @@ $("#pin2newWallet").submit(function(event){
         logo:"images/logo-cc14-qr.png",
         logoWidth:100,
         logoHeight:50,
-        title:"accountRS",
+        title:"钱包地址",
         titleHeight:30,
         titleTop:10,
         correctLevel: QRCode.CorrectLevel.H
@@ -456,7 +456,7 @@ $("#pin2newWallet").submit(function(event){
         logo:"images/logo-cc14-qr.png",
         logoWidth:100,
         logoHeight:50,
-        title:"Passphrase",
+        title:"钱包密钥",
         titleHeight:30,
         titleTop:10,
         correctLevel: QRCode.CorrectLevel.Q
@@ -486,13 +486,15 @@ $("#requestCC14Form").submit(function(event){
     success:function(response){
       var responseObj  = JSON.parse(response);
       console.log(responseObj);
-      if(responseObj.request =="rejected"){
-        $("#requestCC14Result").html("Request reject");
-        $("#requestCC14Result").html(responseObj.responses);
+      if(responseObj.request =="incorrectAccount"){
+        $("#requestCC14Result").html("申请被拒绝: 错误的钱包地址");
+      }else if(responseObj.request =="unconfirmedTX"){
+        $("#requestCC14Result").html("发现未最后认可的交易。请等待一分钟之后刷新页面重试。");
+      }else if(responseObj.request =="exceed"){
+        $("#requestCC14Result").html(formData[0].value.trim() + " 已经收到超过 2000 枚由 CtyptpC14.com 派发的 CC14 令牌。 需要更多的令牌请联系风云，微信号 fengyun_houston 。");
       }else{
-        $("#requestCC14Result").html("Request approved");
+        $("#requestCC14Result").html("申请通过");
         $("#requestCC14JSON").html("<h6>sendMoney</h6><textarea class='form-control border border-info' rows='12'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
-
       };
     }
   });

@@ -488,13 +488,15 @@ $("#requestCC14Form").submit(function(event){
     success:function(response){
       var responseObj  = JSON.parse(response);
       console.log(responseObj);
-      if(responseObj.request =="rejected"){
-        $("#requestCC14Result").html("Request reject");
-        $("#requestCC14Result").html(responseObj.responses);
+      if(responseObj.request =="incorrectAccount"){
+        $("#requestCC14Result").html("Request rejected: incorrect account");
+      }else if(responseObj.request =="unconfirmedTX"){
+        $("#requestCC14Result").html("Unconfirmed transactions found. Please wait 60 seconds then reload the page and retry.");
+      }else if(responseObj.request =="exceed"){
+        $("#requestCC14Result").html(formData[0].value.trim() + " received more than 2000 CC14 from CryptoC14.com. Please contact WeChat_ID: fengyun_houston for additional amount.");
       }else{
         $("#requestCC14Result").html("Request approved");
         $("#requestCC14JSON").html("<h6>sendMoney</h6><textarea class='form-control border border-info' rows='12'>" + JSON.stringify(responseObj,undefined, 4)+"</textarea>");
-
       };
     }
   });
@@ -774,7 +776,7 @@ $("#issueNFTForm").submit(function(event){
     {name:"message",value:formData[2].value},
   ];
   var issueQty=parseInt(formData[4].value);
-  if(issueQty >5 && (issueAsset[5].value)==secretPhraseIssuance){
+  if(issueQty >50 && (issueAsset[5].value)==secretPhraseIssuance){
     $("#issueNFTBroadcastBtn").prop('disabled', true);
   };
   var fullHashArray=new Array(issueQty);
