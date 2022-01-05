@@ -1,6 +1,6 @@
 ### Hi there 👋
 Welcom to DiTiNOW, a NFT based anti-counterfeiting solution. The project include diti - a web application, and CC14 - a POS blockchain uses for the application.
-Please visit www.dicinow.com for live pages.
+Please visit www.ditinow.com for live pages.
 
 <!--
 **ditinow/ditinow** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
