@@ -9,7 +9,7 @@
 
 <p>The solution of includes:
                       <ul>
-                        <li>A web based application <a href="http://cryptoc14.com" target="_blank">CryptoC14</a> (for demostration please visit <a href="diti/en/" target="_blank">DiTiNOW.com/diti</a>)</li>
+                        <li>A web based application <a href="http://cryptoc14.com" target="_blank">CryptoC14</a> (for demostration please visit <a href="http://ditinow.com/diti/en/" target="_blank">DiTiNOW.com/diti</a>)</li>
                         <li>A POS public blockchain (CC14 chain)</li>
                         <li>HTTP service is needed for distributing title token (aka NFT, acting as certification of authenticity/ownership) and providing non-transactional information, such as product information and designated wallet information.</li>
                       </ul>
